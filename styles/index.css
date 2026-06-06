@@ -13,6 +13,10 @@ body {
     background-color: black;
 }
 
+body::-webkit-scrollbar {
+    display: none;
+}
+
 .background-tablet {
     width: 100vw;
     height: 100vh;
@@ -34,24 +38,6 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
-}
-
-.custom-audio {
-    height: 30px;
-    width: 150px;
-    border-radius: 20px;
-    outline: none;
-    position: absolute;
-    left: 0;
-    top: 100px;
-}
-
-.custom-audio:hover {
-    width: 300px;
-}
-
-.custom-audio::-webkit-media-controls-panel {
-  background-color: rgba(255, 255, 255, 0.5); 
 }
 
 .background-video {
@@ -183,11 +169,250 @@ header {
     cursor: pointer;
 }
 
+.music-logo {
+    display: flex;
+    flex-direction: row;   
+    border: none;
+    border-radius: 15px;
+    justify-content: space-around;
+    align-items: center;
+    background: transparent;
+    border: 1px solid white;
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
+.first-music-logo {
+    width: 3px;
+    height: 10px;
+    border-radius: 1px;
+    background-color: wheat;
+    animation: firstMusic 0.7s linear infinite;
+}
+
+.second-music-logo {
+    width: 3px;
+    height: 15px;
+    border-radius: 1px;
+    background-color: wheat;
+    animation: secondMusic 0.4s linear infinite;
+}
+
+.third-music-logo {
+    width: 2.5px;
+    height: 10px;
+    border-radius: 1px;
+    background-color: wheat;
+    animation: thirdMusic 0.7s linear infinite;
+}
+
+.music-logos.paused {
+    animation: none;
+}
+
+@keyframes firstMusic {
+    0% { height: 10px; }
+    50% { height: 5px; }
+    100% { height: 10px; }
+}
+
+@keyframes secondMusic {
+    0% { height: 15px; }
+    50% { height: 10px; }
+    100% { height: 15px; }
+}
+
+@keyframes thirdMusic {
+    0% { height: 10px; }
+    50% { height: 5px; }
+    100% { height: 10px; }
+} 
+
 main {
     padding: 0;
     margin: 0;
     overflow: hidden;
     height: calc(100vh-100px);
+}
+
+.login-page {
+    position: absolute;
+    opacity: 0;
+}
+
+.login-page.active {
+    z-index: 1000;
+    opacity: 1;
+}
+
+.mask {
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+}
+
+.login-form {
+    max-width: 500px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 35px 20px;
+    border-radius: 10px;
+}
+
+.close-button {
+    position: absolute;
+    top: 11%;
+    left: 93%;
+    cursor: pointer;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 50px;
+}
+
+.close-button img {
+    width: 100%;
+    height: 100%;
+}
+
+.login-form-header {
+    width: 100%;
+    height: 100%;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.login-form-header img {
+    width: 50%;
+    height: 50%;
+    object-fit: fill;
+}
+
+.login-form-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.login-form-content .email input, 
+.login-form-content .password input {
+    width: 100%;
+    height: 60px;
+    border-radius: 5px;
+    outline: none;
+    font-size: 20px;
+    padding: 0 10px;
+    font-family: inherit;
+    cursor: pointer;
+    outline: none;
+}
+
+.login-form-content .email input::placeholder, 
+.login-form-content .password input::placeholder {
+    opacity: 0.5;
+}
+
+.login-form-content .email input:focus, 
+.login-form-content .password input:focus {
+    border: none;
+    box-shadow: 0 0 5px blue, 0 0 10px rgba(46, 164, 255, 0.8), 0 0 20px rgba(74, 249, 255, 0.9);
+}
+
+.sign-button button {
+    width: 100%;
+    height: 60px;
+    outline: none;
+    font-family: inherit;
+    cursor: pointer;
+    color: #007bff;
+    font-size: 25px;
+    font-weight: bold;
+    border: none;
+    position: relative;
+    border-radius: 5px;
+    background: #f5f5f7;
+}
+
+.sign-button button::before,
+.sign-button button::after {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to right, rgb(0, 187, 255), rgb(0, 170, 255), blue);
+    z-index: -1;
+    border-radius: 5px;
+    scale: 0.98;
+    transition: inset 0.3s ease, opacity 0.3s ease;
+}
+
+.sign-button button:hover::after {
+    top: -4px;
+    left: -8px;
+    right: -8px;
+    bottom: -4px;
+    animation: 3s animBorder linear infinite;
+}
+
+@keyframes animBorder {
+    0% {
+        filter: hue-rotate(0deg);
+    }
+    100% {
+        filter: hue-rotate(360deg);
+    }
+}
+
+.sign-button button:hover::before {
+    top: -4px;
+    left: -8px;
+    right: -8px;
+    bottom: -4px;
+    animation: 3s animShadow linear infinite;
+    opacity: 0.8;
+}
+
+@keyframes animShadow {
+    0% {
+        filter: blur(15px) hue-rotate(0deg);
+    }
+    100% {
+        filter: blur(15px) hue-rotate(360deg);
+    }
+}
+
+.login-form-content .terms-policy {
+    align-items: center;
+}
+
+input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.terms-policy-desc {
+    font-size: 15px;
+}
+
+.terms-policy {
+    display: flex;
+    gap: 10px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.forgot-register {
+    display: flex;
+    justify-content: space-between;
 }
 
 .hero {
