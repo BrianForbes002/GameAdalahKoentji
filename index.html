@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wuthering Waves</title>
+    <link rel="icon" href="https://wutheringwaves.kurogames.com/static4.0/favicon.ico">
+    <link rel="stylesheet" href="styles/index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  </head>
+
+  <body>
+    
+    <div class="snow">
+      <span style="--i:11;"></span>
+      <span style="--i:12;"></span>
+      <span style="--i:24;"></span>
+      <span style="--i:10;"></span>
+      <span style="--i:14;"></span>
+      <span style="--i:23;"></span>
+      <span style="--i:18;"></span>
+      <span style="--i:16;"></span>
+      <span style="--i:19;"></span>
+      <span style="--i:20;"></span>
+      <span style="--i:22;"></span>
+      <span style="--i:25;"></span>
+      <span style="--i:18;"></span>
+      <span style="--i:21;"></span>
+      <span style="--i:13;"></span>
+      <span style="--i:15;"></span>
+      <span style="--i:26;"></span>
+      <span style="--i:17;"></span>
+      <span style="--i:13;"></span>
+      <span style="--i:28;"></span>
+      <span style="--i:11;"></span>
+      <span style="--i:12;"></span>
+      <span style="--i:24;"></span>
+      <span style="--i:10;"></span>
+      <span style="--i:14;"></span>
+      <span style="--i:23;"></span>
+      <span style="--i:18;"></span>
+      <span style="--i:16;"></span>
+      <span style="--i:19;"></span>
+      <span style="--i:20;"></span>
+      <span style="--i:22;"></span>
+      <span style="--i:25;"></span>
+      <span style="--i:18;"></span>
+      <span style="--i:21;"></span>
+      <span style="--i:13;"></span>
+      <span style="--i:15;"></span>
+      <span style="--i:26;"></span>
+      <span style="--i:17;"></span>
+      <span style="--i:13;"></span>
+      <span style="--i:28;"></span>
+    </div>
+    
+    <header class="header">
+      <div class="left-section">
+        <img src="icons/index/wuwa-logo.png">
+      </div>
+
+      <input type="checkbox" id="navToggle" class="nav-toggle">
+      <label for="navToggle" class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </label>
+
+      <nav>
+        <div class="middle-section">
+          <label for="navToggle" class="close-btn">X</label>
+          <a href="index.html" class="menu">Home</a>
+          <a href="resonators.html" class="menu">Resonators</a>
+          <a href="regions.html" class="menu">Regions</a>
+          <a href="hot-news.html" class="menu">Hot News</a>
+          <a href="community.html" class="menu">Community</a>
+          <a href="support.html" class="menu">Support</a>
+          <a href="top-up.html" class="menu">Top Up</a>
+          <div class="social-media-mobile">
+            <img src="icons/index/twitter.png" onclick="window.open('https://x.com/Wuthering_Waves', '_blank')">
+            <img src="icons/index/facebook.png" onclick="window.open('https://www.facebook.com/WutheringWaves.Official', '_blank')">
+            <img src="icons/index/youtube.png" onclick="window.open('https://www.youtube.com/@WutheringWaves', '_blank')">
+            <img src="icons/index/discord.png" onclick="window.open('https://discord.com/invite/wutheringwaves', '_blank')">
+            <img src="icons/index/reddit.png" onclick="window.open('https://www.reddit.com/r/WutheringWaves/', '_blank')">
+            <img src="icons/index/instagram.png" onclick="window.open('https://www.instagram.com/wuthering_waves/', '_blank')">
+            <img src="icons/index/tiktok.png" onclick="window.open('https://www.tiktok.com/@wutheringwaves_official', '_blank')">
+          </div>
+        </div>
+      </nav>
+      
+      <div class="right-section">
+        <img class="language-logo" src="icons/index/language-logo.webp">
+        <div class="music-logo" onclick="playMusic()">
+          <div class="music-logos paused first-music-logo"></div>
+          <div class="music-logos paused second-music-logo"></div>
+          <div class="music-logos paused third-music-logo"></div>
+        </div>
+        <img class="login-logo" onclick="loginForm()" src="icons/index/login.png">
+      </div>
+    </header>
+
+    <main>
+      <form class="login-page" action="#" method="post">
+        <div class="mask"></div>
+        <div class="login-form">
+          <div class="close-button" onclick="closeLoginForm()">
+            <img src="icons/index/login_close.jpg">
+          </div>
+          <div class="login-form-header">
+            <img src="icons/index/login_header.jpg">
+          </div>
+
+          <div class="login-form-content">
+            <div class="email">
+              <input id="email" name="email" type="email" placeholder="Enter email" required>
+            </div>
+            <div class="password">
+              <input id="pass" name="pass" type="password" placeholder="Enter password" required>
+            </div>
+            <div class="terms-policy">
+              <div class="terms-policy-checkbox">
+                <input type="checkbox" id="check" name="check" required>
+              </div>
+              <div class="terms-policy-desc">
+                I have read and agree to the <a href="https://wutheringwaves.kurogames.com/p/language_en/terms_of_service.html" target="_blank">Terms of Use</a> and <a href="https://wutheringwaves.kurogames.com/p/language_en/privacy_policy.html" target="_blank">Privacy Policy</a>
+              </div>
+            </div>
+            <div class="sign-button">
+              <button type="submit">Sign In</button>
+            </div>
+            <div class="forgot-register">
+              <div class="forgot"><a href="forgot_page.html">Forgot Password</a></div>
+              <div class="register"><a href="reset_page.html">Register Now</a></div>
+            </div>
+          </div>
+
+          <div class="login-form-footer">
+
+          </div>
+        </div>
+
+      </form>      
+
+      <section class="hero">     
+        <video autoplay muted loop class="background-video">
+          <source src="icons/index/bg-video.mp4">
+        </video>
+
+        <video autoplay muted loop class="background-video-mobile">
+          <source src="icons/index/bg_video_mobile.mp4">
+        </video>
+
+        <div class="background-tablet">
+          <img src="icons/index/bg-tablet.jpg">
+        </div>
+
+        <div class="new_player">
+          <div class="new_player_content">
+            <p>Free Player Benefit</p>
+            <img src="icons/index/radiant-tide.png">
+            <p>Up To 93 Free Pulls</p>
+          </div>
+          <div class="encore_gif">
+            <img src="icons/index/encore_gif.webp">
+          </div>
+        </div>
+
+        <div class="patch_notes">
+          <div class="patch_notes_img" onclick="window.open('https://wutheringwaves.kurogames.com/en/main/news/detail/4447', '_blank')">
+            <img src="icons/index/v3.2_patch_notes.webp">
+          </div>
+          <div class="patch_notes_name">
+            <p>Version 3.2 Patch Notes</p>
+          </div>
+        </div>
+
+        <div class="download-grid">
+          <div class="download">
+            <img class="qrcode" src="icons/index/qrcode.jpg">
+          </div>
+
+          <div class="download">
+            <div onclick="window.open('https://download.kurogames.net/transfer/mc_WnGtDn85y8lJB4mTmYHYuNjIl9n6YGVm/official/global/en/pc_app', '_blank')">
+              <img src="icons/index/windows.png">
+            </div>
+            <div onclick="window.open('https://apps.apple.com/us/app/wuthering-waves/id6475033368', '_blank')">
+              <img src="icons/index/appstore.png">
+            </div>
+          </div>
+
+          <div class="download">
+            <div onclick="window.open('https://play.google.com/store/apps/details?id=com.kurogame.wutheringwaves.global', '_blank')">
+              <img src="icons/index/googleplay.png">
+            </div>
+            <div onclick="window.open('https://store.epicgames.com/p/wuthering-waves-76ebc5', '_blank')">
+              <img src="icons/index/epic.png">
+            </div>
+          </div>
+
+          <div class="download">
+            <div onclick="window.open('https://play.google.com/store/apps/details?id=com.kurogame.wutheringwaves.global', '_blank')">
+              <img src="icons/index/googleplay-games.png">
+            </div>
+            <div onclick="window.open('https://store.playstation.com/en-id/concept/10010764/', '_blank')">
+              <img src="icons/index/ps5.png">
+            </div>
+          </div>
+        </div>
+
+        <div class="download-mobile">
+          <div onclick="window.open('https://play.google.com/store/apps/details?id=com.kurogame.wutheringwaves.global', '_blank')">DOWNLOAD NOW</div>
+        </div>
+        
+        <div class="gif">
+          <div class="phrolova_gif">
+            <img src="icons/index/phrolova.gif">
+          </div>
+        </div>
+
+        <div class="social-media">
+          <img style="--i:1" src="icons/index/twitter.png" onclick="window.open('https://x.com/Wuthering_Waves', '_blank')">
+          <img style="--i:2" src="icons/index/facebook.png" onclick="window.open('https://www.facebook.com/WutheringWaves.Official', '_blank')">
+          <img style="--i:3" src="icons/index/youtube.png" onclick="window.open('https://www.youtube.com/@WutheringWaves', '_blank')">
+          <img style="--i:4" src="icons/index/discord.png" onclick="window.open('https://discord.com/invite/wutheringwaves', '_blank')">
+          <img style="--i:5" src="icons/index/reddit.png" onclick="window.open('https://www.reddit.com/r/WutheringWaves/', '_blank')">
+          <img style="--i:6" src="icons/index/instagram.png" onclick="window.open('https://www.instagram.com/wuthering_waves/', '_blank')">
+          <img style="--i:7" src="icons/index/tiktok.png" onclick="window.open('https://www.tiktok.com/@wutheringwaves_official', '_blank')">
+        </div>
+
+        <div class="falling_leaves">
+          <div><img src="icons/index/leaves1.png"></div>
+          <div><img src="icons/index/leaves2.png"></div>
+          <div><img src="icons/index/leaves3.png"></div>
+          <div><img src="icons/index/leaves4.png"></div>
+          <div><img src="icons/index/leaves1.png"></div>
+          <div><img src="icons/index/leaves2.png"></div>
+          <div><img src="icons/index/leaves3.png"></div>
+          <div><img src="icons/index/leaves4.png"></div>
+        </div>
+
+      </section>
+    </main>
+    <footer class="footer">
+      <p>Copyright © KURO GAMES. ALL RIGHTS RESERVED.</p>
+    </footer>
+
+    <script src="scripts/index.js"></script>
+    <script src="scripts/resonators.js"></script>
+  </body>
+</html>

@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Game</title>
+
+    <link rel="stylesheet" href="styles/index.css">
+    <link rel="stylesheet" href="styles/resonators.css">
+    
+  </head>
+
+  <body>
+    <div class="global-bg"></div>
+    <header class="header">
+      <div class="left-section">
+        <img src="icons/index/wuwa-logo.png">
+      </div>
+
+      <input type="checkbox" id="navToggle" class="nav-toggle">
+      <label for="navToggle" class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </label>
+
+      <nav>
+        <div class="middle-section">
+          <label for="navToggle" class="close-btn">X</label>
+          <a href="index.html" class="menu">Home</a>
+          <a href="resonators.html" class="menu">Resonators</a>
+          <a href="regions.html" class="menu">Regions</a>
+          <a href="hot-news.html" class="menu">Hot News</a>
+          <a href="community.html" class="menu">Community</a>
+          <a href="support.html" class="menu">Support</a>
+          <a href="top-up.html" class="menu">Top Up</a>
+          <div class="social-media-mobile">
+            <img src="icons/index/twitter.png" onclick="window.open('https://x.com/Wuthering_Waves', '_blank')">
+            <img src="icons/index/facebook.png" onclick="window.open('https://www.facebook.com/WutheringWaves.Official', '_blank')">
+            <img src="icons/index/youtube.png" onclick="window.open('https://www.youtube.com/@WutheringWaves', '_blank')">
+            <img src="icons/index/discord.png" onclick="window.open('https://discord.com/invite/wutheringwaves', '_blank')">
+            <img src="icons/index/reddit.png" onclick="window.open('https://www.reddit.com/r/WutheringWaves/', '_blank')">
+            <img src="icons/index/instagram.png" onclick="window.open('https://www.instagram.com/wuthering_waves/', '_blank')">
+            <img src="icons/index/tiktok.png" onclick="window.open('https://www.tiktok.com/@wutheringwaves_official', '_blank')">
+          </div>
+        </div>
+      </nav>
+      
+      <div class="right-section">
+        <img class="language-logo" src="icons/index/language-logo.webp">
+        <div class="music-logo" onclick="playMusic()">
+          <div class="music-logos paused first-music-logo"></div>
+          <div class="music-logos paused second-music-logo"></div>
+          <div class="music-logos paused third-music-logo"></div>
+        </div>
+        <img class="login-logo" onclick="loginForm()" src="icons/index/login.png">
+      </div>
+    </header>
+
+    <div class="left-navbar">
+      <div class="region active" data-target="unknown">
+        <img class="logo" src="icons/resonators/menu/unknown_menu.webp">          
+        <span class="name">Unknown</span>
+      </div>     
+      <div class="region"  data-target="huanglong">
+        <img class="logo" src="icons/resonators/menu/huanglong_menu.webp">    
+        <span class="name">Huanglong</span> 
+      </div> 
+      <div class="region" data-target="black-shores">
+        <img class="logo" src="icons/resonators/menu/black_shores_menu.webp">
+        <span class="name">Black Shores</span>
+      </div>
+      <div class="region" data-target="ragunna">
+        <img class="logo" src="icons/resonators/menu/ragunna_menu.webp">
+        <span class="name">Ragunna</span>
+      </div>
+      <div class="region" data-target="septimont">
+        <img class="logo" src="icons/resonators/menu/septimont_menu.webp">
+        <span class="name">Septimont</span>
+      </div>
+      <div class="region" data-target="startorch-academy">
+        <img class="logo" src="icons/resonators/menu/startorch_academy_menu.webp">
+        <span class="name">Startorch Academy</span>
+      </div>
+      <div class="region" data-target="spacetrek-collective">
+        <img class="logo" src="icons/resonators/menu/spacetrek_collective_menu.webp"> 
+        <span class="name">Spacetrek Collective</span>
+      </div>
+      <div class="region" data-target="the-roya-tribe">
+        <img class="logo" src="icons/resonators/menu/the_roya_tribe_menu.webp"> 
+        <span class="name">The Roya Tribe</span>
+      </div>
+      <div class="region" data-target="the-fractsidus">
+        <img class="logo" src="icons/resonators/menu/the_fractsidus_menu.webp"> 
+        <span class="name">The Fractsidus</span>
+      </div>
+      <div class="region" data-target="other"> 
+        <img class="logo" src="icons/resonators/menu/other_menu.png">
+        <span class="name">Other</span>
+      </div> 
+    </div> 
+
+    <div class="bottom-navbar-mobile">
+      <div class="region">
+        <a href="unknown.html" target="content-window">
+          <img class="logo" src="icons/resonators/menu/unknown_menu.webp">          
+        </a>
+        <span class="name">Unknown</span>
+      </div>     
+      <div class="region">
+        <a href="huanglong.html" target="content-window">
+          <img class="logo" src="icons/resonators/menu/huanglong_menu.webp"> 
+        </a>    
+        <span class="name">Huanglong</span> 
+      </div> 
+      <div class="region">
+        <a href="black-shores.html" target="content-window">
+          <img class="logo" src="icons/resonators/menu/black_shores_menu.webp">
+        </a>
+        <span class="name">Black Shores</span>
+      </div>
+      <div class="region">
+        <a href="ragunna.html" target="content-window">
+          <img class="logo" src="icons/resonators/menu/ragunna_menu.webp">
+        </a>
+        <span class="name">Ragunna</span>
+      </div>
+      <div class="region">
+        <a href="septimont.html" target="content-window">
+          <img class="logo" src="icons/resonators/menu/septimont_menu.webp">
+        </a>
+        <span class="name">Septimont</span>
+      </div>
+      <div class="region">
+        <a href="startorch-academy.html" target="content-window">
+          <img class="logo" src="icons/resonators/menu/startorch_academy_menu.webp">
+        </a>
+        <span class="name">Startorch Academy</span>
+      </div>
+      <div class="region">
+        <a href="spacetrek-collective.html" target="content-window">
+          <img class="logo" src="icons/resonators/menu/spacetrek_collective_menu.webp"> 
+        </a>
+        <span class="name">Spacetrek Collective</span>
+      </div>
+      <div class="region">
+        <a href="the_roya_tribe.html" target="content-window">
+          <img class="logo" src="icons/resonators/menu/the_roya_tribe_menu.webp"> 
+        </a>
+        <span class="name">The Roya Tribe</span>
+      </div>
+      <div class="region" id="region">
+        <a href="the-fractsidus.html" target="content-window">
+          <img class="logo" src="icons/resonators/menu/the_fractsidus_menu.webp"> 
+        </a>
+        <span class="name">The Fractsidus</span>
+      </div>
+      <div class="region"> 
+        <a href="other.html" target="content-window">
+          <img class="logo" src="icons/resonators/menu/other_menu.png">
+        </a>
+        <span class="name">Other</span>
+      </div> 
+    </div>
+
+    <main>  
+
+      <form class="login-page" action="#" method="post">
+        <div class="mask"></div>
+        <div class="login-form">
+          <div class="close-button" onclick="closeLoginForm()">
+            <img src="icons/index/login_close.jpg">
+          </div>
+          <div class="login-form-header">
+            <img src="icons/index/login_header.jpg">
+          </div>
+
+          <div class="login-form-content">
+            <div class="email">
+              <input id="email" name="email" type="email" placeholder="Enter email" required>
+            </div>
+            <div class="password">
+              <input id="pass" name="pass" type="password" placeholder="Enter password" required>
+            </div>
+            <div class="terms-policy">
+              <div class="terms-policy-checkbox">
+                <input type="checkbox" id="check" name="check" required>
+              </div>
+              <div class="terms-policy-desc">
+                I have read and agree to the <a href="https://wutheringwaves.kurogames.com/p/language_en/terms_of_service.html" target="_blank">Terms of Use</a> and <a href="https://wutheringwaves.kurogames.com/p/language_en/privacy_policy.html" target="_blank">Privacy Policy</a>
+              </div>
+            </div>
+            <div class="sign-button">
+              <button type="submit">Sign In</button>
+            </div>
+            <div class="forgot-register">
+              <div class="forgot"><a href="forgot_page.html">Forgot Password</a></div>
+              <div class="register"><a href="reset_page.html">Register Now</a></div>
+            </div>
+          </div>
+
+          <div class="login-form-footer">
+
+          </div>
+        </div>
+      </form>  
+           
+      <section id="unknown" class="active">
+        <div class="background-name">
+          <div class="background">
+            <img src="icons/resonators/background/unknown.png">
+          </div>
+          <div class="name">UNKNOWN</div>            
+        </div>
+
+        <div class="character-wrapper">
+          <div class="character">
+            <div class="characterList">
+              <img src="icons/resonators/unknown/rover_female.png">
+              <p>Rover</p>
+            </div>
+            <div class="characterList">
+              <img src="icons/resonators/unknown/rover_male.png">
+              <p>Rover</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="huanglong">
+        <div class="background-name">
+          <div class="background">
+            <img src="icons/resonators/background/huanglong.png">
+          </div>
+          <div class="name">HUANGLONG</div>            
+        </div>
+
+        <div class="character-wrapper">
+          <div class="character">
+            <div class="characterList">
+              <img src="icons/resonators/huanglong/qiuyuan.webp">
+              <p>Qiuyuan</p>
+            </div>
+            <div class="characterList">
+              <img src="icons/resonators/huanglong/lumi.png">
+              <p>Lumi</p>
+            </div>
+            <div class="characterList">
+              <img src="icons/resonators/huanglong/youhu.png">
+              <p>Youhu</p>
+            </div>
+            <div class="characterList">
+              <img src="icons/resonators/huanglong/xiangliyao.png">
+              <p>Xiangli Yao</p>
+            </div>
+            <div class="characterList">
+              <img src="icons/resonators/huanglong/zhezhi.png">
+              <p>Zhezhi</p>
+            </div>
+            <div class="characterList">
+              <img src="icons/resonators/huanglong/changli.png">
+              <p>Changli</p>
+            </div>
+            <div class="characterList">
+              <img src="icons/resonators/huanglong/jinhsi.png">
+              <p>Jinhsi</p>
+            </div>
+            <div class="characterList">
+              <img src="icons/resonators/huanglong/yinlin.png">
+              <p>Yinlin</p>
+            </div>
+            <div class="characterList">
+              <img src="icons/resonators/huanglong/jiyan.png">
+              <p>Jiyan</p>
+            </div>
+            <div class="characterList">
+              <img src="icons/resonators/huanglong/lingyang.png">
+              <p>Lingyang</p>
+            </div>
+            <div class="characterList">
+              <img src="icons/resonators/huanglong/verina.png">
+              <p>Verina</p>
+            </div>
+            <div class="characterList">
+              <img src="icons/resonators/huanglong/jianxin.png">
+              <p>Jianxin</p>
+            </div>
+            <div class="characterList">
+              <img src="icons/resonators/huanglong/taoqi.png">
+              <p>Taoqi</p>
+            </div>
+            <div class="characterList">
+              <img src="icons/resonators/huanglong/yuanwu.png">
+              <p>Yuanwu</p>
+            </div>
+            <div class="characterList">
+              <img src="icons/resonators/huanglong/danjin.png">
+              <p>Danjin</p>
+            </div>
+            <div class="characterList">
+              <img src="icons/resonators/huanglong/mortefi.png">
+              <p>Mortefi</p>
+            </div>
+            <div class="characterList">
+              <img src="icons/resonators/huanglong/sanhua.png">
+              <p>Sanhua</p>
+            </div>
+            <div class="characterList">
+              <img src="icons/resonators/huanglong/baizhi.png">
+              <p>Baizhi</p>
+            </div>
+            <div class="characterList">
+              <img src="icons/resonators/huanglong/chixia.png">
+              <p>Chixia</p>
+            </div>
+            <div class="characterList">
+              <img src="icons/resonators/huanglong/yangyang.png">
+              <p>Yangyang</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="black-shores">
+        <div class="background-name">
+          <div class="background">
+            <img src="icons/resonators/background/black_shores.png">
+          </div>
+          <div class="name">BLACK SHORES</div>            
+        </div>     
+
+        <div class="character-wrapper">
+          <div class="character">
+            <div class="characterList">
+              <img src="icons/resonators/black_shores/buling.webp">
+              <p>Bulling</p>
+            </div>
+            <div class="characterList">
+              <img src="icons/resonators/black_shores/galbrena.webp">
+              <p>Galbrena</p>
+            </div>
+            <div class="characterList">
+              <img src="icons/resonators/black_shores/camellya.png">
+              <p>Camellya</p>
+            </div>
+            <div class="characterList">
+              <img src="icons/resonators/black_shores/the_shorekeeper.png">
+              <p>The Shorekeeper</p>
+            </div>
+            <div class="characterList">
+              <img src="icons/resonators/black_shores/encore.png">
+              <p>Encore</p>
+            </div>
+            <div class="characterList">
+              <img src="icons/resonators/black_shores/aalto.png">
+              <p>Aalto</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="ragunna">
+        <div class="background-name">
+          <div class="background">
+            <img src="icons/resonators/background/ragunna.png">
+          </div>
+          <div class="name">RAGUNNA</div>            
+        </div>
+
+        <div class="character-wrapper">
+          <div class="character">
+            <div class="characterList">
+              <img src="icons/resonators/ragunna/cartethyia.webp">
+              <p>Cartethyia</p>
+            </div>
+            <div class="characterList">
+              <img src="icons/resonators/ragunna/ciaccona.webp">
+              <p>Ciaccona</p>
+            </div>
+            <div class="characterList">
+              <img src="icons/resonators/ragunna/zani.webp">
+              <p>Zani</p>
+            </div>
+            <div class="characterList">
+              <img src="icons/resonators/ragunna/cantarella.png">
+              <p>Cantarella</p>
+            </div>
+            <div class="characterList">
+              <img src="icons/resonators/ragunna/brant.png">
+              <p>Brant</p>
+            </div>
+            <div class="characterList">
+              <img src="icons/resonators/ragunna/phoebe.png">
+              <p>Phoebe</p>
+            </div>
+            <div class="characterList">
+              <img src="icons/resonators/ragunna/roccia.png">
+              <p>Roccia</p>
+            </div>
+            <div class="characterList">
+              <img src="icons/resonators/ragunna/carlotta.png">
+              <p>Carlotta</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="septimont">
+        <div class="background-name">
+          <div class="background">
+            <img src="icons/resonators/background/septimont.webp">
+          </div>
+          <div class="name">SEPTIMONT</div>            
+        </div>
+
+        <div class="character-wrapper">
+          <div class="character">
+            <div class="characterList">
+              <img src="icons/resonators/septimont/iuno.webp">
+              <p>Iuno</p>
+            </div>
+            <div class="characterList">
+              <img src="icons/resonators/septimont/augusta.webp">
+              <p>Augusta</p>
+            </div>
+            <div class="characterList">
+              <img src="icons/resonators/septimont/lupa.webp">
+              <p>Lupa</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="startorch-academy">
+        <div class="background-name">
+          <div class="background">
+            <img src="icons/resonators/background/startorch_academy.webp">
+          </div>
+          <div class="name">STARTORCH ACADEMY</div>            
+        </div>
+
+        <div class="character-wrapper">
+          <div class="character">
+            <div class="characterList">
+              <img src="icons/resonators/startorch_academy/luuk_herssen.webp">
+              <p>Luuk Herssen</p>
+            </div>
+            <div class="characterList">
+              <img src="icons/resonators/startorch_academy/aemeath.webp">
+              <p>Aemeath</p>
+            </div>
+            <div class="characterList">
+              <img src="icons/resonators/startorch_academy/lynae.webp">
+              <p>Lynae</p>
+            </div>
+            <div class="characterList">
+              <img src="icons/resonators/startorch_academy/chisa.webp">
+              <p>Chisa</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="spacetrek-collective">
+        <div class="background-name">
+          <div class="background">
+            <img src="icons/resonators/background/spacetrek_collective.webp">
+          </div>
+          <div class="name">SPACETREK COLLECTIVE</div>            
+        </div>
+
+        <div class="character-wrapper">
+          <div class="character">
+            <div class="characterList">
+              <img src="icons/resonators/spacetrek_collective/mornye.webp">
+              <p>Mornye</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="the-roya-tribe">
+        <div class="background-name">
+          <div class="background">
+            <img src="icons/resonators/background/the_roya_tribe.webp">
+          </div>
+          <div class="name">THE ROYA TRIBE</div>            
+        </div>
+
+        <div class="character-wrapper">
+          <div class="character">
+            <div class="characterList">
+              <img src="icons/resonators/the_roya_tribe/sigrika.webp">
+              <p>Sigrika</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="the-fractsidus">
+        <div class="background-name">
+          <div class="background">
+            <img src="icons/resonators/background/the_fractsidus.webp">
+          </div>
+          <div class="name">THE FRACTSIDUS</div>            
+        </div>
+        
+        <div class="character-wrapper">
+          <div class="character">
+            <div class="characterList">
+              <img src="icons/resonators/the_fractsidus/phrolova.webp">
+              <p>Phrolova</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="other">
+        <div class="background-name">
+          <div class="background">
+            <img src="icons/resonators/background/other.png">
+          </div>
+          <div class="name">OTHER</div>            
+        </div>
+
+        <div class="character-wrapper">
+          <div class="character">
+            <div class="characterList">
+              <img src="icons/resonators/other/calcharo.png">
+              <p>Calcharo</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="buttons">
+        <button class="prev"><</button>
+        <button class="next">></button>
+      </div>
+    </main>
+
+    <script src="scripts/index.js"></script>
+    <script src="scripts/resonators.js"></script>
+  </body>
+</html>
