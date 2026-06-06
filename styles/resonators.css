@@ -1,0 +1,157 @@
+body {
+    overflow: hidden;
+}
+
+.global-bg {
+    position: fixed;
+    inset: 0;
+    background: url(../icons/resonators/background/bg-bf99565a.jpg);
+    z-index: -1;
+    opacity: 0.8;
+}
+
+.left-navbar {
+    position: fixed;
+    width: 180px;
+    overflow-y: scroll;
+    top: 100px;
+    left: 0;
+    bottom: 0;
+}
+
+.left-navbar::-webkit-scrollbar {
+    display: none;
+}
+
+.left-navbar .region {
+    width: 170px;
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.left-navbar .region:hover .logo {
+    opacity: 1;
+    border-color: #ffffff;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.6), inset 0 0 10px rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+}
+
+.left-navbar .region .name {
+    color: white;
+}
+
+.left-navbar .region .logo {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    opacity: 0.5;
+}
+
+.resonators-main {
+    position: fixed;
+    top: 100px;
+    left: 180px;
+    right: 0;
+    bottom: 0;
+}
+
+iframe {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border: none;
+}
+
+.bottom-navbar-mobile {
+    display: none;
+    position: fixed;
+    width: 100%;
+    overflow-x: auto;
+    bottom: 0;
+    gap: 20px;
+    height: 110px;
+    padding-left: 20px;
+    padding-right: 50px;
+    align-items: center;
+}
+
+.bottom-navbar-mobile .region {
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 60px;
+    width: 80px;
+}
+
+.bottom-navbar-mobile .region .logo {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    opacity: 0.5;
+}
+
+.bottom-navbar-mobile .region:hover .logo {
+    opacity: 1;
+    border-color: #ffffff;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.6), inset 0 0 10px rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+}
+
+.bottom-navbar-mobile .region .name {
+    color: white;
+    font-size: 15px;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+
+    .header {
+        height: 60px;
+    }
+
+    .left-navbar {
+        display: none;
+    }
+
+    .resonators-main {
+        position: fixed;
+        top: 60px;
+        left: 0;
+        right: 0;
+        bottom: 110px;
+    }
+
+    .bottom-navbar-mobile {
+        display: flex;
+    }
+}
+
+@media (max-width: 480px) {
+    
+    .bottom-navbar-mobile {
+        gap: 18px;
+        height: 100px;
+        padding-left: 18px;
+        padding-right: 45px;
+    }
+
+    .bottom-navbar-mobile .region {
+        height: 55px;
+        width: 70px;
+    }
+
+    .bottom-navbar-mobile .region .logo {
+        width: 45px;
+        height: 45px;
+    }
+
+    .bottom-navbar-mobile .region .name {
+        font-size: 12px;
+    }
+}
