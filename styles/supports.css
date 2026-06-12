@@ -151,12 +151,12 @@ main {
     z-index: 1;
 }
 
-.list:hover .sun {
+.list:hover .sun{
     opacity: 1;
     animation: sunrise 3s;
 }
 
-@keyframes sunrise {
+@keyframes sunrise{
     from {
         top: 150px;
     } to {
@@ -164,7 +164,7 @@ main {
     }
 }
 
-.list h2 {
+.list h2{
     text-align: center;
     margin-bottom: 35px;
     font-size: 25px;
@@ -176,7 +176,7 @@ main {
     text-shadow: 2px 2px 4px black;
 }
 
-.list p {
+.list p{
     text-align: center;
     z-index: 2;
     font-size: 16px;
