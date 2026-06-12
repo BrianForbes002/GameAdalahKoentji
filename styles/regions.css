@@ -1,0 +1,75 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-image: url('../icons/regions/bg.jpg');
+    color: rgb(255, 255, 255);
+    font-family: 'Pinyon';
+}
+
+main {
+    padding-top: 100px;
+}
+
+.sc1 {
+    padding: 20px;
+}
+
+.sc1 h2, p{
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.sc1 h2{
+    letter-spacing: 30px;
+}
+
+.sc1 p{
+    letter-spacing: 10px;
+}
+
+.sc2 {
+    display: flex;          
+    flex-direction: column;  
+    gap: 30px;              
+    align-items: center;     
+    width: 100%;             
+}
+
+.gbr {
+    width: 100%;             
+    width: 900px;        
+    height: auto;            
+    border-radius: 8px;
+    border: 2px solid rgb(215, 215, 230);
+    border-radius: 20px;
+    transition: transform 0.1s;
+}
+
+.gbr:active {
+    transform: translateX(-5px) rotate(-2deg);
+}
+
+@media (max-width: 768px) {
+    main {
+        padding-top: 60px;
+    }
+
+    .sc1 h2 {
+        font-size: 20px;
+        letter-spacing: 5px;
+    }
+
+    .sc1 p {
+        font-size: 14px;
+        letter-spacing: 2px;
+    }
+
+    .gbr {
+        max-width: 100%;
+        border-radius: 15px;
+    }
+}
