@@ -2,7 +2,7 @@
   <html lang="en">
   <head>
     <link rel="stylesheet" href="styles/index.css">
-    <link rel="stylesheet" href="styles/hot-news.css"
+    <link rel="stylesheet" href="styles/hot-news.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&family=Michroma&family=Niconne&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -61,30 +61,72 @@
       <section class="sc1">
         <h2>HOT NEWS</h2>
         <p>Latest News And Announcements <br>For Wuthering Waves</p>
+        <div class="top-tools">
+        <button id="darkModeBtn">🌙 Dark Mode</button>
+        </div>
+        <div class="filter-news">
+    <button class="filter-btn active-filter" data-filter="all">All
+    </button>
+    <button class="filter-btn" data-filter="update">Updates
+    </button>
+    <button class="filter-btn" data-filter="event">Events
+    </button>
+    <button class="filter-btn" data-filter="maintenance">Maintenance
+    </button>
+
+    </div>
       </section>
       <div class="div">
-        <section class="sc2">
-          <img src="icons/hot-news/sc2.png" class="imgsc1">
-          <h3>Patch 1.1: New Characters</h3>
-          <p class="date">12 Apr 2026</p>
-          <p>The latest version has arrived. Meet new characters ready to join your adventure.</p>
-          <a class="link" href="link.html">Read More</a>
+      <section class="sc2 news-card update">
+      <div class="top-card">
+    <span class="badge-new">🔥 NEW</span>
+    <p class="favorite" data-id="1">♡ Favorite</p>
+</div>
+
+<img src="icons/hot-news/sc2.png" class="imgsc1">
+    <h3>Patch 1.1: New Characters</h3>
+    <p class="date">12 Apr 2026</p>
+    <p class="description">The latest version has arrived. Meet new characters ready to join your adventure.</p>
+    <p class="extra-text">Patch 1.1 introduces powerful new Resonators with unique combat abilities. Players can also enjoy new quests, improved gameplay mechanics, and additional rewards throughout the update.
+    </p>
+    <button class="read-btn">
+        Read More
+    </button>
+    <a class="detail-link" href="link.html">
+        View Detail →
+    </a>
+
+</section>
         </section>
-        <section class="sc3">
+        <section class="sc3 news-card event">
+          <p class="favorite" data-id="2">♡ Favorite</p> <br>
           <img src="icons/hot-news/sc3.png" class="imgsc2">
-          <h3>Frozen Echoes Event Begins!</h3>
-          <p class="date">08 Apr 2026</p>
-          <p>Explore the latest limited-time events and earn exclusive rewards in this frozen adventure.</p>
-          <a class="link" href="frozenechoes.html">Read More</a>
+          <h3>Frozen Echoes Event Begins!</h3> 
+          <p class="description">The latest version has arrived. Meet new characters ready to join your adventure.</p>
+          <p class="extra-text">Frozen Echoes is a limited-time event featuring special challenges, exclusive Echo rewards, Astrites, and unique event stories for every player.</p>
+          <button class="read-btn">Read More
+          </button>
+
+<a class="detail-link" href="frozenechoes.html">
+View Detail →
+</a>
         </section>
-        <section class="sc4">
+        <section class="sc4 news-card maintenance">
+          <p class="favorite" data-id="3">♡ Favorite</p> <br>
           <img src="icons/hot-news/sc4.png" class="imgsc3">
-          <h3>Maintenance Completed</h3>
-          <p class="date">06 Apr 2026</p>
-          <p>Maintenance is complete! Check out the bug fixes and gameplay improvements we've made.</p>
-          <a class="link" href="maintenance.html">Read More</a>
+          <h3>Maintenance Completed</h3> <br>
+          <br>
+          <p class="description">The latest version has arrived. Meet new characters ready to join your adventure.</p>
+          <p class="extra-text">The maintenance includes bug fixes, performance improvements, and optimization to provide a smoother gameplay experience for all players.</p>
+<button class="read-btn">Read More
+</button>
+
+<a class="detail-link" href="maintenance.html">View Detail →
+</a>
         </section>
       </main>
       </div>
+      <button id="topBtn">⬆</button>
+      <script src="scripts/hot-news.js"></script>
   </body>
 </html>
