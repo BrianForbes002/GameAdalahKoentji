@@ -17,15 +17,42 @@ main {
 .sc1 h2{
     font-family: "Changa One", sans-serif;
     word-spacing: 10px;
-    letter-spacing: 40px;
-    color:#6ea5d2;
-    font-size: 50px;
+    letter-spacing: 35px;
+    color:#031638;
+    font-size: 55px;
+    font-weight: bold;
+    text-transform: uppercase;
+    filter: drop-shadow(0px 0px 10px rgba(110, 165, 210, 0.6)) 
+            drop-shadow(18px 10px 4px rgba(0, 0, 0, 0.8));
+            
+    margin-bottom: 10px;
+    text-shadow:
+        0 0 4px #ffffff,
+        0 0 8px #ffffff,
+        0 0 15px #0909d7,
+        0 0 25px #24549c,
+        0 0 40px #f30505,
+        0 0 60px #da1a1a;
+
+    filter: drop-shadow(8px 8px 5px rgba(0,0,0,.7));
+
+
+
 }
+
 
 .sc1 p{
     font-family: "Michroma", sans-serif;
     letter-spacing: 10px;
-    color: #130276;
+    color: white;
+    font-size: 14px;
+    text-transform: uppercase;
+    margin-top: 5px;
+    text-shadow:
+        0 0 4px rgba(173, 29, 29, 0.8),  /* Pendaran putih inti */
+        0 0 10px rgba(210, 18, 18, 0.6), /* Pendaran biru muda tipis */
+        0 0 18px rgba(183, 56, 14, 0.4);
+
 }
 
 p {
@@ -151,7 +178,7 @@ p {
     border:none;
     border-radius:20px;
     cursor:pointer;
-    background:#0c1b3c;
+    background:rgba(8, 8, 8, 0.733);
     color:white;
     transition:0.3s;
 
@@ -159,7 +186,7 @@ p {
 
 #darkModeBtn:hover{
 
-    background:#234f8b;
+    background:#101112;
 
 }
 
@@ -282,7 +309,7 @@ p {
 
 .dark-mode{
 
-    background:#111 !important;
+    background:url('../icons/hot-news/bg-gelap.png') !important;
 
     color:white !important;
 
@@ -292,7 +319,7 @@ p {
 .dark-mode .sc3,
 .dark-mode .sc4{
 
-    background:#222;
+    background: black;
 
 }
 
@@ -344,6 +371,271 @@ p {
     text-decoration:underline;
 }
 
+/* ========================================= */
+/* COMMUNITY REVIEW */
+/* ========================================= */
+
+#reviewSection{
+
+    display:none;
+    margin:60px auto;
+    max-width:1200px;
+
+    padding:25px;
+
+    background:rgba(255,255,255,.12);
+
+    backdrop-filter:blur(12px);
+
+    border:1px solid rgba(255,255,255,.3);
+
+    border-radius:20px;
+
+}
+
+#reviewSection h2{
+
+    text-align:center;
+
+    color:white;
+
+    margin-bottom:30px;
+
+    font-family:"Michroma",sans-serif;
+
+}
+
+.review-container{
+
+    display:grid;
+
+    grid-template-columns:260px 1fr;
+
+    gap:25px;
+
+}
+
+/* ========================= */
+/* LEFT SIDE */
+/* ========================= */
+
+.review-left{
+
+    background:rgba(0,0,0,.25);
+
+    padding:20px;
+
+    border-radius:15px;
+
+}
+
+.review-left h3{
+
+    color:white;
+
+    margin-bottom:20px;
+
+}
+
+#newsList{
+
+    list-style:none;
+
+    padding:0;
+
+    margin:0;
+
+}
+
+.news-item{
+
+    padding:14px;
+
+    margin-bottom:12px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    color:white;
+
+    transition:.3s;
+
+    background:rgba(255,255,255,.08);
+
+}
+
+.news-item:hover{
+
+    background:#24549c;
+
+}
+
+.news-item.active{
+
+    background:#2f7df7;
+
+}
+
+/* ========================= */
+/* RIGHT SIDE */
+/* ========================= */
+
+.review-right{
+
+    background:rgba(0,0,0,.20);
+
+    padding:25px;
+
+    border-radius:15px;
+
+}
+
+#reviewTitle{
+
+    color:white;
+
+    margin-bottom:20px;
+
+}
+
+#reviewForm{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:15px;
+
+    margin-bottom:25px;
+
+}
+
+#reviewForm input,
+#reviewForm textarea{
+
+    padding:12px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:white;
+
+    font-size:15px;
+
+}
+
+#reviewForm textarea{
+
+    height:120px;
+
+    resize:none;
+
+}
+
+#reviewForm button{
+
+    width:180px;
+
+    padding:12px;
+
+    border:none;
+
+    border-radius:30px;
+
+    background:#2f7df7;
+
+    color:white;
+
+    cursor:pointer;
+
+    font-weight:bold;
+
+}
+
+#reviewForm button:hover{
+
+    background:#1e62d3;
+
+}
+
+/* ========================= */
+/* TABLE */
+/* ========================= */
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    overflow:hidden;
+
+    border-radius:10px;
+
+}
+
+thead{
+
+    background:#2f7df7;
+
+}
+
+thead th{
+
+    padding:14px;
+
+    color:white;
+
+}
+
+tbody td{
+
+    padding:12px;
+
+    color:white;
+
+    border-bottom:1px solid rgba(255,255,255,.15);
+
+}
+
+.delete-btn{
+
+    background:#d92f2f;
+
+    color:white;
+
+    border:none;
+
+    padding:7px 12px;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+}
+
+.delete-btn:hover{
+
+    background:#b51f1f;
+
+}
+
+/* ========================= */
+/* RESPONSIVE */
+/* ========================= */
+
+@media(max-width:900px){
+
+.review-container{
+
+grid-template-columns:1fr;
+
+}
+
+}
+
 @media (max-width: 768px) {
 
     body {
@@ -386,3 +678,4 @@ p {
         height: auto;
     }
 }
+

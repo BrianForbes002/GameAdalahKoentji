@@ -137,24 +137,45 @@ document.addEventListener("DOMContentLoaded", function () {
                 for (var k = 0; k < semuaCard.length; k++) {
 
                 if (kategori == "all") {
-
+                    document.getElementById("reviewSection").style.display="none";
                     semuaCard[k].style.display = "block";
 
                 }
 
-                else if (semuaCard[k].classList.contains(kategori)) {
+                 else if (kategori == "favorite") {
 
-                    semuaCard[k].style.display = "block";
+    document.getElementById("reviewSection").style.display = "block";
 
-                }
+    var fav = semuaCard[k].querySelector(".favorite");
+    var id = fav.getAttribute("data-id");
 
-                else {
+    var data = localStorage.getItem("favorite") || "";
 
-                    semuaCard[k].style.display = "none";
+    if (data.indexOf(id + ",") != -1) {
 
-                }
+        semuaCard[k].style.display = "block";
 
-            }
+    } else {
+
+        semuaCard[k].style.display = "none";
+
+    }
+
+}
+
+        else if (semuaCard[k].classList.contains(kategori)) {
+         document.getElementById("reviewSection").style.display="none";
+        semuaCard[k].style.display = "block";
+
+    }
+
+        else {
+
+        semuaCard[k].style.display = "none";
+
+    }
+
+}
 
         });
 
@@ -371,6 +392,237 @@ tombolRead.forEach(function(btn){
     });
 
 });
+/* =====================================
+   COMMUNITY REVIEW
+===================================== */
 
+var currentNews="patch";
+
+var reviewData = {
+
+patch:[
+{
+nama:"Tina",
+komentar:"Virex is incredibly powerful! I love this new character.",
+default:true
+},
+{
+nama:"Rafi",
+komentar:"Best update so far!",
+default:true
+},
+{
+nama:"Luna",
+komentar:"Finally new Resonators have arrived.",
+default:true
+}
+],
+
+weapon:[
+{
+nama:"Kevin",
+komentar:"The new weapon looks amazing.",
+default:true
+},
+{
+nama:"Alya",
+komentar:"Its stats are really strong.",
+default:true
+}
+],
+
+double:[
+{
+nama:"Nanda",
+komentar:"Double rewards are always worth farming.",
+default:true
+}
+],
+
+coop:[
+{
+nama:"Dimas",
+komentar:"Playing together is much more fun.",
+default:true
+}
+],
+
+frozen:[
+{
+nama:"Sinta",
+komentar:"This event gives lots of Astrites.",
+default:true
+}
+],
+
+maintenance:[
+{
+nama:"Rio",
+komentar:"Maintenance finished faster than expected.",
+default:true
+}
+]
+
+};
+
+function loadReviews(){
+
+    var data = localStorage.getItem("communityReview");
+
+    if(data){
+
+        var saved = JSON.parse(data);
+
+        for(var key in saved){
+
+            if(reviewData[key]){
+
+                reviewData[key] =
+                    reviewData[key].concat(saved[key]);
+
+            }
+
+        }
+
+    }
+
+}
+
+function saveReviews(){
+
+    localStorage.setItem(
+
+        "communityReview",
+
+        JSON.stringify(reviewData)
+
+    );
+
+}
+
+loadReviews();
+
+function renderReviews(){
+
+    var tbody=document.getElementById("reviewTable");
+
+    tbody.innerHTML="";
+
+    if(!reviewData[currentNews]){
+
+        reviewData[currentNews]=[];
+
+    }
+
+    reviewData[currentNews].forEach(function(item,index){
+
+    var tombol = "-";
+
+    if(item.default != true){
+
+        tombol = "<button class='delete-btn' onclick='hapusReview(" + index + ")'>Delete</button>";
+
+    }
+
+    tbody.innerHTML +=
+
+    "<tr>" +
+
+    "<td>" + (index + 1) + "</td>" +
+
+    "<td>" + item.nama + "</td>" +
+
+    "<td>" + item.komentar + "</td>" +
+
+    "<td>" + tombol + "</td>" +
+
+    "</tr>";
+
+});
+
+}
+
+renderReviews();
+
+
+
+document.querySelectorAll(".news-item").forEach(function(item){
+
+    item.addEventListener("click",function(){
+
+        document.querySelectorAll(".news-item")
+
+        .forEach(function(x){
+
+            x.classList.remove("active");
+
+        });
+
+        item.classList.add("active");
+
+        currentNews=item.dataset.news;
+
+        document.getElementById("reviewTitle").innerHTML=item.innerHTML;
+
+        renderReviews();
+
+    });
+
+});
+
+
+
+document.getElementById("reviewForm")
+
+.addEventListener("submit",function(e){
+
+    e.preventDefault();
+
+    var nama=document.getElementById("reviewName").value;
+
+    var komentar=document.getElementById("reviewComment").value;
+
+    if(!reviewData[currentNews]){
+
+        reviewData[currentNews]=[];
+
+    }
+
+    reviewData[currentNews].push({
+
+    nama:nama,
+
+    komentar:komentar,
+
+    default:false
+
+});
+    saveReviews();
+
+    renderReviews();
+
+    this.reset();
+
+});
+
+
+
+function hapusReview(index){
+
+    if(reviewData[currentNews][index].default == true){
+
+        alert("Default reviews cannot be deleted.");
+
+        return;
+
+    }
+
+    reviewData[currentNews].splice(index,1);
+
+    saveReviews();
+
+    renderReviews();
+
+}
 
 

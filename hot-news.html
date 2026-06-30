@@ -73,11 +73,13 @@
     </button>
     <button class="filter-btn" data-filter="maintenance">Maintenance
     </button>
+    <button class="filter-btn" data-filter="favorite">Favorite
+    </button>
 
     </div>
       </section>
       <div class="div">
-      <section class="sc2 news-card update">
+      <section class="sc2 news-card update" data-news="patch">
       <div class="top-card">
     <span class="badge-new">🔥 NEW</span>
     <p class="favorite" data-id="1">♡ Favorite</p>
@@ -98,7 +100,7 @@
 
 </section>
 <!-- DISINI DIMULAI 1-->
-      <section class="sc2 news-card update">
+      <section class="sc2 news-card update" data-news="weapon">
           <p class="favorite" data-id="2">♡ Favorite</p> <br>
           <img src="icons/hot-news/weapon.png" class="imgsc2">
           <h3>New Weapon Update</h3> 
@@ -110,12 +112,14 @@
 <a class="detail-link" href="link.html">
 View Detail →
 </a>
+
+
         </section>
 <!-- Sampai Sini -->
 
 <!-- Mulai 2 -->
 <section class="sc3 news-card event">
-          <p class="favorite" data-id="2">♡ Favorite</p> <br>
+          <p class="favorite" data-id="3">♡ Favorite</p> <br>
           <img src="icons/hot-news/Double Prize Event.png" class="imgsc2">
           <h3>Double Prize Event</h3> 
           <p class="description">The latest version has arrived. Meet new characters ready to join your adventure.</p>
@@ -129,7 +133,7 @@ View Detail →
 </section>
 <!-- Mulai 3 -->
 <section class="sc3 news-card event">
-          <p class="favorite" data-id="2">♡ Favorite</p> <br>
+          <p class="favorite" data-id="4">♡ Favorite</p> <br>
           <img src="icons/hot-news/Cooperative Adventure Week Event.png" class="imgsc2">
           <h3>Cooperative Adventure Week Event</h3> 
           <p class="description">The latest version has arrived. Meet new characters ready to join your adventure.</p>
@@ -144,7 +148,7 @@ View Detail →
 
         </section>
         <section class="sc3 news-card event">
-          <p class="favorite" data-id="2">♡ Favorite</p> <br>
+          <p class="favorite" data-id="5">♡ Favorite</p> <br>
           <img src="icons/hot-news/sc3.png" class="imgsc2">
           <h3>Frozen Echoes Event Begins!</h3> 
           <p class="description">The latest version has arrived. Meet new characters ready to join your adventure.</p>
@@ -157,7 +161,7 @@ View Detail →
 </a>
         </section>
         <section class="sc4 news-card maintenance">
-          <p class="favorite" data-id="3">♡ Favorite</p> <br>
+          <p class="favorite" data-id="6">♡ Favorite</p> <br>
           <img src="icons/hot-news/sc4.png" class="imgsc3">
           <h3>Maintenance Completed</h3> <br>
           <br>
@@ -171,6 +175,116 @@ View Detail →
       
       </main>
       </div>
+      <!-- ========================================= -->
+<!-- COMMUNITY REVIEW -->
+<!-- ========================================= -->
+
+<section id="reviewSection">
+
+<h2>💬 Community Reviews</h2>
+
+<div class="review-container">
+
+<div class="review-left">
+
+<h3>Select News</h3>
+
+<ul id="newsList">
+
+<li class="news-item active"
+data-news="patch">
+Patch 1.1 : New Characters
+</li>
+
+<li class="news-item"
+data-news="weapon">
+New Weapon Update
+</li>
+
+<li class="news-item"
+data-news="double">
+Double Prize Event
+</li>
+
+<li class="news-item"
+data-news="coop">
+Cooperative Adventure Week
+</li>
+
+<li class="news-item"
+data-news="frozen">
+Frozen Echoes Event
+</li>
+
+<li class="news-item"
+data-news="maintenance">
+Maintenance Completed
+</li>
+
+</ul>
+
+</div>
+
+
+
+<div class="review-right">
+
+<h3 id="reviewTitle">
+
+Patch 1.1 : New Characters
+
+</h3>
+
+<form id="reviewForm">
+
+<input
+type="text"
+id="reviewName"
+placeholder="Your Name"
+required>
+
+<textarea
+id="reviewComment"
+placeholder="Write your review..."
+required></textarea>
+
+<button type="submit">
+
+Send Review
+
+</button>
+
+</form>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>No</th>
+
+<th>Name</th>
+
+<th>Comment</th>
+
+<th>Action</th>
+
+</tr>
+
+</thead>
+
+<tbody id="reviewTable">
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</section>
       <button id="topBtn">⬆</button>
       <script src="scripts/hot-news.js"></script>
   </body>
