@@ -328,6 +328,11 @@ default:true
 nama:"Nadheline",
 komentar:"Finallyyyy Georgio and Georgia have arrived.",
 default:true
+},
+{
+nama:"Yemima",
+komentar:"Whatttt i seee Georgio and Georgia so cool.",
+default:true
 }
 ],
 
@@ -340,6 +345,16 @@ default:true
 {
 nama:"Nhadeen",
 komentar:"Its stats are reallyyy strong.",
+default:true
+},
+{
+nama:"Grace",
+komentar:"I likeee ittt.",
+default:true
+},
+{
+nama:"Yosafat",
+komentar:"So coollll.",
 default:true
 }
 ],
@@ -371,6 +386,11 @@ maintenance:[
 {
 nama:"Virhly",
 komentar:"Maintenance finished fasterrr than expected.",
+default:true
+},
+{
+nama:"Kezia",
+komentar:"What i seeee, Maintenance so fastttt.",
 default:true
 }
 ]

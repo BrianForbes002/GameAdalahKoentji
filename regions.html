@@ -14,6 +14,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
   </head>
 
   <body>
@@ -204,11 +205,49 @@
         <h2>CHOOSE YOUR BEST LOCATION</h2>  
         <p>Your victory is my best location. Choose carefully, thoroughly and with courage. It will make you win the war.</p>  
         <div class="sc2">
-        <img src="icons/regions/gbr1.png" class="gbr">     
-        <img src="icons/regions/gbr2.png" class="gbr">            
-        <img src="icons/regions/gbr4.png" class="gbr">                 
+        <img src="icons/regions/gbr1.png" class="gbr" id="blackshores">     
+        <img src="icons/regions/gbr2.png" class="gbr" id="huanglong">            
+        <img src="icons/regions/gbr4.png" class="gbr" id="rinascita">                 
         </div>
+
+      <div id="popup" class="popup">
+
+    <div class="popup-content">
+
+        <span class="close">&times;</span>
+
+        <h2 id="popupTitle"></h2>
+
+        <p id="popupDesc"></p>
+
+        <p id="popupLevel"></p>
+
+        <p id="popupBoss"></p>
+
+        <div class="popup-button">
+
+            <button id="exploreBtn">Explore Region</button>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+    <button id="closeBtn">
+        Close
+    </button>
+
+</div>
+
+</div>
+
+        
       </section>
+
+
+      <script src="scripts/region.js"></script>
     </main>
     <script src="scripts/index.js"></script>
   </body>
