@@ -77,26 +77,29 @@ document.addEventListener("DOMContentLoaded", () => {
     // Membuka popup
     function openPost(type){
         postType = type;
-        document.getElementById("postModal").style.display = "flex";
-        document.getElementById("postTitle").innerHTML =
-            "Create " + type.charAt(0).toUpperCase() + type.slice(1);
-        const media = document.getElementById("postMedia");
-        const text = document.getElementById("postText");
-        if(type === "article"){
-            media.style.display = "none";
-            text.placeholder = "Write your article...";
+        document.getElementById("postModal").style.display="flex";
+        document.getElementById("postTitle").innerHTML=
+        "Create "+type.charAt(0).toUpperCase()+type.slice(1);
+        const upload=document.getElementById("uploadArea");
+        const input=document.getElementById("postMedia");
+        const text=document.getElementById("postText");
+        const info=document.getElementById("uploadText");
+        input.value="";
+        if(type==="picture"){
+            upload.style.display="block";
+            input.accept="image/*";
+            text.placeholder="Write a caption...";
+            info.innerHTML="Choose a picture";
         }
-        else if(type === "picture"){
-            media.style.display = "block";
-            media.type = "file";
-            media.accept = "image/*";
-            text.placeholder = "Write a caption...";
+        else if(type==="video"){
+            upload.style.display="block";
+            input.accept="video/*";
+            text.placeholder="Write a caption...";
+            info.innerHTML="Choose a video";
         }
-        else if(type === "video"){
-            media.style.display = "block";
-            media.type = "file";
-            media.accept = "video/*";
-            text.placeholder = "Write a caption...";
+        else{
+            upload.style.display="none";
+            text.placeholder="Write your article...";
         }
     }
 
