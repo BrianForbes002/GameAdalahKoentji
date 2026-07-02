@@ -157,21 +157,29 @@ document.addEventListener("DOMContentLoaded", () => {
             `;
         }
         post.innerHTML = `
-            <div class="post-header">
-                <div class="profile">
-                    <img src="${userPhoto}" alt="">
-                    <div>
-                        <strong>${userName}</strong><br>
-                        <small>${postType}</small>
-                    </div>
+        <div class="post-header">
+            <div class="profile">
+                <img src="${userPhoto}" alt="">
+                <div>
+                    <strong>${userName}</strong><br>
+                    <small>${postType}</small>
                 </div>
             </div>
-            ${mediaHTML}
-            <div class="post-footer">
-                <span>👁 0</span>
-                <span>💬 0</span>
-                <span>🤍 0</span>
+        </div>
+        ${mediaHTML}
+        <div class="post-footer">
+            <span class="views">👁 1</span>
+            <details class="comment-box">
+                <summary>💬 0</summary>
+                <div class="comment-content">
+                    <textarea placeholder="Add a comment..."></textarea>
+                    <button>Send</button>
+                </div>
+            </details>
+            <div class="like-container">
+                <button class="like-btn">🤍 0</button>
             </div>
+        </div>
         `;
         // Tambahkan ke paling atas
         const firstPost = feed.querySelector(".post");
@@ -181,6 +189,66 @@ document.addEventListener("DOMContentLoaded", () => {
             feed.appendChild(post);
         }
         closePost();
+        setupNewPost(post);
+        // Simpan postingan ke localStorage
+        const newPost = {
+            name: userName,
+            photo: userPhoto,
+            type: postType,
+            text: text,
+            media: file ? URL.createObjectURL(file) : ""
+        };
+        let posts = JSON.parse(localStorage.getItem("kanalPosts")) || [];
+        posts.unshift(newPost);
+        localStorage.setItem("kanalPosts", JSON.stringify(posts));
+    }
+
+    function setupNewPost(post){
+        const textarea = post.querySelector("textarea");
+        const button = post.querySelector(".comment-content button");
+        const summary = post.querySelector("summary");
+        const likeBtn = post.querySelector(".like-btn");
+        let totalComment = 0;
+        let totalLike = 0;
+        let liked = false;
+        // LIKE
+        likeBtn.addEventListener("click",()=>{
+            liked = !liked;
+            if(liked){
+                totalLike++;
+                likeBtn.innerHTML = `❤️ ${totalLike}`;
+            }else{
+                totalLike--;
+                likeBtn.innerHTML = `🤍 ${totalLike}`;
+            }
+        });
+        // KOMENTAR
+        button.addEventListener("click",()=>{
+            const text = textarea.value.trim();
+            if(text===""){
+                alert("Komentar tidak boleh kosong!");
+                return;
+            }
+            const comment = document.createElement("div");
+            comment.className = "comment";
+            comment.innerHTML = `
+                <img class="post-image" src="${userPhoto}">
+                <div class="comment-text">
+                    <strong>${userName}</strong>
+                    <p>${text}</p>
+                </div>
+            `;
+            textarea.before(comment);
+            textarea.value="";
+            totalComment++;
+            summary.innerHTML=`💬 ${totalComment}`;
+        });
+        textarea.addEventListener("keydown",(e)=>{
+            if(e.key==="Enter" && !e.shiftKey){
+                e.preventDefault();
+                button.click();
+            }
+        });
     }
 
     window.openPost = openPost;

@@ -1736,3 +1736,23 @@ header.header{
     transform:translateY(-2px);
     box-shadow:0 10px 20px rgba(79,124,255,.35);
 }
+
+.like-btn{
+    background: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 0;
+    margin: 0;
+    color: #444;
+    transition: .2s;
+}
+
+.like-btn:hover{
+    transform: scale(1.08);
+}
+
+.like-btn.liked{
+    color: #ff3b5c;
+}

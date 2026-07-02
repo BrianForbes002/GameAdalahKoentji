@@ -735,7 +735,7 @@
                   <img src="icons/community/post10.jpeg" alt="post">
 
                   <div class="post-footer">
-                      <span>👁 3.098</span>
+                      <span class="views">👁 0</span>
                       <!-- POST 9 COMMENT -->
                       <details class="comment-box">
                           <summary>💬 963</summary>
@@ -759,11 +759,11 @@
                           </div>
                       </details>
                       <div class="like-container">
-                          <input type="checkbox" id="like-toggle-10">
+                          <input type="checkbox" id="like-${Date.now()}">
                           <!-- sebelum like -->
-                          <label for="like-toggle-10" class="like-btn not-liked">🤍 2.943</label>
+                          <label class="like-btn not-liked" for="like-${Date.now()}"> 🤍 <span class="like-count">0</span></label>
                           <!-- sesudah like -->
-                          <label for="like-toggle-10" class="like-btn liked">❤️ 2.944</label>
+                          <label class="like-btn liked" for="like-${Date.now()}">❤️ <span class="like-count">1</span></label>
                       </div>
                   </div>
               </div>
