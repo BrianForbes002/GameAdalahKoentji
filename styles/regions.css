@@ -18,7 +18,7 @@ main {
     padding: 20px;
 }
 
-.sc1 h2, p{
+.sc1 h2, .sci p{
     margin-bottom: 30px;
     text-align: center;
 }

@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Website Game</title>
 
     <link rel="stylesheet" href="styles/index.css">
@@ -27,13 +27,13 @@
       <nav>
         <div class="middle-section">
           <label for="navToggle" class="close-btn">X</label>
-          <a href="index.html" class="menu">Home</a>
-          <a href="resonators.html" class="menu">Resonators</a>
-          <a href="regions.html" class="menu">Regions</a>
-          <a href="hot-news.html" class="menu">Hot News</a>
-          <a href="community.html" class="menu">Community</a>
-          <a href="support.html" class="menu">Support</a>
-          <a href="top-up.html" class="menu">Top Up</a>
+          <a href="index.html" class="menu" data-i18n="nav_home">Home</a>
+          <a href="resonators.html" class="menu" data-i18n="nav_resonators">Resonators</a>
+          <a href="regions.html" class="menu" data-i18n="nav_regions">Regions</a>
+          <a href="hot-news.html" class="menu" data-i18n="nav_news">Hot News</a>
+          <a href="community.html" class="menu" data-i18n="nav_community">Community</a>
+          <a href="support.html" class="menu" data-i18n="nav_support">Support</a>
+          <a href="top-up.html" class="menu" data-i18n="nav_topup">Top Up</a>
           <div class="social-media-mobile">
             <img src="icons/index/twitter.png" onclick="window.open('https://x.com/Wuthering_Waves', '_blank')">
             <img src="icons/index/facebook.png" onclick="window.open('https://www.facebook.com/WutheringWaves.Official', '_blank')">
@@ -47,7 +47,6 @@
       </nav>
       
       <div class="right-section">
-        <img class="language-logo" src="icons/index/language-logo.webp">
         <div class="music-logo" onclick="playMusic()">
           <div class="music-logos paused first-music-logo"></div>
           <div class="music-logos paused second-music-logo"></div>
@@ -103,66 +102,46 @@
     </div> 
 
     <div class="bottom-navbar-mobile">
-      <div class="region">
-        <a href="unknown.html" target="content-window">
-          <img class="logo" src="icons/resonators/menu/unknown_menu.webp">          
-        </a>
+      <div class="region active" data-target="unknown">
+        <img class="logo" src="icons/resonators/menu/unknown_menu.webp">
         <span class="name">Unknown</span>
-      </div>     
-      <div class="region">
-        <a href="huanglong.html" target="content-window">
-          <img class="logo" src="icons/resonators/menu/huanglong_menu.webp"> 
-        </a>    
-        <span class="name">Huanglong</span> 
-      </div> 
-      <div class="region">
-        <a href="black-shores.html" target="content-window">
-          <img class="logo" src="icons/resonators/menu/black_shores_menu.webp">
-        </a>
+      </div>
+      <div class="region" data-target="huanglong">
+        <img class="logo" src="icons/resonators/menu/huanglong_menu.webp">
+        <span class="name">Huanglong</span>
+      </div>
+      <div class="region" data-target="black-shores">
+        <img class="logo" src="icons/resonators/menu/black_shores_menu.webp">
         <span class="name">Black Shores</span>
       </div>
-      <div class="region">
-        <a href="ragunna.html" target="content-window">
-          <img class="logo" src="icons/resonators/menu/ragunna_menu.webp">
-        </a>
+      <div class="region" data-target="ragunna">
+        <img class="logo" src="icons/resonators/menu/ragunna_menu.webp">
         <span class="name">Ragunna</span>
       </div>
-      <div class="region">
-        <a href="septimont.html" target="content-window">
-          <img class="logo" src="icons/resonators/menu/septimont_menu.webp">
-        </a>
+      <div class="region" data-target="septimont">
+        <img class="logo" src="icons/resonators/menu/septimont_menu.webp">
         <span class="name">Septimont</span>
       </div>
-      <div class="region">
-        <a href="startorch-academy.html" target="content-window">
-          <img class="logo" src="icons/resonators/menu/startorch_academy_menu.webp">
-        </a>
+      <div class="region" data-target="startorch-academy">
+        <img class="logo" src="icons/resonators/menu/startorch_academy_menu.webp">
         <span class="name">Startorch Academy</span>
       </div>
-      <div class="region">
-        <a href="spacetrek-collective.html" target="content-window">
-          <img class="logo" src="icons/resonators/menu/spacetrek_collective_menu.webp"> 
-        </a>
+      <div class="region" data-target="spacetrek-collective">
+        <img class="logo" src="icons/resonators/menu/spacetrek_collective_menu.webp">
         <span class="name">Spacetrek Collective</span>
       </div>
-      <div class="region">
-        <a href="the_roya_tribe.html" target="content-window">
-          <img class="logo" src="icons/resonators/menu/the_roya_tribe_menu.webp"> 
-        </a>
+      <div class="region" data-target="the-roya-tribe">
+        <img class="logo" src="icons/resonators/menu/the_roya_tribe_menu.webp">
         <span class="name">The Roya Tribe</span>
       </div>
-      <div class="region" id="region">
-        <a href="the-fractsidus.html" target="content-window">
-          <img class="logo" src="icons/resonators/menu/the_fractsidus_menu.webp"> 
-        </a>
+      <div class="region" data-target="the-fractsidus">
+        <img class="logo" src="icons/resonators/menu/the_fractsidus_menu.webp">
         <span class="name">The Fractsidus</span>
       </div>
-      <div class="region"> 
-        <a href="other.html" target="content-window">
-          <img class="logo" src="icons/resonators/menu/other_menu.png">
-        </a>
+      <div class="region" data-target="other">
+        <img class="logo" src="icons/resonators/menu/other_menu.png">
         <span class="name">Other</span>
-      </div> 
+      </div>
     </div>
 
     <main>
@@ -299,10 +278,9 @@
               <button type="submit" onclick="register_confirm()">Confirm</button>
             </div>
           </div>
-
         </form>
       </div>  
-           
+              
       <section id="unknown" class="active">
         <div class="background-name">
           <div class="background">
@@ -313,12 +291,14 @@
 
         <div class="character-wrapper">
           <div class="character">
-            <div class="characterList">
-              <img src="icons/resonators/unknown/rover_female.png">
+            <div class="characterList" data-fallback="icons/resonators/roverf3.png">
+              <img class="img-normal" src="icons/resonators/unknown/rover_female.png">
+              <img class="img-tall" src="icons/resonators/roverf2.png">
               <p>Rover</p>
             </div>
-            <div class="characterList">
-              <img src="icons/resonators/unknown/rover_male.png">
+            <div class="characterList" data-fallback="icons/resonators/roverm3.png">
+              <img class="img-normal" src="icons/resonators/unknown/rover_male.png">
+              <img class="img-tall" src="icons/resonators/roverm2.png">
               <p>Rover</p>
             </div>
           </div>
@@ -336,83 +316,103 @@
         <div class="character-wrapper">
           <div class="character">
             <div class="characterList">
-              <img src="icons/resonators/huanglong/qiuyuan.webp">
+              <img class="img-normal" src="icons/resonators/huanglong/qiuyuan.webp">
+              <img class="img-tall" src="icons/resonators/qiuyuan2.png">
               <p>Qiuyuan</p>
             </div>
             <div class="characterList">
-              <img src="icons/resonators/huanglong/lumi.png">
+              <img class="img-normal" src="icons/resonators/huanglong/lumi.png">
+              <img class="img-tall" src="icons/resonators/lumi1.png">
               <p>Lumi</p>
             </div>
             <div class="characterList">
-              <img src="icons/resonators/huanglong/youhu.png">
+              <img class="img-normal" src="icons/resonators/huanglong/youhu.png">
+              <img class="img-tall" src="icons/resonators/youhu1.png">
               <p>Youhu</p>
             </div>
             <div class="characterList">
-              <img src="icons/resonators/huanglong/xiangliyao.png">
+              <img class="img-normal" src="icons/resonators/huanglong/xiangliyao.png">
+              <img class="img-tall" src="icons/resonators/xiangliyao2.png">
               <p>Xiangli Yao</p>
             </div>
             <div class="characterList">
-              <img src="icons/resonators/huanglong/zhezhi.png">
+              <img class="img-normal" src="icons/resonators/huanglong/zhezhi.png">
+              <img class="img-tall" src="icons/resonators/zhezhi2.png">
               <p>Zhezhi</p>
             </div>
             <div class="characterList">
-              <img src="icons/resonators/huanglong/changli.png">
+              <img class="img-normal" src="icons/resonators/huanglong/changli.png">
+              <img class="img-tall" src="icons/resonators/changli3.png">
               <p>Changli</p>
             </div>
             <div class="characterList">
-              <img src="icons/resonators/huanglong/jinhsi.png">
+              <img class="img-normal" src="icons/resonators/huanglong/jinhsi.png">
+              <img class="img-tall" src="icons/resonators/jinhsi3.png">
               <p>Jinhsi</p>
             </div>
             <div class="characterList">
-              <img src="icons/resonators/huanglong/yinlin.png">
+              <img class="img-normal" src="icons/resonators/huanglong/yinlin.png">
+              <img class="img-tall" src="icons/resonators/yinlin3.png">
               <p>Yinlin</p>
             </div>
             <div class="characterList">
-              <img src="icons/resonators/huanglong/jiyan.png">
+              <img class="img-normal" src="icons/resonators/huanglong/jiyan.png">
+              <img class="img-tall" src="icons/resonators/jiyan3.png">
               <p>Jiyan</p>
             </div>
             <div class="characterList">
-              <img src="icons/resonators/huanglong/lingyang.png">
+              <img class="img-normal" src="icons/resonators/huanglong/lingyang.png">
+              <img class="img-tall" src="icons/resonators/lingyang3.png">
               <p>Lingyang</p>
             </div>
             <div class="characterList">
-              <img src="icons/resonators/huanglong/verina.png">
+              <img class="img-normal" src="icons/resonators/huanglong/verina.png">
+              <img class="img-tall" src="icons/resonators/verina3.png">
               <p>Verina</p>
             </div>
             <div class="characterList">
-              <img src="icons/resonators/huanglong/jianxin.png">
+              <img class="img-normal" src="icons/resonators/huanglong/jianxin.png">
+              <img class="img-tall" src="icons/resonators/jianxin3.png">
               <p>Jianxin</p>
             </div>
             <div class="characterList">
-              <img src="icons/resonators/huanglong/taoqi.png">
+              <img class="img-normal" src="icons/resonators/huanglong/taoqi.png">
+              <img class="img-tall" src="icons/resonators/taoqi3.png">
               <p>Taoqi</p>
             </div>
             <div class="characterList">
-              <img src="icons/resonators/huanglong/yuanwu.png">
+              <img class="img-normal" src="icons/resonators/huanglong/yuanwu.png">
+              <img class="img-tall" src="icons/resonators/yuanwu3.png">
               <p>Yuanwu</p>
             </div>
             <div class="characterList">
-              <img src="icons/resonators/huanglong/danjin.png">
+              <img class="img-normal" src="icons/resonators/huanglong/danjin.png">
+              <img class="img-tall" src="icons/resonators/danjin3.png">
               <p>Danjin</p>
             </div>
             <div class="characterList">
-              <img src="icons/resonators/huanglong/mortefi.png">
+              <img class="img-normal" src="icons/resonators/huanglong/mortefi.png">
+              <img class="img-tall" src="icons/resonators/mortefi3.png">
               <p>Mortefi</p>
             </div>
             <div class="characterList">
-              <img src="icons/resonators/huanglong/sanhua.png">
+              <img class="img-normal" src="icons/resonators/huanglong/sanhua.png">
+              <img class="img-tall" src="icons/resonators/sanhua3.png">
               <p>Sanhua</p>
             </div>
             <div class="characterList">
-              <img src="icons/resonators/huanglong/baizhi.png">
+              <img class="img-normal" src="icons/resonators/huanglong/baizhi.png">
+              <img class="img-tall" src="icons/resonators/baizhi3.png" style="scale: 1.4; transform: translateY(-50px);">
               <p>Baizhi</p>
             </div>
             <div class="characterList">
-              <img src="icons/resonators/huanglong/chixia.png">
+              <img class="img-normal" src="icons/resonators/huanglong/chixia.png">
+              <img class="img-tall" src="icons/resonators/chixia3.png">
               <p>Chixia</p>
             </div>
             <div class="characterList">
-              <img src="icons/resonators/huanglong/yangyang.png">
+              <img class="img-normal" src="icons/resonators/huanglong/yangyang.png">
+              <img class="img-tall" src="icons/resonators/yangyang3.png">
               <p>Yangyang</p>
             </div>
           </div>
@@ -430,27 +430,33 @@
         <div class="character-wrapper">
           <div class="character">
             <div class="characterList">
-              <img src="icons/resonators/black_shores/buling.webp">
+              <img class="img-normal" src="icons/resonators/black_shores/bulling.webp">
+              <img class="img-tall" src="icons/resonators/bulling1.png">
               <p>Bulling</p>
             </div>
             <div class="characterList">
-              <img src="icons/resonators/black_shores/galbrena.webp">
+              <img class="img-normal" src="icons/resonators/black_shores/galbrena.webp">
+              <img class="img-tall" src="icons/resonators/galbrena2.png">
               <p>Galbrena</p>
             </div>
             <div class="characterList">
-              <img src="icons/resonators/black_shores/camellya.png">
+              <img class="img-normal" src="icons/resonators/black_shores/camellya.png">
+              <img class="img-tall" src="icons/resonators/camellya2.png">
               <p>Camellya</p>
             </div>
             <div class="characterList">
-              <img src="icons/resonators/black_shores/the_shorekeeper.png">
+              <img class="img-normal" src="icons/resonators/black_shores/the_shorekeeper.png">
+              <img class="img-tall" src="icons/resonators/theshorekeeper2.png">
               <p>The Shorekeeper</p>
             </div>
             <div class="characterList">
-              <img src="icons/resonators/black_shores/encore.png">
+              <img class="img-normal" src="icons/resonators/black_shores/encore.png">
+              <img class="img-tall" src="icons/resonators/encore3.png" style="scale: 1.3; transform: translateY(50px);">
               <p>Encore</p>
             </div>
             <div class="characterList">
-              <img src="icons/resonators/black_shores/aalto.png">
+              <img class="img-normal" src="icons/resonators/black_shores/aalto.png">
+              <img class="img-tall" src="icons/resonators/aalto3.png">
               <p>Aalto</p>
             </div>
           </div>
@@ -468,35 +474,43 @@
         <div class="character-wrapper">
           <div class="character">
             <div class="characterList">
-              <img src="icons/resonators/ragunna/cartethyia.webp">
+              <img class="img-normal" src="icons/resonators/ragunna/cartethyia.webp">
+              <img class="img-tall" src="icons/resonators/cartethyia2.png">
               <p>Cartethyia</p>
             </div>
             <div class="characterList">
-              <img src="icons/resonators/ragunna/ciaccona.webp">
+              <img class="img-normal" src="icons/resonators/ragunna/ciaccona.webp">
+              <img class="img-tall" src="icons/resonators/ciaccona2.png">
               <p>Ciaccona</p>
             </div>
             <div class="characterList">
-              <img src="icons/resonators/ragunna/zani.webp">
+              <img class="img-normal" src="icons/resonators/ragunna/zani.webp">
+              <img class="img-tall" src="icons/resonators/zani2.png">
               <p>Zani</p>
             </div>
             <div class="characterList">
-              <img src="icons/resonators/ragunna/cantarella.png">
+              <img class="img-normal" src="icons/resonators/ragunna/cantarella.png">
+              <img class="img-tall" src="icons/resonators/cantarella2.png">
               <p>Cantarella</p>
             </div>
             <div class="characterList">
-              <img src="icons/resonators/ragunna/brant.png">
+              <img class="img-normal" src="icons/resonators/ragunna/brant.png">
+              <img class="img-tall" src="icons/resonators/brant2.png">
               <p>Brant</p>
             </div>
             <div class="characterList">
-              <img src="icons/resonators/ragunna/phoebe.png">
+              <img class="img-normal" src="icons/resonators/ragunna/phoebe.png">
+              <img class="img-tall" src="icons/resonators/phoebe2.png">
               <p>Phoebe</p>
             </div>
             <div class="characterList">
-              <img src="icons/resonators/ragunna/roccia.png">
+              <img class="img-normal" src="icons/resonators/ragunna/roccia.png">
+              <img class="img-tall" src="icons/resonators/roccia2.png">
               <p>Roccia</p>
             </div>
             <div class="characterList">
-              <img src="icons/resonators/ragunna/carlotta.png">
+              <img class="img-normal" src="icons/resonators/ragunna/carlotta.png">
+              <img class="img-tall" src="icons/resonators/carlotta2.png">
               <p>Carlotta</p>
             </div>
           </div>
@@ -514,15 +528,18 @@
         <div class="character-wrapper">
           <div class="character">
             <div class="characterList">
-              <img src="icons/resonators/septimont/iuno.webp">
+              <img class="img-normal" src="icons/resonators/septimont/iuno.webp">
+              <img class="img-tall" src="icons/resonators/iuno2.png">
               <p>Iuno</p>
             </div>
             <div class="characterList">
-              <img src="icons/resonators/septimont/augusta.webp">
+              <img class="img-normal" src="icons/resonators/septimont/augusta.webp">
+              <img class="img-tall" src="icons/resonators/augusta2.png">
               <p>Augusta</p>
             </div>
             <div class="characterList">
-              <img src="icons/resonators/septimont/lupa.webp">
+              <img class="img-normal" src="icons/resonators/septimont/lupa.webp">
+              <img class="img-tall" src="icons/resonators/lupa2.png">
               <p>Lupa</p>
             </div>
           </div>
@@ -540,19 +557,23 @@
         <div class="character-wrapper">
           <div class="character">
             <div class="characterList">
-              <img src="icons/resonators/startorch_academy/luuk_herssen.webp">
+              <img class="img-normal" src="icons/resonators/startorch_academy/luuk_herssen.webp">
+              <img class="img-tall" src="icons/resonators/luukherssen2.png">
               <p>Luuk Herssen</p>
             </div>
             <div class="characterList">
-              <img src="icons/resonators/startorch_academy/aemeath.webp">
+              <img class="img-normal" src="icons/resonators/startorch_academy/aemeath.webp">
+              <img class="img-tall" src="icons/resonators/aemeath2.png">
               <p>Aemeath</p>
             </div>
             <div class="characterList">
-              <img src="icons/resonators/startorch_academy/lynae.webp">
+              <img class="img-normal" src="icons/resonators/startorch_academy/lynae.webp">
+              <img class="img-tall" src="icons/resonators/lynae2.png">
               <p>Lynae</p>
             </div>
             <div class="characterList">
-              <img src="icons/resonators/startorch_academy/chisa.webp">
+              <img class="img-normal" src="icons/resonators/startorch_academy/chisa.webp">
+              <img class="img-tall" src="icons/resonators/chisa2.png">
               <p>Chisa</p>
             </div>
           </div>
@@ -570,7 +591,8 @@
         <div class="character-wrapper">
           <div class="character">
             <div class="characterList">
-              <img src="icons/resonators/spacetrek_collective/mornye.webp">
+              <img class="img-normal" src="icons/resonators/spacetrek_collective/mornye.webp">
+              <img class="img-tall" src="icons/resonators/mornye2.png">
               <p>Mornye</p>
             </div>
           </div>
@@ -588,7 +610,8 @@
         <div class="character-wrapper">
           <div class="character">
             <div class="characterList">
-              <img src="icons/resonators/the_roya_tribe/sigrika.webp">
+              <img class="img-normal" src="icons/resonators/the_roya_tribe/sigrika.webp">
+              <img class="img-tall" src="icons/resonators/sigrika2.png">
               <p>Sigrika</p>
             </div>
           </div>
@@ -606,7 +629,8 @@
         <div class="character-wrapper">
           <div class="character">
             <div class="characterList">
-              <img src="icons/resonators/the_fractsidus/phrolova.webp">
+              <img class="img-normal" src="icons/resonators/the_fractsidus/phrolova.webp">
+              <img class="img-tall" src="icons/resonators/phrolova2.png">
               <p>Phrolova</p>
             </div>
           </div>
@@ -624,7 +648,8 @@
         <div class="character-wrapper">
           <div class="character">
             <div class="characterList">
-              <img src="icons/resonators/other/calcharo.png">
+              <img class="img-normal" src="icons/resonators/other/calcharo.png">
+              <img class="img-tall" src="icons/resonators/calcharo3.png">
               <p>Calcharo</p>
             </div>
           </div>
@@ -634,6 +659,31 @@
       <div class="buttons">
         <button class="prev"><</button>
         <button class="next">></button>
+      </div>
+
+      <div class="char-detail" id="charDetail">
+        <div class="char-detail-back" onclick="closeCharDetail()">
+          <span class="char-detail-back-arrow">&#8592;</span>
+          <span data-i18n="detail_back">Back</span>
+        </div>
+        <div class="char-detail-bg" id="charDetailBg"></div>
+        <div class="char-detail-art">
+          <img id="charDetailImg" src="" alt="Character Art">
+        </div>
+        <div class="char-detail-info">
+          <p class="char-detail-quote" id="charDetailQuote"></p>
+          <div class="char-detail-name-row">
+            <span class="char-detail-emblem"></span>
+            <h2 class="char-detail-name" id="charDetailName"></h2>
+          </div>
+          <p class="char-detail-desc" id="charDetailDesc"></p>
+        </div>
+        <button class="char-detail-toggle" id="charDetailToggle" type="button" onclick="toggleCharImage()" title="Ganti tampilan">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="11" height="11" rx="2.5"></rect>
+            <path d="M5 15V6a2 2 0 0 1 2-2h9"></path>
+          </svg>
+        </button>
       </div>
     </main>
 

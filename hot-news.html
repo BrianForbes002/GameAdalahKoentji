@@ -32,9 +32,9 @@
         <div class="middle-section">
           <label for="navToggle" class="close-btn">X</label>
           <a href="index.html" class="menu">Home</a>
-          <a href="resonators/resonators.html" class="menu">Resonators</a>
+          <a href="resonators.html" class="menu">Resonators</a>
           <a href="regions.html" class="menu">Regions</a>
-          <a href="hot-news.html" class="menu active">Hot News</a>
+          <a href="hot-news.html" class="menu">Hot News</a>
           <a href="community.html" class="menu">Community</a>
           <a href="support.html" class="menu">Support</a>
           <a href="top-up.html" class="menu">Top Up</a>
@@ -46,38 +46,175 @@
             <img src="icons/index/reddit.png" onclick="window.open('https://www.reddit.com/r/WutheringWaves/', '_blank')">
             <img src="icons/index/instagram.png" onclick="window.open('https://www.instagram.com/wuthering_waves/', '_blank')">
             <img src="icons/index/tiktok.png" onclick="window.open('https://www.tiktok.com/@wutheringwaves_official', '_blank')">
-        </div>
+          </div>
         </div>
       </nav>
       
       <div class="right-section">
-        <img class="language-logo" src="icons/index/language-logo.webp">
-        <img class="music-logo" src="icons/index/musicbar_logo.gif">
-        <img class="login-logo" src="icons/index/login.png">
+        <div class="music-logo" onclick="playMusic()">
+          <div class="music-logos paused first-music-logo"></div>
+          <div class="music-logos paused second-music-logo"></div>
+          <div class="music-logos paused third-music-logo"></div>
+        </div>
+        <img class="login-logo" onclick="loginForm()" src="icons/index/login.png">
+        <span class="username" id="headerUser"></span>
+        <button class="exit-button" id="exitBtn" onclick="logout()">Exit</button>
       </div>
     </header>
 
     <main>
+      <div class="login-page">
+        <div class="mask"></div>
+        <form class="login-form" id="formLogin">
+          <div class="login-header">
+            <div class="back-button" onclick="backMain()">
+              <img src="icons/index/login_back.jpg">
+            </div>
+            <div class="login-mid-logo">
+              <img src="icons/index/login_header.jpg">
+            </div>
+            <div class="close-button" onclick="closeLoginForm()">
+              <img src="icons/index/login_close.jpg">
+            </div>
+          </div>
+          <p id="formError" class="form-error"></p>
+
+          <div class="login-form-content-main">
+            <div class="form-group">
+              <input id="email" name="email" type="text" placeholder="Enter email">
+            </div>
+            <div class="form-group">
+              <input id="password" name="password" type="password" placeholder="Enter password">
+            </div>
+            <div class="terms-policy">
+              <div class="terms-policy-checkbox">
+                <input type="checkbox" id="checkMain" name="checkMain">
+              </div>
+              <div class="terms-policy-desc">
+                I have read and agree to the <a href="https://wutheringwaves.kurogames.com/p/language_en/terms_of_service.html" target="_blank">Terms of Use</a> and <a href="https://wutheringwaves.kurogames.com/p/language_en/privacy_policy.html" target="_blank">Privacy Policy</a>
+              </div>
+            </div>
+            <div class="sign-button">
+              <button type="submit">Sign In</button>
+            </div>
+            <div class="forgot-register">
+              <div class="forgot" onclick="forgot_password()">Forgot Password</div>
+              <div class="register" onclick="register()">Register Now</div>
+            </div>
+            <div class="login-method-main">
+              <div class="login-item">
+                <img src="icons/index/google_login.jpg">
+              </div>
+              <div class="login-item">
+                <img src="icons/index/apple_login.jpg">
+              </div>
+              <div class="login-item">
+                <img src="icons/index/fb_login.jpg">
+              </div>
+              <div class="login-item">
+                <img src="icons/index/twitter_login.jpg">
+              </div>
+              <div class="open-more" onclick="openMoreLogin()">
+                <img src="icons/index/open_more.jpg">
+              </div>
+            </div>
+          </div>
+
+          <div class="login-form-content-more">
+            <div class="login-method-more">
+              <div class="login-item">
+                <img src="icons/index/google_login.jpg">
+              </div>
+              <div class="login-item">
+                <img src="icons/index/apple_login.jpg">
+              </div>
+              <div class="login-item">
+                <img src="icons/index/fb_login.jpg">
+              </div>
+              <div class="login-item">
+                <img src="icons/index/twitter_login.jpg">
+              </div>
+              <div class="login-item">
+                <img src="icons/index/line_login.jpg">
+              </div>
+              <div class="login-item">
+                <img src="icons/index/naver_login.jpg">
+              </div>
+            </div>
+            <div class="terms-policy">
+              <div class="terms-policy-checkbox">
+                <input type="checkbox" id="checkMore" name="checkMore">
+              </div>
+              <div class="terms-policy-desc">
+                I have read and agree to the <a href="https://wutheringwaves.kurogames.com/p/language_en/terms_of_service.html" target="_blank">Terms of Use</a> and <a href="https://wutheringwaves.kurogames.com/p/language_en/privacy_policy.html" target="_blank">Privacy Policy</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="login-form-forgot-password">
+            <div class="form-group">
+              <input id="forgot-email" name="forgot-email" type="text" placeholder="Enter email">
+            </div>
+            <div class="form-group">
+              <input id="forgot-vcode" name="forgot-vcode" type="text" placeholder="Enter verification code">
+              <button type="button" class="vcode-button" onclick="get_forgot_vcode()">Get verification code</button>
+            </div>
+            <div class="form-group">
+              <input id="forgot-new-password" name="forgot-new-password" type="password" placeholder="Enter new password">
+            </div>
+            <div class="form-group">
+              <input id="forgot-confirm-password" name="confirm-password" type="password" placeholder="Confirm password">
+            </div>
+            <div class="confirm-button">
+              <button type="submit" onclick="forgot_confirm()">Confirm</button>
+            </div>
+          </div>
+
+          <div class="login-form-register">
+            <div class="form-group">
+              <input id="register-email" name="register-email" type="text" placeholder="Enter email">
+            </div>
+            <div class="form-group">
+              <input id="register-vcode" name="register-vcode" type="text" placeholder="Enter verification code">
+              <button type="button" class="vcode-button" onclick="get_register_vcode()">Get verification code</button>
+            </div>
+            <div class="form-group">
+              <input id="register-password" name="register-password" type="password" placeholder="Enter password">
+            </div>
+            <div class="form-group">
+              <input id="register-confirm-password" name="register-confirm-password" type="password" placeholder="Confirm password">
+            </div>
+            <div class="terms-policy">
+              <div class="terms-policy-checkbox">
+                <input type="checkbox" id="checkRegister" name="checkRegister">
+              </div>
+              <div class="terms-policy-desc">
+                I have read and agree to the <a href="https://wutheringwaves.kurogames.com/p/language_en/terms_of_service.html" target="_blank">Terms of Use</a> and <a href="https://wutheringwaves.kurogames.com/p/language_en/privacy_policy.html" target="_blank">Privacy Policy</a>
+              </div>
+            </div>
+            <div class="confirm-button">
+              <button type="submit" onclick="register_confirm()">Confirm</button>
+            </div>
+          </div>
+        </form>
+      </div> 
+      
       <section class="sc1">
         <h2>HOT NEWS</h2>
         <p>Latest News And Announcements For Wuthering Waves</p>
-        <div class="top-tools">
+      <div class="top-tools">
         <button id="darkModeBtn">🌙 Dark Mode</button>
-        </div>
-        <div class="filter-news">
-    <button class="filter-btn active-filter" data-filter="all">All
-    </button>
-    <button class="filter-btn" data-filter="update">Updates
-    </button>
-    <button class="filter-btn" data-filter="event">Events
-    </button>
-    <button class="filter-btn" data-filter="maintenance">Maintenance
-    </button>
-    <button class="filter-btn" data-filter="favorite">Favorite
-    </button>
+      </div>
 
-    </div>
+      <div class="filter-news">
+        <button class="filter-btn active-filter" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="update">Updates</button>
+        <button class="filter-btn" data-filter="event">Events</button>
+        <button class="filter-btn" data-filter="maintenance">Maintenance</button>
+        <button class="filter-btn" data-filter="favorite">Favorite</button>
+      </div>
       </section>
+      
       <div class="div">
       <section class="sc2 news-card update" data-news="patch">
       <div class="top-card">
@@ -86,10 +223,10 @@
 </div>
 
 <img src="icons/hot-news/sc2.png" class="imgsc1">
-    <h3>Patch 1.1: New Characters</h3>
+    <h3>New Characters</h3>
     <p class="date">12 Apr 2026</p>
     <p class="description">The latest version has arrived. Meet new characters ready to join your adventure.</p>
-    <p class="extra-text">Patch 1.1 introduces powerful new Resonators with unique combat abilities. Players can also enjoy new quests, improved gameplay mechanics, and additional rewards throughout the update.
+    <p class="extra-text">Introduces powerful new Resonators with unique combat abilities. Players can also enjoy new quests, improved gameplay mechanics, and additional rewards throughout the update.
     </p>
     <button class="read-btn">
         Read More
@@ -103,13 +240,14 @@
       <section class="sc2 news-card update" data-news="weapon">
           <p class="favorite" data-id="2">♡ Favorite</p> <br>
           <img src="icons/hot-news/weapon.png" class="imgsc2">
-          <h3>New Weapon Update</h3> 
-          <p class="description">The latest version has arrived. Meet new characters ready to join your adventure.</p>
-          <p class="extra-text">Frozen Echoes is a limited-time event featuring special challenges, exclusive Echo rewards, Astrites, and unique event stories for every player.</p>
+          <h3>New Weapon Update</h3> <br> <br>
+          <p class="description">The latest weapon to defeat your enemies and become a winner every competition that you choose.</p>
+          <p class="extra-text">Your victory depends heavily on your weapon therefore, do not use just any random weapon when trying to secure the victory that is currently within your grasp. 
+Experience the benefits.</p>
           <button class="read-btn">Read More
           </button>
 
-<a class="detail-link" href="link.html">
+<a class="detail-link" href="linkweapon.html">
 View Detail →
 </a>
 
@@ -121,13 +259,13 @@ View Detail →
 <section class="sc3 news-card event">
           <p class="favorite" data-id="3">♡ Favorite</p> <br>
           <img src="icons/hot-news/Double Prize Event.png" class="imgsc2">
-          <h3>Double Prize Event</h3> 
-          <p class="description">The latest version has arrived. Meet new characters ready to join your adventure.</p>
-          <p class="extra-text">Frozen Echoes is a limited-time event featuring special challenges, exclusive Echo rewards, Astrites, and unique event stories for every player.</p>
+          <h3>Double Prize Event</h3> <br> <br>
+          <p class="description">Various attractive prizes are multiplied and then handed over to you. An extra gift that will welcome you</p>
+          <p class="extra-text">Experience a wide range of fantastic rewards right now multiplied rewards you won't find anywhere else. Multiplied rewards that will let you reap the fruits of your wartime labors. Accept and enjoy your gift.</p>
           <button class="read-btn">Read More
           </button>
 
-<a class="detail-link" href="link.html">
+<a class="detail-link" href="linkcomingsoon.html">
 View Detail →
 </a>
 </section>
@@ -136,12 +274,12 @@ View Detail →
           <p class="favorite" data-id="4">♡ Favorite</p> <br>
           <img src="icons/hot-news/Cooperative Adventure Week Event.png" class="imgsc2">
           <h3>Cooperative Adventure Week Event</h3> 
-          <p class="description">The latest version has arrived. Meet new characters ready to join your adventure.</p>
-          <p class="extra-text">Frozen Echoes is a limited-time event featuring special challenges, exclusive Echo rewards, Astrites, and unique event stories for every player.</p>
+          <p class="description">The Cooperative Adventure Week Event has begun. Join forces with your friends and collect limited rewards.</p> 
+          <p class="extra-text">Complete special event objectives, discover hidden treasures, and earn exclusive rewards available only for a limited time. Every battle fought together brings you one step closer to legendary glory.</p>
           <button class="read-btn">Read More
           </button>
 
-<a class="detail-link" href="link.html">
+<a class="detail-link" href="linkcomingsoon.html">
 View Detail →
 </a>
 </section>
@@ -150,13 +288,13 @@ View Detail →
         <section class="sc3 news-card event">
           <p class="favorite" data-id="5">♡ Favorite</p> <br>
           <img src="icons/hot-news/sc3.png" class="imgsc2">
-          <h3>Frozen Echoes Event Begins!</h3> 
-          <p class="description">The latest version has arrived. Meet new characters ready to join your adventure.</p>
-          <p class="extra-text">Frozen Echoes is a limited-time event featuring special challenges, exclusive Echo rewards, Astrites, and unique event stories for every player.</p>
+          <h3>Frozen Echoes Event Begins!</h3> <br>
+          <p class="description">The Frozen Echoes Event Begins is perfect for who enjoy challenges in pursuit of numerous victories.</p>
+          <p class="extra-text">Frozen Echoes is a limited-time event featuring special challenges, exclusive Echo rewards, Astrite, and a unique event story for every player. Frozen Echoes will be with you start when you choose and forever to create ur winner</p>
           <button class="read-btn">Read More
           </button>
 
-<a class="detail-link" href="frozenechoes.html">
+<a class="detail-link" href="linkcomingsoon.html">
 View Detail →
 </a>
         </section>
@@ -164,9 +302,8 @@ View Detail →
           <p class="favorite" data-id="6">♡ Favorite</p> <br>
           <img src="icons/hot-news/sc4.png" class="imgsc3">
           <h3>Maintenance Completed</h3> <br>
-          <br>
-          <p class="description">The latest version has arrived. Meet new characters ready to join your adventure.</p>
-          <p class="extra-text">The maintenance includes bug fixes, performance improvements, and optimization to provide a smoother gameplay experience for all players.</p>
+          <p class="description">Maintenance is here to ensure your gaming needs and comfort are always taken care of.</p>
+          <p class="extra-text">Bug fixes, performance improvements, and optimizations to provide a smoother gaming experience for all players. Your battles will proceed without issues hindering your path to big and elegant victory.</p>
 <button class="read-btn">Read More
 </button>
 <a class="detail-link" href="maintenance.html">View Detail →
@@ -181,7 +318,7 @@ View Detail →
 
 <section id="reviewSection">
 
-<h2>💬 Community Reviews</h2>
+<h2> 🧾What they say??</h2>
 
 <div class="review-container">
 
@@ -192,9 +329,7 @@ View Detail →
 <ul id="newsList">
 
 <li class="news-item active"
-data-news="patch">
-Patch 1.1 : New Characters
-</li>
+data-news="patch">New Characters</li>
 
 <li class="news-item"
 data-news="weapon">
@@ -286,6 +421,7 @@ Send Review
 
 </section>
       <button id="topBtn">⬆</button>
+      <script src="scripts/index.js"></script>
       <script src="scripts/hot-news.js"></script>
   </body>
 </html>

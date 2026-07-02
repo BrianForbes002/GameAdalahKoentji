@@ -25,10 +25,10 @@
         <div class="middle-section">
           <label for="navToggle" class="close-btn">X</label>
           <a href="index.html" class="menu">Home</a>
-          <a href="resonators/resonators.html" class="menu">Resonators</a>
+          <a href="resonators.html" class="menu">Resonators</a>
           <a href="regions.html" class="menu">Regions</a>
           <a href="hot-news.html" class="menu">Hot News</a>
-          <a href="community.html" class="menu active">Community</a>
+          <a href="community.html" class="menu">Community</a>
           <a href="support.html" class="menu">Support</a>
           <a href="top-up.html" class="menu">Top Up</a>
           <div class="social-media-mobile">
@@ -39,16 +39,158 @@
             <img src="icons/index/reddit.png" onclick="window.open('https://www.reddit.com/r/WutheringWaves/', '_blank')">
             <img src="icons/index/instagram.png" onclick="window.open('https://www.instagram.com/wuthering_waves/', '_blank')">
             <img src="icons/index/tiktok.png" onclick="window.open('https://www.tiktok.com/@wutheringwaves_official', '_blank')">
-        </div>
+          </div>
         </div>
       </nav>
       
       <div class="right-section">
-        <img class="language-logo" src="icons/index/language-logo.webp">
-        <img class="music-logo" src="icons/index/musicbar_logo.gif">
-        <img class="login-logo" src="icons/index/login.png">
+        <div class="music-logo" onclick="playMusic()">
+          <div class="music-logos paused first-music-logo"></div>
+          <div class="music-logos paused second-music-logo"></div>
+          <div class="music-logos paused third-music-logo"></div>
+        </div>
+        <img class="login-logo" onclick="loginForm()" src="icons/index/login.png">
+        <span class="username" id="headerUser"></span>
+        <button class="exit-button" id="exitBtn" onclick="logout()">Exit</button>
       </div>
     </header>
+
+    <main>
+      <div class="login-page">
+        <div class="mask"></div>
+        <form class="login-form" id="formLogin">
+          <div class="login-header">
+            <div class="back-button" onclick="backMain()">
+              <img src="icons/index/login_back.jpg">
+            </div>
+            <div class="login-mid-logo">
+              <img src="icons/index/login_header.jpg">
+            </div>
+            <div class="close-button" onclick="closeLoginForm()">
+              <img src="icons/index/login_close.jpg">
+            </div>
+          </div>
+          <p id="formError" class="form-error"></p>
+
+          <div class="login-form-content-main">
+            <div class="form-group">
+              <input id="email" name="email" type="text" placeholder="Enter email">
+            </div>
+            <div class="form-group">
+              <input id="password" name="password" type="password" placeholder="Enter password">
+            </div>
+            <div class="terms-policy">
+              <div class="terms-policy-checkbox">
+                <input type="checkbox" id="checkMain" name="checkMain">
+              </div>
+              <div class="terms-policy-desc">
+                I have read and agree to the <a href="https://wutheringwaves.kurogames.com/p/language_en/terms_of_service.html" target="_blank">Terms of Use</a> and <a href="https://wutheringwaves.kurogames.com/p/language_en/privacy_policy.html" target="_blank">Privacy Policy</a>
+              </div>
+            </div>
+            <div class="sign-button">
+              <button type="submit">Sign In</button>
+            </div>
+            <div class="forgot-register">
+              <div class="forgot" onclick="forgot_password()">Forgot Password</div>
+              <div class="register" onclick="register()">Register Now</div>
+            </div>
+            <div class="login-method-main">
+              <div class="login-item">
+                <img src="icons/index/google_login.jpg">
+              </div>
+              <div class="login-item">
+                <img src="icons/index/apple_login.jpg">
+              </div>
+              <div class="login-item">
+                <img src="icons/index/fb_login.jpg">
+              </div>
+              <div class="login-item">
+                <img src="icons/index/twitter_login.jpg">
+              </div>
+              <div class="open-more" onclick="openMoreLogin()">
+                <img src="icons/index/open_more.jpg">
+              </div>
+            </div>
+          </div>
+
+          <div class="login-form-content-more">
+            <div class="login-method-more">
+              <div class="login-item">
+                <img src="icons/index/google_login.jpg">
+              </div>
+              <div class="login-item">
+                <img src="icons/index/apple_login.jpg">
+              </div>
+              <div class="login-item">
+                <img src="icons/index/fb_login.jpg">
+              </div>
+              <div class="login-item">
+                <img src="icons/index/twitter_login.jpg">
+              </div>
+              <div class="login-item">
+                <img src="icons/index/line_login.jpg">
+              </div>
+              <div class="login-item">
+                <img src="icons/index/naver_login.jpg">
+              </div>
+            </div>
+            <div class="terms-policy">
+              <div class="terms-policy-checkbox">
+                <input type="checkbox" id="checkMore" name="checkMore">
+              </div>
+              <div class="terms-policy-desc">
+                I have read and agree to the <a href="https://wutheringwaves.kurogames.com/p/language_en/terms_of_service.html" target="_blank">Terms of Use</a> and <a href="https://wutheringwaves.kurogames.com/p/language_en/privacy_policy.html" target="_blank">Privacy Policy</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="login-form-forgot-password">
+            <div class="form-group">
+              <input id="forgot-email" name="forgot-email" type="text" placeholder="Enter email">
+            </div>
+            <div class="form-group">
+              <input id="forgot-vcode" name="forgot-vcode" type="text" placeholder="Enter verification code">
+              <button type="button" class="vcode-button" onclick="get_forgot_vcode()">Get verification code</button>
+            </div>
+            <div class="form-group">
+              <input id="forgot-new-password" name="forgot-new-password" type="password" placeholder="Enter new password">
+            </div>
+            <div class="form-group">
+              <input id="forgot-confirm-password" name="confirm-password" type="password" placeholder="Confirm password">
+            </div>
+            <div class="confirm-button">
+              <button type="submit" onclick="forgot_confirm()">Confirm</button>
+            </div>
+          </div>
+
+          <div class="login-form-register">
+            <div class="form-group">
+              <input id="register-email" name="register-email" type="text" placeholder="Enter email">
+            </div>
+            <div class="form-group">
+              <input id="register-vcode" name="register-vcode" type="text" placeholder="Enter verification code">
+              <button type="button" class="vcode-button" onclick="get_register_vcode()">Get verification code</button>
+            </div>
+            <div class="form-group">
+              <input id="register-password" name="register-password" type="password" placeholder="Enter password">
+            </div>
+            <div class="form-group">
+              <input id="register-confirm-password" name="register-confirm-password" type="password" placeholder="Confirm password">
+            </div>
+            <div class="terms-policy">
+              <div class="terms-policy-checkbox">
+                <input type="checkbox" id="checkRegister" name="checkRegister">
+              </div>
+              <div class="terms-policy-desc">
+                I have read and agree to the <a href="https://wutheringwaves.kurogames.com/p/language_en/terms_of_service.html" target="_blank">Terms of Use</a> and <a href="https://wutheringwaves.kurogames.com/p/language_en/privacy_policy.html" target="_blank">Privacy Policy</a>
+              </div>
+            </div>
+            <div class="confirm-button">
+              <button type="submit" onclick="register_confirm()">Confirm</button>
+            </div>
+          </div>
+        </form>
+      </div>
 <!-- NAVBAR -->
 <div class="navbar">
     <div class="nav-left">
@@ -279,6 +421,7 @@
         </div>
     </div>
 </div>
-
+</main>
+<script src="scripts/index.js"></script>
 </body>
 </html>

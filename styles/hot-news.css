@@ -52,12 +52,9 @@ main {
         0 0 4px rgba(173, 29, 29, 0.8),  /* Pendaran putih inti */
         0 0 10px rgba(210, 18, 18, 0.6), /* Pendaran biru muda tipis */
         0 0 18px rgba(183, 56, 14, 0.4);
-
-}
-
-p {
     line-height:1.5; 
     margin: 0; 
+
 }
 
 .sc2,.sc3,.sc4{
@@ -108,13 +105,15 @@ p {
 
 .div{
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(320px, 320px));
+    justify-content: center;
     gap: 20px;
-    max-width: 1000px; 
-    margin: 0 auto;    
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
     padding: 20px;
-
 }
+
 .imgsc1,.imgsc2,.imgsc3{
     width: 100%;
     height: auto;     
@@ -132,7 +131,7 @@ p {
 
 .link {
     display: inline-block;
-    padding: 10px 20px;
+    padding: 8px 6px;
     background-color: #0c1b3c;
     color: #fff;
     border-radius: 25px;
@@ -362,7 +361,7 @@ p {
     display:none;
     margin-top:12px;
     text-decoration:none;
-    color:#55c3ff;
+    color:#091274 !important;
     font-weight:bold;
 }
 
@@ -378,10 +377,10 @@ p {
 #reviewSection{
 
     display:none;
-    margin:60px auto;
-    max-width:1200px;
+    margin:30px auto;
+    max-width:800px;
 
-    padding:25px;
+    padding:5px 5px;
 
     background:rgba(255,255,255,.12);
 
@@ -467,13 +466,13 @@ p {
 
 .news-item:hover{
 
-    background:#24549c;
+    background:#6587ba;
 
 }
 
 .news-item.active{
 
-    background:#2f7df7;
+    background:#6d8fc6;
 
 }
 
@@ -544,7 +543,7 @@ p {
 
     border-radius:30px;
 
-    background:#2f7df7;
+    background:#143e81;
 
     color:white;
 
@@ -556,7 +555,7 @@ p {
 
 #reviewForm button:hover{
 
-    background:#1e62d3;
+    background:#5e91e3;
 
 }
 
@@ -578,13 +577,13 @@ table{
 
 thead{
 
-    background:#2f7df7;
+    background:#587cb8;
 
 }
 
 thead th{
 
-    padding:14px;
+    padding:10px;
 
     color:white;
 
@@ -658,13 +657,16 @@ grid-template-columns:1fr;
     }
 
     .div {
-        grid-template-columns: 1fr;
-        gap: 15px;
-        padding: 10px;
+    grid-template-columns: 1fr;
+    justify-content: center;
+    gap: 15px;
+    padding: 10px;
     }
 
     .sc2, .sc3, .sc4 {
-        max-width: 100%;
+    max-width: 350px;
+    width: 100%;
+    margin: auto;
     }
 
     .link {
