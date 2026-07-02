@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Admin Dashboard - Wuthering Waves</title>
+    <link rel="icon" href="https://wutheringwaves.kurogames.com/static4.0/favicon.ico">
+    <link rel="stylesheet" href="styles/index.css">
+    <link rel="stylesheet" href="styles/supports.css">
+    <link rel="stylesheet" href="styles/admin.css">
+</head>
+<body>
+    <header class="header admin-header">
+        <div class="left-section">
+            <img src="icons/index/wuwa-logo.png" alt="Logo">
+            <span class="admin-badge">ADMIN PORTAL</span>
+        </div>
+        <div class="right-section">
+            <div class="admin-user">
+                <span class="admin-avatar">A</span>
+                <span class="username" id="adminName">Admin</span>
+            </div>
+            <button class="exit-button admin-exit" onclick="adminLogout()">Exit</button>
+        </div>
+    </header>
+
+    <main class="admin-main">
+        <div class="container">
+            <div class="admin-page-head">
+                <h1 class="admin-title">Dashboard Overview</h1>
+                <p class="admin-subtitle">Monitor and respond to player support requests.</p>
+            </div>
+
+            <div class="dashboard-grid">
+                <div class="stat-card">
+                    <div class="stat-card-head">
+                        <span class="stat-icon icon-total">&#9776;</span>
+                        <h3>Total Requests</h3>
+                    </div>
+                    <div class="stat-number" id="totalReq">0</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card-head">
+                        <span class="stat-icon icon-bug">&#9888;</span>
+                        <h3>Report Bug</h3>
+                    </div>
+                    <div class="stat-number" id="bugReq" style="color:#ff4d6d;">0</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card-head">
+                        <span class="stat-icon icon-tech">&#9881;</span>
+                        <h3>Technical Issues</h3>
+                    </div>
+                    <div class="stat-number" id="techReq" style="color:#ffd166;">0</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card-head">
+                        <span class="stat-icon icon-acc">&#9679;</span>
+                        <h3>Account Help</h3>
+                    </div>
+                    <div class="stat-number" id="accReq" style="color:#06d6a0;">0</div>
+                </div>
+            </div>
+
+            <div class="admin-chart-row">
+                <div class="chart-card">
+                    <h3 class="card-title">Requests by Type</h3>
+                    <div class="donut-wrap">
+                        <div class="donut" id="donutChart"></div>
+                        <div class="donut-center">
+                            <span class="donut-total" id="donutTotal">0</span>
+                            <span class="donut-cap">Total</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="chart-card legend-card">
+                    <h3 class="card-title">Breakdown</h3>
+                    <ul class="chart-legend" id="chartLegend"></ul>
+                </div>
+            </div>
+
+            <div class="admin-table-head">
+                <h2 class="card-title">Manage Feedbacks</h2>
+            </div>
+            <div class="table-wrap">
+                <table class="support-table admin-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Email</th>
+                            <th>Problem</th>
+                            <th>Detail</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="adminTableBody"></tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <div class="custom-alert" id="replyModal">
+        <div class="alert-box reply-box">
+            <h3>Reply to Player</h3>
+            <p id="replyEmail" class="reply-email"></p>
+
+            <div class="reply-field">
+                <label>Update Status</label>
+                <select id="updateStatus">
+                    <option value="Pending">Pending</option>
+                    <option value="In Progress">In Progress</option>
+                    <option value="Resolved">Resolved</option>
+                </select>
+            </div>
+
+            <div class="reply-field">
+                <label>Admin Feedback</label>
+                <textarea id="adminFeedbackText" rows="4"></textarea>
+            </div>
+
+            <div class="reply-actions">
+                <button class="btn-cancel" onclick="closeReplyModal()">Cancel</button>
+                <button id="saveReplyBtn" class="btn-save">Save &amp; Send</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts/index.js"></script>
+    <script src="scripts/admin.js"></script>
+</body>
+</html>

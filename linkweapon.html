@@ -1,50 +1,231 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <link rel="stylesheet" href="styles/hot-news.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&family=Michroma&family=Niconne&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Changa+One:ital@0;1&family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&family=Michroma&family=Niconne&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wuthering Waves</title>
-    <link rel="icon" href="https://wutheringwaves.kurogames.com/static4.0/favicon.ico">
-</head>
+	<head>
+		<link rel="stylesheet" href="styles/index.css">
+		<link rel="stylesheet" href="styles/hot-news.css">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&family=Michroma&family=Niconne&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Changa+One:ital@0;1&family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&family=Michroma&family=Niconne&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Wuthering Waves</title>
+		<link rel="icon" href="https://wutheringwaves.kurogames.com/static4.0/favicon.ico">
+	</head>
 
-<body>
-    <main>
-        <section class="sc1">
-            <h2>HOT NEWS</h2>
-            <p>The new weapon that you can use.</p>
-            
-        </section>
-        <div class="div">
-        <section class="sc2">
-            <img src="icons/hot-news/senjatapanah.png" class="karakter1">
-            <h3>Bow And Arrow</h3>
-            <p class="date">Out Now</p>
-            <p>A powerful, fast, and accurate weapon to win your race.</p>
-            <a class="link" href="link.html">Use Now</a>
-        </section>
-        <section class="sc3">
-            <img src="icons/hot-news/senjatabatu.png" class="karakter2">
-            <h3>Stone Weapon</h3>
-            <p class="date">Out Now</p>
-            <p>Resilient in every race situation as you strive for a quick victory.</p>
-            <a class="link" href="link.html">Use Now</a>
-        </section>
-        <section class="sc4">
-            <img src="icons/hot-news/Senjatapembeku.png" class="karakter3">
-            <h3>Ice Gun</h3>
-            <p class="date">Coming Soon</p>
-            <p>An ice-cold shot ready to freeze all opponents in battle swiftly and surely.</p>
-            <a class="link" href="link.html">Upcoming</a>
-        </section>
-        </main>
-    </div>
-</body>
+	<body>
+		<header class="header">
+			<div class="left-section">
+				<img src="icons/index/wuwa-logo.png">
+			</div>
 
+			<input type="checkbox" id="navToggle" class="nav-toggle">
+			<label for="navToggle" class="hamburger">
+				<span></span>
+				<span></span>
+				<span></span>
+			</label>
+
+			<nav>
+				<div class="middle-section">
+					<label for="navToggle" class="close-btn">X</label>
+					<a href="index.html" class="menu">Home</a>
+					<a href="resonators.html" class="menu">Resonators</a>
+					<a href="regions.html" class="menu">Regions</a>
+					<a href="hot-news.html" class="menu">Hot News</a>
+					<a href="community.html" class="menu">Community</a>
+					<a href="support.html" class="menu">Support</a>
+					<a href="top-up.html" class="menu">Top Up</a>
+					<div class="social-media-mobile">
+						<img src="icons/index/twitter.png" onclick="window.open('https://x.com/Wuthering_Waves', '_blank')">
+						<img src="icons/index/facebook.png" onclick="window.open('https://www.facebook.com/WutheringWaves.Official', '_blank')">
+						<img src="icons/index/youtube.png" onclick="window.open('https://www.youtube.com/@WutheringWaves', '_blank')">
+						<img src="icons/index/discord.png" onclick="window.open('https://discord.com/invite/wutheringwaves', '_blank')">
+						<img src="icons/index/reddit.png" onclick="window.open('https://www.reddit.com/r/WutheringWaves/', '_blank')">
+						<img src="icons/index/instagram.png" onclick="window.open('https://www.instagram.com/wuthering_waves/', '_blank')">
+						<img src="icons/index/tiktok.png" onclick="window.open('https://www.tiktok.com/@wutheringwaves_official', '_blank')">
+					</div>
+				</div>
+			</nav>
+			
+			<div class="right-section">
+				<div class="music-logo" onclick="playMusic()">
+					<div class="music-logos paused first-music-logo"></div>
+					<div class="music-logos paused second-music-logo"></div>
+					<div class="music-logos paused third-music-logo"></div>
+				</div>
+				<img class="login-logo" onclick="loginForm()" src="icons/index/login.png">
+				<span class="username" id="headerUser"></span>
+				<button class="exit-button" id="exitBtn" onclick="logout()">Exit</button>
+			</div>
+		</header>
+
+		<main>
+			<div class="login-page">
+				<div class="mask"></div>
+				<form class="login-form" id="formLogin">
+					<div class="login-header">
+						<div class="back-button" onclick="backMain()">
+							<img src="icons/index/login_back.jpg">
+						</div>
+						<div class="login-mid-logo">
+							<img src="icons/index/login_header.jpg">
+						</div>
+						<div class="close-button" onclick="closeLoginForm()">
+							<img src="icons/index/login_close.jpg">
+						</div>
+					</div>
+					<p id="formError" class="form-error"></p>
+
+					<div class="login-form-content-main">
+						<div class="form-group">
+							<input id="email" name="email" type="text" placeholder="Enter email">
+						</div>
+						<div class="form-group">
+							<input id="password" name="password" type="password" placeholder="Enter password">
+						</div>
+						<div class="terms-policy">
+							<div class="terms-policy-checkbox">
+								<input type="checkbox" id="checkMain" name="checkMain">
+							</div>
+							<div class="terms-policy-desc">
+								I have read and agree to the <a href="https://wutheringwaves.kurogames.com/p/language_en/terms_of_service.html" target="_blank">Terms of Use</a> and <a href="https://wutheringwaves.kurogames.com/p/language_en/privacy_policy.html" target="_blank">Privacy Policy</a>
+							</div>
+						</div>
+						<div class="sign-button">
+							<button type="submit">Sign In</button>
+						</div>
+						<div class="forgot-register">
+							<div class="forgot" onclick="forgot_password()">Forgot Password</div>
+							<div class="register" onclick="register()">Register Now</div>
+						</div>
+						<div class="login-method-main">
+							<div class="login-item">
+								<img src="icons/index/google_login.jpg">
+							</div>
+							<div class="login-item">
+								<img src="icons/index/apple_login.jpg">
+							</div>
+							<div class="login-item">
+								<img src="icons/index/fb_login.jpg">
+							</div>
+							<div class="login-item">
+								<img src="icons/index/twitter_login.jpg">
+							</div>
+							<div class="open-more" onclick="openMoreLogin()">
+								<img src="icons/index/open_more.jpg">
+							</div>
+						</div>
+					</div>
+
+					<div class="login-form-content-more">
+						<div class="login-method-more">
+							<div class="login-item">
+								<img src="icons/index/google_login.jpg">
+							</div>
+							<div class="login-item">
+								<img src="icons/index/apple_login.jpg">
+							</div>
+							<div class="login-item">
+								<img src="icons/index/fb_login.jpg">
+							</div>
+							<div class="login-item">
+								<img src="icons/index/twitter_login.jpg">
+							</div>
+							<div class="login-item">
+								<img src="icons/index/line_login.jpg">
+							</div>
+							<div class="login-item">
+								<img src="icons/index/naver_login.jpg">
+							</div>
+						</div>
+						<div class="terms-policy">
+							<div class="terms-policy-checkbox">
+								<input type="checkbox" id="checkMore" name="checkMore">
+							</div>
+							<div class="terms-policy-desc">
+								I have read and agree to the <a href="https://wutheringwaves.kurogames.com/p/language_en/terms_of_service.html" target="_blank">Terms of Use</a> and <a href="https://wutheringwaves.kurogames.com/p/language_en/privacy_policy.html" target="_blank">Privacy Policy</a>
+							</div>
+						</div>
+					</div>
+
+					<div class="login-form-forgot-password">
+						<div class="form-group">
+							<input id="forgot-email" name="forgot-email" type="text" placeholder="Enter email">
+						</div>
+						<div class="form-group">
+							<input id="forgot-vcode" name="forgot-vcode" type="text" placeholder="Enter verification code">
+							<button type="button" class="vcode-button" onclick="get_forgot_vcode()">Get verification code</button>
+						</div>
+						<div class="form-group">
+							<input id="forgot-new-password" name="forgot-new-password" type="password" placeholder="Enter new password">
+						</div>
+						<div class="form-group">
+							<input id="forgot-confirm-password" name="confirm-password" type="password" placeholder="Confirm password">
+						</div>
+						<div class="confirm-button">
+							<button type="submit" onclick="forgot_confirm()">Confirm</button>
+						</div>
+					</div>
+
+					<div class="login-form-register">
+						<div class="form-group">
+							<input id="register-email" name="register-email" type="text" placeholder="Enter email">
+						</div>
+						<div class="form-group">
+							<input id="register-vcode" name="register-vcode" type="text" placeholder="Enter verification code">
+							<button type="button" class="vcode-button" onclick="get_register_vcode()">Get verification code</button>
+						</div>
+						<div class="form-group">
+							<input id="register-password" name="register-password" type="password" placeholder="Enter password">
+						</div>
+						<div class="form-group">
+							<input id="register-confirm-password" name="register-confirm-password" type="password" placeholder="Confirm password">
+						</div>
+						<div class="terms-policy">
+							<div class="terms-policy-checkbox">
+								<input type="checkbox" id="checkRegister" name="checkRegister">
+							</div>
+							<div class="terms-policy-desc">
+								I have read and agree to the <a href="https://wutheringwaves.kurogames.com/p/language_en/terms_of_service.html" target="_blank">Terms of Use</a> and <a href="https://wutheringwaves.kurogames.com/p/language_en/privacy_policy.html" target="_blank">Privacy Policy</a>
+							</div>
+						</div>
+						<div class="confirm-button">
+							<button type="submit" onclick="register_confirm()">Confirm</button>
+						</div>
+					</div>
+				</form>
+			</div>
+			<section class="sc1">
+				<h2>HOT NEWS</h2>
+				<p>The new weapon that you can use.</p>
+			</section>
+			<div class="div">
+				<section class="sc2">
+					<img src="icons/hot-news/senjatapanah.png" class="karakter1">
+					<h3>Bow And Arrow</h3>
+					<p class="date">Out Now</p>
+					<p>A powerful, fast, and accurate weapon to win your race.</p>
+					<a class="link" href="link.html">Use Now</a>
+				</section>
+				<section class="sc3">
+					<img src="icons/hot-news/senjatabatu.png" class="karakter2">
+					<h3>Stone Weapon</h3>
+					<p class="date">Out Now</p>
+					<p>Resilient in every race situation as you strive for a quick victory.</p>
+					<a class="link" href="link.html">Use Now</a>
+				</section>
+				<section class="sc4">
+					<img src="icons/hot-news/Senjatapembeku.png" class="karakter3">
+					<h3>Ice Gun</h3>
+					<p class="date">Coming Soon</p>
+					<p>An ice-cold shot ready to freeze all opponents in battle swiftly and surely.</p>
+					<a class="link" href="link.html">Upcoming</a>
+				</section>
+			</div>
+		</main>
+		<script src="scripts/index.js"></script>
+	</body>
 </html>

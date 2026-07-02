@@ -52,12 +52,9 @@ main {
         0 0 4px rgba(173, 29, 29, 0.8),  /* Pendaran putih inti */
         0 0 10px rgba(210, 18, 18, 0.6), /* Pendaran biru muda tipis */
         0 0 18px rgba(183, 56, 14, 0.4);
-
-}
-
-p {
     line-height:1.5; 
     margin: 0; 
+
 }
 
 .sc2,.sc3,.sc4{
