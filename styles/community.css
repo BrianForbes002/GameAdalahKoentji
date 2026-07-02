@@ -154,6 +154,15 @@ body {
     background: #eee;
 }
 
+.post-image {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-top: 10px;
+    background: #eee;
+}
+
 .post-footer {
     display: flex;
     gap: 20px;
@@ -893,25 +902,35 @@ body {
     width: 100%;
 }
 
-.channel-header{
-    height: 360px;
-    position: relative;
+header.channel-header{
+    position: relative !important;
+    display: block !important;
+    width: 100% !important;
+    height: 360px !important;
+
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+
     overflow: hidden;
     border-radius: 0 0 30px 30px;
+    background: transparent !important;
+    grid-template-columns: none !important;
 }
 
-.channel-header img{
+header.channel-header img{
+    display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-.overlay{
+header.channel-header .overlay{
     position: absolute;
     inset: 0;
     background: linear-gradient(
         to top,
-        rgba(0,0,0,0.7),
+        rgba(0,0,0,.35),
         transparent
     );
 }
@@ -1314,6 +1333,14 @@ body {
     font-size: 14px;
 }
 
+.comment img{
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 50% !important;
+    object-fit: cover !important;
+    flex-shrink: 0;
+}
+
 /* RESPONSIVE */
 
 @media(max-width: 900px){
@@ -1509,4 +1536,82 @@ body {
         width: 60px;
         height: 60px;
     }
+}
+
+header.channel-header{
+    all: unset;
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 360px;
+    overflow: hidden;
+    border-radius: 0 0 30px 30px;
+}
+
+header.channel-header img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+header.channel-header .overlay{
+    position:absolute;
+    inset:0;
+    background:linear-gradient(to top, rgba(0,0,0,.35), transparent);
+}
+
+header.header{
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+.channel-header{
+    position: relative;
+    width: 100%;
+    height: 360px;
+    overflow: hidden;
+    border-radius: 0 0 30px 30px;
+    margin: 0;
+    padding: 0;
+}
+
+.channel-header img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.channel-header .overlay{
+    position:absolute;
+    inset:0;
+    background:linear-gradient(to top, rgba(0,0,0,.35), transparent);
+}
+
+.follow-btn{
+    background:#4f7cff;
+    color:white;
+    border:none;
+    padding:12px 28px;
+    border-radius:25px;
+    cursor:pointer;
+    font-size:16px;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.follow-btn:hover{
+    background:#3b66e0;
+}
+
+.follow-btn.following{
+    background:#e9ecef;
+    color:#333;
+    border:2px solid #ccc;
+}
+
+.follow-btn.following:hover{
+    background:#dcdfe4;
 }
