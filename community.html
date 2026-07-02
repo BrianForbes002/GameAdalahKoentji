@@ -123,7 +123,7 @@
                               <div class="comment">
                                   <img class="post-image" src="icons/community/profile3.jpeg" alt="">
                                   <div class="comment-text">
-                                      <strong>Lyra</strong>
+                                      <strong>Lala</strong>
                                       <p>Aku juga kalah 50/50 terus...</p>
                                   </div>
                               </div>
@@ -635,21 +635,32 @@
               <div class="card">
                   <p><strong>Let's post it now!</strong></p>
                   <div class="menu-grid">
-                      <div class="menu-item">
+                      <div class="menu-item" onclick="openPost('picture')">
                           <img src="https://cdn-icons-png.flaticon.com/512/1829/1829586.png">
                           <span>Picture</span>
                       </div>
-                  <div class="menu-item">
+                  <div class="menu-item" onclick="openPost('article')">
                       <img src="https://cdn-icons-png.flaticon.com/512/1828/1828919.png">
                       <span>Article</span>
                   </div>
-                  <div class="menu-item">
+                  <div class="menu-item" onclick="openPost('video')">
                       <img src="https://cdn-icons-png.flaticon.com/512/1828/1828884.png">
                       <span>Video</span>
                   </div>
-              </div>
-          </div>
-      </div>
+                </div>
+            </div>
+            <div id="postModal" class="post-modal">
+                <div class="post-box">
+                    <h2 id="postTitle">Create Post</h2>
+                    <textarea id="postText" placeholder="Write Something..."></textarea>
+                    <input type="file" id="postMedia">
+                    <div class="post-buttons">
+                        <button onclick="closePost()">Cancel</button>
+                        <button onclick="createPost()">Post</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
 
     <script src="scripts/community.js"></script>
