@@ -1756,3 +1756,104 @@ header.header{
 .like-btn.liked{
     color: #ff3b5c;
 }
+
+.event-search{
+    width:260px;
+    padding:10px 15px;
+    border-radius:20px;
+    border:1px solid #ddd;
+    margin-right:20px;
+}
+
+.event-filter{
+    display:flex;
+    gap:10px;
+    margin-top:15px;
+}
+
+.event-filter button{
+    padding:8px 18px;
+    border:none;
+    border-radius:20px;
+    cursor:pointer;
+    background:#ececec;
+}
+
+.event-filter .active{
+    background:#4f7cff;
+    color:#fff;
+}
+
+.bookmark{
+    float:right;
+    cursor:pointer;
+    font-size:22px;
+    margin-top:10px;
+}
+
+.image-popup{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.8);
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+}
+
+.image-popup img{
+    max-width:80%;
+    max-height:80%;
+    border-radius:15px;
+}
+
+.close-popup{
+    position:absolute;
+    top:20px;
+    right:30px;
+    color:white;
+    font-size:40px;
+    cursor:pointer;
+}
+
+.countdown{
+    color:#ff4d4d;
+    font-weight:bold;
+    margin-top:10px;
+}
+
+.share-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+
+    padding:8px 18px;
+
+    border:none;
+    border-radius:30px;
+
+    background:linear-gradient(135deg,#5c7cfa,#6c5ce7);
+    color:#fff;
+
+    font-size:14px;
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    box-shadow:0 5px 15px rgba(92,124,250,.35);
+}
+
+.share-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 25px rgba(92,124,250,.5);
+}
+
+.share-btn:active{
+    transform:scale(.95);
+}
+
+.share-btn i{
+    font-size:16px;
+}
