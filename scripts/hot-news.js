@@ -1,14 +1,4 @@
-// ==========================================
-// HOT NEWS JAVASCRIPT
-// Dibuat sesuai materi JavaScript Dasar
-// ==========================================
-
-// Menunggu seluruh halaman selesai dimuat
 document.addEventListener("DOMContentLoaded", function () {
-
-    // =====================================
-    // Mengambil seluruh elemen yang diperlukan
-    // =====================================
 
     var semuaCard = document.querySelectorAll(".news-card");
     var semuaLink = document.querySelectorAll(".link");
@@ -20,6 +10,95 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
+
+
+    // =====================================
+    // DARK MODE
+    // =====================================
+
+    if (localStorage.getItem("darkmode") == "on") {
+
+        document.body.classList.add("dark-mode");
+
+    }
+
+
+
+    tombolDarkMode.addEventListener("click", function () {
+
+        document.body.classList.toggle("dark-mode");
+
+
+
+        if (document.body.classList.contains("dark-mode")) {
+
+            localStorage.setItem("darkmode", "on");
+
+        }
+
+        else {
+
+            localStorage.setItem("darkmode", "off");
+
+        }
+
+    });
+
+
+
+    // =====================================
+    // FILTER BERITA
+    // =====================================
+
+    for (var i = 0; i < semuaFilter.length; i++) {
+        semuaFilter[i].addEventListener("click", function () {
+            for (var j = 0; j < semuaFilter.length; j++) {
+                semuaFilter[j].classList.remove("active-filter");
+            }
+
+            this.classList.add("active-filter");
+            var kategori =
+                this.getAttribute("data-filter");
+            for (var k = 0; k < semuaCard.length; k++) {
+                if (kategori == "all") {
+                    document.getElementById("reviewSection").style.display = "none";
+                    semuaCard[k].style.display = "block";
+                }
+
+                else if (kategori == "favorite") {
+                    document.getElementById("reviewSection").style.display = "block";
+                    var fav = semuaCard[k].querySelector(".favorite");
+                    var id = fav.getAttribute("data-id");
+                    var data = localStorage.getItem("favorite") || "";
+                    if (data.indexOf(id + ",") != -1) {
+                        semuaCard[k].style.display = "block";
+                    }
+                    else {
+                        semuaCard[k].style.display = "none";
+                    }
+                }
+
+                else if (semuaCard[k].classList.contains(kategori)) {
+                    document.getElementById("reviewSection").style.display = "none";
+                    semuaCard[k].style.display = "block";
+                }
+                else {
+                    semuaCard[k].style.display = "none";
+                }
+            }
+        });
+    }
+        // =====================================
+    // BADGE NEW
+    // =====================================
+
+    var badge = document.querySelector(".badge-new");
+
+    if (badge != null) {
+
+        badge.innerHTML = "🔥 NEW";
+
+    }
 
 
 
@@ -59,175 +138,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
     }
-
-
-
-    // =====================================
-    // SHOW MORE / SHOW LESS
-    // =====================================
-
-    for (var i = 0; i < semuaCard.length; i++) {
-
-        var daftarP = semuaCard[i].querySelectorAll("p");
-
-        if (daftarP.length >= 3) {
-
-            daftarP[2].classList.add("short-text");
-
-        }
-
-    }
-
-
-
-    for (var i = 0; i < semuaLink.length; i++) {
-
-        semuaLink[i].addEventListener("click", function (e) {
-
-            e.preventDefault();
-
-            var card = this.parentElement;
-
-            var daftarP = card.querySelectorAll("p");
-
-            var deskripsi = daftarP[2];
-
-
-
-            if (deskripsi.classList.contains("short-text")) {
-
-                deskripsi.classList.remove("short-text");
-
-                this.innerHTML = "Show Less";
-
-            }
-
-            else {
-
-                deskripsi.classList.add("short-text");
-
-                this.innerHTML = "Read More";
-
-            }
-
-        });
-
-    }
-
-
-
-    // =====================================
-    // FILTER BERITA
-    // =====================================
-
-    for (var i = 0; i < semuaFilter.length; i++) {
-
-        semuaFilter[i].addEventListener("click", function () {
-
-            for (var j = 0; j < semuaFilter.length; j++) {
-
-                semuaFilter[j].classList.remove("active-filter");
-
-            }
-
-            this.classList.add("active-filter");
-
-            var kategori =
-                this.getAttribute("data-filter");
-                for (var k = 0; k < semuaCard.length; k++) {
-
-                if (kategori == "all") {
-                    document.getElementById("reviewSection").style.display="none";
-                    semuaCard[k].style.display = "block";
-
-                }
-
-                 else if (kategori == "favorite") {
-
-    document.getElementById("reviewSection").style.display = "block";
-
-    var fav = semuaCard[k].querySelector(".favorite");
-    var id = fav.getAttribute("data-id");
-
-    var data = localStorage.getItem("favorite") || "";
-
-    if (data.indexOf(id + ",") != -1) {
-
-        semuaCard[k].style.display = "block";
-
-    } else {
-
-        semuaCard[k].style.display = "none";
-
-    }
-
-}
-
-        else if (semuaCard[k].classList.contains(kategori)) {
-         document.getElementById("reviewSection").style.display="none";
-        semuaCard[k].style.display = "block";
-
-    }
-
-        else {
-
-        semuaCard[k].style.display = "none";
-
-    }
-
-}
-
-        });
-
-    }
-
-
-
-    // =====================================
-    // BADGE NEW
-    // =====================================
-
-    var badge = document.querySelector(".badge-new");
-
-    if (badge != null) {
-
-        badge.innerHTML = "🔥 NEW";
-
-    }
-
-
-
-    // =====================================
-    // DARK MODE
-    // =====================================
-
-    if (localStorage.getItem("darkmode") == "on") {
-
-        document.body.classList.add("dark-mode");
-
-    }
-
-
-
-    tombolDarkMode.addEventListener("click", function () {
-
-        document.body.classList.toggle("dark-mode");
-
-
-
-        if (document.body.classList.contains("dark-mode")) {
-
-            localStorage.setItem("darkmode", "on");
-
-        }
-
-        else {
-
-            localStorage.setItem("darkmode", "off");
-
-        }
-
-    });
 
 
 
@@ -310,6 +220,9 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
     }
+
+
+
     // =====================================
     // BACK TO TOP
     // =====================================
@@ -339,7 +252,6 @@ document.addEventListener("DOMContentLoaded", function () {
             top: 0,
 
             behavior: "smooth"
-            
 
         });
 
@@ -352,7 +264,6 @@ document.addEventListener("DOMContentLoaded", function () {
     // =====================================
 
 });
-
 // ==============================
 // READ MORE
 // ==============================
@@ -392,73 +303,74 @@ tombolRead.forEach(function(btn){
     });
 
 });
+
+
 /* =====================================
    COMMUNITY REVIEW
 ===================================== */
 
-var currentNews="patch";
+var currentNews="newcharacter";
 
 var reviewData = {
 
-patch:[
+newcharacter:[
 {
-nama:"Tina",
-komentar:"Virex is incredibly powerful! I love this new character.",
+nama:"Maxwel",
+komentar:"Wooow, Virex is incredibly powerful! I love this new character.",
 default:true
 },
 {
-nama:"Rafi",
-komentar:"Best update so far!",
+nama:"Andrew",
+komentar:"Lookk, Besttt update so far!",
 default:true
 },
 {
-nama:"Luna",
-komentar:"Finally new Resonators have arrived.",
+nama:"Nadheline",
+komentar:"Finallyyyy Georgio and Georgia have arrived.",
 default:true
 }
 ],
 
 weapon:[
 {
-nama:"Kevin",
-komentar:"The new weapon looks amazing.",
+nama:"Kenzi",
+komentar:"The newwwww weapon looks amazing.",
 default:true
 },
 {
-nama:"Alya",
-komentar:"Its stats are really strong.",
+nama:"Nhadeen",
+komentar:"Its stats are reallyyy strong.",
 default:true
 }
 ],
 
 double:[
 {
-nama:"Nanda",
-komentar:"Double rewards are always worth farming.",
+nama:"Tapasya",
+komentar:"Double rewards are always worth farminggg.",
 default:true
 }
 ],
 
-coop:[
-{
-nama:"Dimas",
-komentar:"Playing together is much more fun.",
-default:true
-}
-],
 
 frozen:[
 {
-nama:"Sinta",
-komentar:"This event gives lots of Astrites.",
+nama:"Shintya",
+komentar:"This event gives lotssss of Astrites.",
+default:true
+},
+{
+nama:"Hanzel",
+komentar:"Woow Sooo Ext.",
 default:true
 }
 ],
 
+
 maintenance:[
 {
-nama:"Rio",
-komentar:"Maintenance finished faster than expected.",
+nama:"Virhly",
+komentar:"Maintenance finished fasterrr than expected.",
 default:true
 }
 ]
@@ -501,7 +413,6 @@ function saveReviews(){
 }
 
 loadReviews();
-
 function renderReviews(){
 
     var tbody=document.getElementById("reviewTable");
@@ -597,6 +508,7 @@ document.getElementById("reviewForm")
     default:false
 
 });
+
     saveReviews();
 
     renderReviews();
@@ -624,5 +536,3 @@ function hapusReview(index){
     renderReviews();
 
 }
-
-
