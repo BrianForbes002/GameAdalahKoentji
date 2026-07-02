@@ -182,7 +182,10 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
     }
 
-    if (user.email.toLowerCase() !== "admin@wuwa.com") {
+    const userIsAdmin = (typeof isAdmin === 'function')
+    ? isAdmin(user) : (user.role === 'admin' || user.email.toLowerCase() === 'admin@wuwa.com');
+
+    if (!userIsAdmin) {
         alert("Access Denied. You are not an admin.");
         window.location.href = "index.html";
         return;

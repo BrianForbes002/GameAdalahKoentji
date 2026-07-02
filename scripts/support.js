@@ -208,6 +208,91 @@ function initSupportForm() {
 
 }
 
+const prefersLessMotion = () =>
+    window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function spawnResetShards(container) {
+    if (prefersLessMotion()) return;
+    const w = container.offsetWidth;
+    const h = container.offsetHeight;
+    const count = 14;
+
+    for (let i = 0; i < count; i++) {
+        const t = i / (count - 1);
+        const x = w * (1 - t);          
+        const y = h * (0.35 + 0.3 * t);
+
+        const shard = document.createElement("div");
+        shard.className = "shard shard-fall";
+
+        const size = 6 + Math.random() * 12;
+        shard.style.width = size + "px";
+        shard.style.height = size + "px";
+        shard.style.left = x + "px";
+        shard.style.top = y + "px";
+
+        const spreadX = (Math.random() * 2 - 1) * (55 + Math.random() * 60);
+        const fallY = 130 + Math.random() * 170;
+        shard.style.setProperty("--tx", spreadX.toFixed(1) + "px");
+        shard.style.setProperty("--ty", fallY.toFixed(1) + "px");
+        shard.style.setProperty("--rot", Math.round(Math.random() * 720 - 360) + "deg");
+
+        container.appendChild(shard);
+        setTimeout(() => shard.remove(), 900);
+    }
+}
+
+function spawnReassembleShards(container) {
+    if (prefersLessMotion()) return;
+    const count = 16;
+
+    for (let i = 0; i < count; i++) {
+        const shard = document.createElement("div");
+        shard.className = "shard shard-gather";
+
+        const size = 6 + Math.random() * 11;
+        shard.style.width = size + "px";
+        shard.style.height = size + "px";
+
+        const sx = (Math.random() * 2 - 1) * (120 + Math.random() * 90);
+        const mag = 110 + Math.random() * 110;
+        const sy = (Math.random() < 0.7) ? mag : -mag;
+        shard.style.setProperty("--sx", sx.toFixed(1) + "px");
+        shard.style.setProperty("--sy", sy.toFixed(1) + "px");
+        shard.style.setProperty("--rot", Math.round(Math.random() * 540 - 270) + "deg");
+        shard.style.animationDelay = (Math.random() * 0.12).toFixed(2) + "s";
+
+        container.appendChild(shard);
+        setTimeout(() => shard.remove(), 850);
+    }
+}
+
+function spawnDeleteShards(rect) {
+    if (prefersLessMotion()) return;
+    const count = 9;
+
+    for (let i = 0; i < count; i++) {
+        const shard = document.createElement("div");
+        shard.className = "shard shard-delete";
+
+        const size = 7 + Math.random() * 13;
+        shard.style.width = size + "px";
+        shard.style.height = size + "px";
+        shard.style.left = (rect.left + Math.random() * rect.width) + "px";
+        shard.style.top = (rect.top + Math.random() * rect.height) + "px";
+
+        const ang = Math.random() * Math.PI * 2;
+        const dist = 60 + Math.random() * 150;
+        shard.style.setProperty("--tx", (Math.cos(ang) * dist).toFixed(1) + "px");
+        shard.style.setProperty("--ty", (Math.sin(ang) * dist).toFixed(1) + "px");
+        shard.style.setProperty("--sc", (1.5 + Math.random() * 1.9).toFixed(2));
+        shard.style.setProperty("--rot", Math.round(Math.random() * 720 - 360) + "deg");
+
+        document.body.appendChild(shard);
+        setTimeout(() => shard.remove(), 750);
+    }
+}
+
 function initResetButton(){
     const btn = document.getElementById("resetBtn");
 
@@ -257,6 +342,7 @@ function initResetButton(){
             setTimeout(() => {
                 cloneTop.classList.add("shatter-top");
                 cloneBottom.classList.add("shatter-bottom");
+                spawnResetShards(formContainer);
             }, 100);
 
             setTimeout(() => {
@@ -266,14 +352,16 @@ function initResetButton(){
                 cloneBottom.remove();
                 slash.remove();
 
+                spawnReassembleShards(formContainer);
+
                 fieldset.style.opacity = "1";
                 fieldset.classList.add("form-reassemble");
 
                 setTimeout(() => {
                     fieldset.classList.remove("form-reassemble");
-                }, 600);
+                }, 700);
 
-            }, 700); 
+            }, 950); 
         });
     });
 }
@@ -346,8 +434,9 @@ function deleteForm(){
 
             const row = this.closest("tr");
             const rect = row.getBoundingClientRect();
-            
-            const centerX = rect.left + (rect.width / 2);
+
+            // Laser di tengah layar (X) + sejajar baris yang dihapus (Y)
+            const centerX = window.innerWidth / 2;
             const centerY = rect.top + (rect.height / 2);
             
             const laser = document.createElement("div");
@@ -357,6 +446,9 @@ function deleteForm(){
             laser.style.left = centerX + "px";
             
             document.body.appendChild(laser);
+
+            const spawnRect = { left: centerX - 110, top: rect.top, width: 220, height: rect.height };
+            setTimeout(function() { spawnDeleteShards(spawnRect); }, 150);
 
             row.classList.add("row-shatter-3d");
 

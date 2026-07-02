@@ -806,13 +806,6 @@ h1 {
     padding: 0 15px 20px 15px; 
 }
 
-
-
-
-
-
-
-
 .support-form {
     position: relative; 
 }
@@ -826,7 +819,7 @@ h1 {
     margin: 0 !important;
     pointer-events: none; 
     z-index: 10;
-    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.6s ease-out;
+    transition: transform 0.78s cubic-bezier(0.45, 0, 0.75, 0.35), opacity 0.78s ease-in;
 }
 
 .form-clone-top {
@@ -838,12 +831,12 @@ h1 {
 }
 
 .shatter-top {
-    transform: translate(-30px, -50px) rotate(-6deg);
+    transform: translate(-45px, 135px) rotate(-16deg);
     opacity: 0;
 }
 
 .shatter-bottom {
-    transform: translate(30px, 50px) rotate(6deg);
+    transform: translate(45px, 170px) rotate(14deg);
     opacity: 0;
 }
 
@@ -886,7 +879,77 @@ h1 {
 }
 
 .form-reassemble {
-    animation: reassembleAnim 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    animation: reassembleAnim 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+.shard {
+    pointer-events: none;
+    background: linear-gradient(135deg, #ffffff 0%, #00e5ff 55%, rgba(0, 229, 255, 0.15) 100%);
+    box-shadow: 0 0 8px 1px rgba(0, 229, 255, 0.85);
+    clip-path: polygon(50% 0, 100% 68%, 18% 100%);
+    will-change: transform, opacity;
+}
+
+.shard-fall {
+    position: absolute;
+    z-index: 12;
+    animation: shardFall 0.85s cubic-bezier(0.4, 0, 0.75, 0.35) forwards; 
+}
+
+.shard-gather {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 12;
+    animation: shardGather 0.6s cubic-bezier(0.3, 0.7, 0.2, 1) forwards;
+}
+
+.shard-delete {
+    position: fixed;
+    z-index: 9999;
+    animation: shardBurst 0.65s cubic-bezier(0.15, 0.7, 0.25, 1) forwards;
+}
+
+@keyframes shardFall {
+    0%   { 
+        transform: translate(0, 0) rotate(0deg); 
+        opacity: 1; 
+    }
+    15%  { 
+        opacity: 1; 
+    }
+    100% { 
+        transform: translate(var(--tx), var(--ty)) rotate(var(--rot)); 
+        opacity: 0; 
+    }
+}
+
+@keyframes shardGather {
+    0%   { 
+        transform: translate(-50%, -50%) translate(var(--sx), var(--sy)) rotate(var(--rot)); 
+        opacity: 0; 
+    }
+    35%  { 
+        opacity: 1; 
+    }
+    100% { 
+        transform: translate(-50%, -50%) translate(0, 0) scale(0.35) rotate(0deg); 
+        opacity: 0; 
+    }
+}
+
+@keyframes shardBurst {
+    0%   { 
+        transform: translate(-50%, -50%) scale(0.5) rotate(0deg); 
+        opacity: 1; 
+    }
+    65%  { 
+        opacity: 1; 
+    }
+    100% { 
+        transform: translate(-50%, -50%) translate(var(--tx), var(--ty)) scale(var(--sc)) rotate(var(--rot)); 
+        opacity: 0; 
+    }
 }
 
 @keyframes reassembleAnim {
@@ -1109,6 +1172,15 @@ h1 {
         margin-top: 40px; 
     }
 
+    .sword-slash {
+        top: 20%;
+        transform: rotate(-14deg) !important;
+        height: 120px;
+        width: 120%;
+        left: -10%;
+        box-shadow: 0 10px 18px -5px #00e5ff, 0 20px 32px -10px #00e5ff;
+    }
+
     .worm_segment {
         left: 6px;
     }
@@ -1125,8 +1197,17 @@ h1 {
 
     .support-form-section,
     .support-history-section {
-        scroll-margin-top: 60px;
-        margin-top: 20px; 
+        scroll-margin-top: 70px;
+        margin-top: 30px; 
+    }
+
+    .sword-slash {
+        top: 30%;
+        transform: rotate(-25deg) !important;
+        height: 85px;
+        width: 114%;
+        left: -7%;
+        border-bottom-width: 4px;
     }
 
     .table-responsive-wrapper {

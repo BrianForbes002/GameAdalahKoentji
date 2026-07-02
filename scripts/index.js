@@ -51,6 +51,7 @@ function saveUsers(users) {
     localStorage.setItem('wuwaUsers', JSON.stringify(users));
 }
 
+
 function getCurrentUser() {
     const data = localStorage.getItem('currentUser');
     return data ? JSON.parse(data) : null;
@@ -58,6 +59,51 @@ function getCurrentUser() {
 
 function saveCurrentUser(user) {
     localStorage.setItem('currentUser', JSON.stringify(user));
+}
+
+const DEFAULT_ADMIN_EMAILS = ['admin@wuwa.com'];
+
+const ADMIN_CODE = 'WUWA-ADMIN-2026';
+
+function isAdmin(user) {
+    if (!user) return false;
+    if (user.role === 'admin') return true;
+    return DEFAULT_ADMIN_EMAILS.includes(String(user.email).toLowerCase());
+}
+
+function seedAdminAccount() {
+    const users = getUsers();
+    const adminExists = users.some(function (u) {
+        return u.email.toLowerCase() === 'admin@wuwa.com';
+    });
+    if (!adminExists) {
+        users.push({
+            id: Date.now(),
+            uid: 100000001,  
+            email: 'admin@wuwa.com',
+            password: 'admin123' 
+        });
+        saveUsers(users);
+    }
+}
+
+function initAdminHelp() {
+    const btn = document.querySelector('.admin-help-btn');
+    const panel = document.querySelector('.admin-help-panel');
+    if (!btn || !panel) return;
+
+    btn.addEventListener('click', function (e) {
+        e.stopPropagation(); 
+        panel.classList.toggle('open');
+    });
+    document.addEventListener('click', function (e) {
+        if (!panel.contains(e.target) && e.target !== btn) {
+            panel.classList.remove('open'); 
+        }
+    });
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') panel.classList.remove('open');
+    });
 }
 
 function openMoreLogin() {
@@ -105,6 +151,32 @@ function register() {
     login_back_button.style.opacity = 1;
     login_back_button.style.pointerEvents = 'visible';
     errorEl.textContent = '';
+    resetAdminCodeField();
+}
+
+function resetAdminCodeField() {
+    const wrap = document.getElementById('adminCodeWrap');
+    const input = document.getElementById('register-admin-code');
+    const toggle = document.getElementById('adminToggle');
+    if (wrap) wrap.style.display = 'none';
+    if (input) input.value = '';
+    if (toggle) toggle.textContent = 'Daftar sebagai admin?';
+}
+
+function toggleAdminCode() {
+    const wrap = document.getElementById('adminCodeWrap');
+    const toggle = document.getElementById('adminToggle');
+    if (!wrap) return;
+    const hidden = window.getComputedStyle(wrap).display === 'none';
+    if (hidden) {
+        wrap.style.display = 'block';
+        if (toggle) toggle.textContent = 'Batal daftar sebagai admin';
+    } else {
+        wrap.style.display = 'none';
+        const input = document.getElementById('register-admin-code');
+        if (input) input.value = '';
+        if (toggle) toggle.textContent = 'Daftar sebagai admin?';
+    }
 }
 
 let forgotCode = '';
@@ -268,13 +340,16 @@ function initFormLogin() {
                 return;
             }
 
+            const asAdmin = document.getElementById('register-admin-code').value.trim() === ADMIN_CODE;
+
             users.push({
                 id: Date.now(),
                 uid: Math.floor(100000000 + Math.random() * 900000000),
                 email: register_email,
-                password: register_password
+                password: register_password,
+                role: asAdmin ? 'admin' : 'user'
             });
-
+            
             saveUsers(users);
 
             alert('Register successful!');
@@ -311,7 +386,7 @@ function initFormLogin() {
             }
 
             if (user.password !== password) {
-                errorEl.textContent = 'Wrong password!';
+                errorEl.textContent = 'Account not found!';
                 return;
             }
 
@@ -330,7 +405,7 @@ function initFormLogin() {
                 }, 400);
             }
 
-            if (user.email.toLowerCase() === "admin@wuwa.com") {
+            if (isAdmin(user)) {
                 window.location.href = "admin.html";
                 return;
             }
@@ -430,8 +505,10 @@ function showCustomNotification(message) {
 }
 
 document.addEventListener('DOMContentLoaded', function () { 
+    seedAdminAccount();
     initFormLogin();
     updateHeaderUser();
+    initAdminHelp();
 });
 
 window.addEventListener('wheel', function (e) {
