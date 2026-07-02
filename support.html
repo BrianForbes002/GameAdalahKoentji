@@ -10,6 +10,24 @@
   </head>
 
   <body>   
+    <div class="custom-alert" id="loginAlert">
+      <div class="alert-box">
+        <h3>Login Required</h3>
+        <p>Please login first to submit your support request.</p>
+        <button id="alertBtn">Login</button>
+      </div>
+    </div>
+
+    <div class="custom-alert" id="feedbackAlert">
+      <div class="alert-box" style="text-align: left; width: 450px;">
+        <h3 style="color: #06d6a0;">Admin Feedback</h3>
+        <p id="feedbackText" style="color: #ddd; font-size: 15px; background: rgba(0,0,0,0.5); padding: 15px; border-radius: 8px; border: 1px solid #06d6a0; min-height: 80px;"></p>
+        <div style="text-align: right;">
+          <button onclick="closeFeedbackAlert()" style="background: #06d6a0;">Close</button>
+        </div>
+      </div>
+    </div>
+
     <header class="header">
       <div class="left-section">
         <img src="icons/index/wuwa-logo.png">
@@ -45,140 +63,300 @@
       </nav>
       
       <div class="right-section">
-        <img class="language-logo" src="icons/index/language-logo.webp">
-        <img class="music-logo" src="icons/index/musicbar_logo.gif">
-        <img class="login-logo" src="icons/index/login.png">
+        <div class="music-logo" onclick="playMusic()">
+          <div class="music-logos paused first-music-logo"></div>
+          <div class="music-logos paused second-music-logo"></div>
+          <div class="music-logos paused third-music-logo"></div>
+        </div>
+        <img class="login-logo" onclick="loginForm()" src="icons/index/login.png">
+        <span class="username" id="headerUser"></span>
+        <button class="exit-button" id="exitBtn" onclick="logout()">Exit</button>
       </div>
     </header>
 
-    <main>
-      <div class="wrapper" id="formPopup">
-        <div class="overlay"></div>
-        <div class="form">
-          <a href="#" class="back-btn">← Back</a>
-          <h1>Player's Form</h1>
-          <input type="text" placeholder="Username">
-          <select class="issues">
-            <option disabled selected>Choose your issue</option>
-            <optgroup label="Account">
-              <option>Login Problem</option>
-              <option>Account Lost</option>
-              <option>Password Reset</option>
-            </optgroup>
-            <optgroup label="Technical">
-              <option>Bug Report</option>
-              <option>Game Crash</option>
-              <option>Lag / Performance</option>
-            </optgroup>
-            <optgroup label="Payment">
-              <option>Top-up Failed</option>
-              <option>Item Not Received</option>
-            </optgroup>
-            <optgroup label="Other">
-              <option>Feedback</option>
-              <option>Other Issue</option>
-            </optgroup>
-          </select>
-          <textarea placeholder="Describe your issue..."></textarea>
-          <div class="buttons">
-            <button class="remove-btn">Remove</button>
-            <button
-            class="send-btn">Send</button>
+    <div class="login-page">
+      <div class="mask"></div>
+      <form class="login-form" id="formLogin">
+        <div class="login-header">
+          <div class="back-button" onclick="backMain()">
+            <img src="icons/index/login_back.jpg">
           </div>
-          <a href="#reportPopup" class="view-report-btn">📋 View Reports</a>
+          <div class="login-mid-logo">
+            <img src="icons/index/login_header.jpg">
+          </div>
+          <div class="close-button" onclick="closeLoginForm()">
+            <img src="icons/index/login_close.jpg">
+          </div>
         </div>
-      </div>
+        <p id="formError" class="form-error"></p>
 
-      <div id="reportPopup" class="wrapper">
-        <div class="overlay"></div>
-        <div class="report-box">
-          <a href="#formPopup" class="back-btn">← Back</a>
-          <h2>Your Reports</h2>
-          <table>
-            <tr>
-              <th>Issue</th>
-              <th>Description</th>
-              <th>Action</th>
-            </tr>
-            <tr>
-              <td>Top-up Failed</td>
-              <td>Payment error</td>
-              <td>
-                <button>Edit</button>
-                <button>Delete</button>
-              </td>
-            </tr>
-          </table>
-        </div>
-      </div>
-
-      <img class="background" src="icons/wallpaperflare.com_wallpaper.jpg">
-      <h1>PLAYER SUPPORT</h1>
-      <p class="subtitle">How can we help you today?</p>
-      <div class="support-search">
-        <input type="text" placeholder="Search your problem...">
-      </div>
-      <section class="menu-grid">
-        <div class="list">
-          <div class="moon"></div>
-          <div class="sun"></div>
-          <h2>💬 Feedback</h2>
-          <p>Feel free to share your opinion.</p>
-          <a class="click_link" href="#formPopup">&#8594 Click here</a>
-        </div>
-
-        <div class="list">
-          <h2>🐞 Report Bug</h2>
-          <div class="moon"></div>
-          <div class="sun"></div>
-          <p>Find any bug? Tell us here.</p>
-          <a class="click_link" href="#formPopup">&#8594 Click here</a>
-        </div>
-
-        <div class="list">
-          <h2>❓ FAQ</h2>
-          <div class="moon"></div>
-          <div class="sun"></div>
-          <p>Answers to the most commonly asked questions.</p>
-          <a class="click_link" href="#formPopup">&#8594 Click here</a>
+        <div class="login-form-content-main">
+          <div class="form-group">
+            <input id="email" name="email" type="text" placeholder="Enter email">
+          </div>
+          <div class="form-group">
+            <input id="password" name="password" type="password" placeholder="Enter password">
+          </div>
+          <div class="terms-policy">
+            <div class="terms-policy-checkbox">
+              <input type="checkbox" id="checkMain" name="checkMain">
+            </div>
+            <div class="terms-policy-desc">
+              I have read and agree to the <a href="https://wutheringwaves.kurogames.com/p/language_en/terms_of_service.html" target="_blank">Terms of Use</a> and <a href="https://wutheringwaves.kurogames.com/p/language_en/privacy_policy.html" target="_blank">Privacy Policy</a>
+            </div>
+          </div>
+          <div class="sign-button">
+            <button type="submit">Sign In</button>
+          </div>
+          <div class="forgot-register">
+            <div class="forgot" onclick="forgot_password()">Forgot Password</div>
+            <div class="register" onclick="register()">Register Now</div>
+          </div>
+          <div class="login-method-main">
+            <div class="login-item">
+              <img src="icons/index/google_login.jpg">
+            </div>
+            <div class="login-item">
+              <img src="icons/index/apple_login.jpg">
+            </div>
+            <div class="login-item">
+              <img src="icons/index/fb_login.jpg">
+            </div>
+            <div class="login-item">
+              <img src="icons/index/twitter_login.jpg">
+            </div>
+            <div class="open-more" onclick="openMoreLogin()">
+              <img src="icons/index/open_more.jpg">
+            </div>
+          </div>
         </div>
 
-        <div class="list">
-          <h2>Technical Issues</h2>
-          <div class="moon"></div>
-          <div class="sun"></div>
-          <p>Fix crashes, lag, installation errors, and other technical problems.</p>
-          <a class="click_link" href="#formPopup">&#8594 Click here</a>
+        <div class="login-form-content-more">
+          <div class="login-method-more">
+            <div class="login-item">
+              <img src="icons/index/google_login.jpg">
+            </div>
+            <div class="login-item">
+              <img src="icons/index/apple_login.jpg">
+            </div>
+            <div class="login-item">
+              <img src="icons/index/fb_login.jpg">
+            </div>
+            <div class="login-item">
+              <img src="icons/index/twitter_login.jpg">
+            </div>
+            <div class="login-item">
+              <img src="icons/index/line_login.jpg">
+            </div>
+            <div class="login-item">
+              <img src="icons/index/naver_login.jpg">
+            </div>
+          </div>
+          <div class="terms-policy">
+            <div class="terms-policy-checkbox">
+              <input type="checkbox" id="checkMore" name="checkMore">
+            </div>
+            <div class="terms-policy-desc">
+              I have read and agree to the <a href="https://wutheringwaves.kurogames.com/p/language_en/terms_of_service.html" target="_blank">Terms of Use</a> and <a href="https://wutheringwaves.kurogames.com/p/language_en/privacy_policy.html" target="_blank">Privacy Policy</a>
+            </div>
+          </div>
         </div>
 
-        <div class="list">
-          <h2>Account Help</h2>
-          <div class="moon"></div>
-          <div class="sun"></div>
-          <p>Fix crashes, lag, installation errors, and other technical problems.</p>
-          <a class="click_link" href="#formPopup">&#8594 Click here</a>
+        <div class="login-form-forgot-password">
+          <div class="form-group">
+            <input id="forgot-email" name="forgot-email" type="text" placeholder="Enter email">
+          </div>
+          <div class="form-group">
+            <input id="forgot-vcode" name="forgot-vcode" type="text" placeholder="Enter verification code">
+            <button type="button" class="vcode-button" onclick="get_forgot_vcode()">Get verification code</button>
+          </div>
+          <div class="form-group">
+            <input id="forgot-new-password" name="forgot-new-password" type="password" placeholder="Enter new password">
+          </div>
+          <div class="form-group">
+            <input id="forgot-confirm-password" name="confirm-password" type="password" placeholder="Confirm password">
+          </div>
+          <div class="confirm-button">
+            <button type="submit" onclick="forgot_confirm()">Confirm</button>
+          </div>
         </div>
 
-        <div class="list">
-          <h2>📧 Contact Us</h2>
-          <div class="moon"></div>
-          <div class="sun"></div>
-          <p>Sometimes you need a little help from your friends. Don't worry... we're here for you.</p>
-          <a class="click_link" href="#formPopup">&#8594 Click here</a>
+        <div class="login-form-register">
+          <div class="form-group">
+            <input id="register-email" name="register-email" type="text" placeholder="Enter email">
+          </div>
+          <div class="form-group">
+            <input id="register-vcode" name="register-vcode" type="text" placeholder="Enter verification code">
+            <button type="button" class="vcode-button" onclick="get_register_vcode()">Get verification code</button>
+          </div>
+          <div class="form-group">
+            <input id="register-password" name="register-password" type="password" placeholder="Enter password">
+          </div>
+          <div class="form-group">
+            <input id="register-confirm-password" name="register-confirm-password" type="password" placeholder="Confirm password">
+          </div>
+          <div class="terms-policy">
+            <div class="terms-policy-checkbox">
+              <input type="checkbox" id="checkRegister" name="checkRegister">
+            </div>
+            <div class="terms-policy-desc">
+              I have read and agree to the <a href="https://wutheringwaves.kurogames.com/p/language_en/terms_of_service.html" target="_blank">Terms of Use</a> and <a href="https://wutheringwaves.kurogames.com/p/language_en/privacy_policy.html" target="_blank">Privacy Policy</a>
+            </div>
+          </div>
+          <div class="confirm-button">
+            <button type="submit" onclick="register_confirm()">Confirm</button>
+          </div>
         </div>
+      </form>
+    </div>
+
+    <main>
+      <section class="support-form-section">
+        <div class="container">
+          <form id="supportForm" class="support-form">
+            <fieldset>
+              <legend>PLAYER SUPPORT</legend>
+              <p id="supportFormError" class="form-error"></p>
+              <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="supportEmail" name="supportEmail" class="form-input" placeholder="Enter your email address" readonly>
+              </div>
+
+              <div class="form-group">
+                <label for="playerName">Name</label>
+                <input type="text" id="playerName" name="playerName" class="form-input" placeholder="Enter your name" maxlength="15">
+              </div>
+
+              <div class="form-group">
+                <label>Problem Type</label>
+                <div class="problem-selector">
+                  <input id="bug" type="radio" name="problem" value="Report Bug" checked>
+                  <label for="bug"><span></span>Report Bug</label>
+
+                  <input id="tech" type="radio" name="problem" value="Technical Issues">
+                  <label for="tech"><span></span>Technical Issues</label>
+
+                  <input id="account" type="radio" name="problem" value="Account Help">
+                  <label for="account"><span></span>Account Help</label>
+
+                  <div class="worm">
+                    <div class="worm_segment"></div>
+                    <div class="worm_segment"></div>
+                    <div class="worm_segment"></div>
+                    <div class="worm_segment"></div>
+                    <div class="worm_segment"></div>
+                    <div class="worm_segment"></div>
+                    <div class="worm_segment"></div>
+                    <div class="worm_segment"></div>
+                    <div class="worm_segment"></div>
+                    <div class="worm_segment"></div>
+                    <div class="worm_segment"></div>
+                    <div class="worm_segment"></div>
+                    <div class="worm_segment"></div>
+                    <div class="worm_segment"></div>
+                    <div class="worm_segment"></div>
+                    <div class="worm_segment"></div>
+                    <div class="worm_segment"></div>
+                    <div class="worm_segment"></div>
+                    <div class="worm_segment"></div>
+                    <div class="worm_segment"></div>
+                    <div class="worm_segment"></div>
+                    <div class="worm_segment"></div>
+                    <div class="worm_segment"></div>
+                    <div class="worm_segment"></div>
+                    <div class="worm_segment"></div>
+                    <div class="worm_segment"></div>
+                    <div class="worm_segment"></div>
+                    <div class="worm_segment"></div>
+                    <div class="worm_segment"></div>
+                    <div class="worm_segment"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="additionalInfo">Additional Information</label>
+                <textarea id="additionalInfo" name="additionalInfo" class="form-textarea" rows="4" placeholder="Please describe your issue in detail..."></textarea>
+              </div>
+
+              <div class="form-actions">
+                <button type="button" class="btn-reset" id="resetBtn">Reset</button>
+                <button type="submit" class="btn-send">Send</button>
+              </div>
+            </fieldset>
+          </form>
+        </div>
+      </section>
+
+      <section class="support-history-section" id="supportTable">
+        <div class="container">
+          <h2>Support History</h2>
+          <div class="table-responsive-wrapper">
+            <table class="support-table">
+              <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Email</th>
+                  <th>Name</th>
+                  <th>Problem</th>
+                  <th>Date</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="supportTableBody">
+
+              </tbody>
+            </table>
+          </div>
+        </div>        
       </section>
 
       <section class="popular">
         <h2>Popular Questions</h2>
-        <div class="question">How do I recover my account?</div>
-        <div class="question">Why is my game lagging?</div>
-        <div class="question">How do I report a bug?</div>
-        <div class="question">How do I change my account email?</div>
+        <div class="faq-item">
+          <div class="question">How do I recover my account? <span class="arrow">▼</span></div>
+          <div class="answer-wrapper">
+            <div class="answer-inner">
+              To recover your account, please go to the login page and click on "Forgot Password". You will need access to the email address registered to your account to receive the verification code.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="question">Why is my game lagging? <span class="arrow">▼</span></div>
+          <div class="answer-wrapper">
+            <div class="answer-inner">
+              Lag can be caused by unstable internet connections or high server load. Please ensure you are connected to a stable Wi-Fi, close background apps, or try lowering your in-game graphic settings.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="question">How do I report a bug? <span class="arrow">▼</span></div>
+          <div class="answer-wrapper">
+            <div class="answer-inner">
+              You can report a bug directly using the Support Form above. Please select "Report Bug" as the problem type and provide as much detail as possible, including device specs and error codes.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="question">How do I change my account email? <span class="arrow">▼</span></div>
+          <div class="answer-wrapper">
+            <div class="answer-inner">
+              Currently, email addresses linked to a Wuthering Waves account cannot be changed directly for security reasons. Please contact Player Support through the form for further assistance.
+            </div>
+          </div>
+        </div>
       </section>
     </main>
 
     <footer class="footer">
       <p>Copyright ©KURO GAMES. ALL RIGHTS RESERVED.</p>
     </footer>
+
+    <script src="scripts/index.js"></script>
+    <script src="scripts/support.js"></script>
   </body>
 </html>

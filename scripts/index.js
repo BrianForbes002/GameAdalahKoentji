@@ -1,3 +1,5 @@
+let loginOpen = false;
+
 const menus = document.querySelectorAll('.menu');
 menus.forEach(menu=>{
     if(menu.href === window.location.href){
@@ -27,20 +29,10 @@ function playMusic() {
 
 const login = document.querySelector('.login-page');
 function loginForm() {
-    login.classList.add('active');   
+    loginOpen = true;
+    login.classList.add("active");
+    document.body.style.overflow = "hidden";
 }
-
-document.addEventListener('click', function(e){
-    const before = document.querySelector('.patch_notes_before');
-    const after = document.querySelector('.patch_notes_after');
-
-    if (!before || !after) return;
-
-    if(!e.target.closest('.header') && !e.target.closest('.download-grid') && !e.target.closest('.social-media')) {
-        before.style.display = 'none';
-        after.style.display = 'flex';
-    }
-});
 
 const formLogin = document.getElementById('formLogin');
 const login_form_content_main = document.querySelector('.login-form-content-main');
@@ -88,12 +80,14 @@ function backMain() {
 }
 
 function closeLoginForm() {
+    loginOpen = false;
     login.classList.remove('active');
     login_form_content_main.style.display = 'flex';
     login_form_content_more.style.display = 'none';
     login_form_forgot_password.style.display = 'none';
     login_form_register.style.display = 'none';
     formLogin.reset();
+    document.body.style.overflow = "";
     errorEl.textContent = '';
 }
 
@@ -323,9 +317,33 @@ function initFormLogin() {
 
             saveCurrentUser(user);
 
+            closeLoginForm();
+
+            const supportData = JSON.parse(localStorage.getItem("support") || "[]");
+            const hasNotification = supportData.some(function(ticket) {
+                return ticket.email === user.email && ticket.hasUnreadReply === true;
+            });
+
+            if (hasNotification) {
+                setTimeout(function() {
+                    showCustomNotification("System Alert: You have a new reply from Admin! Please check the Support page.");
+                }, 400);
+            }
+
+            if (user.email.toLowerCase() === "admin@wuwa.com") {
+                window.location.href = "admin.html";
+                return;
+            }
+
             updateHeaderUser();
 
-            closeLoginForm();
+            if (window.loadEmail) {
+                loadEmail();
+            }
+
+            if (window.renderSupportTable) {
+                renderSupportTable();
+            }
 
             return;
         }
@@ -362,11 +380,78 @@ function updateHeaderUser() {
 }
 
 function logout() {
-    localStorage.removeItem('currentUser');
+    localStorage.removeItem("currentUser");
+
+    if (typeof editId !== "undefined") {
+        editId = null;
+        editData = null;
+    }
+
     updateHeaderUser();
+
+    if (typeof resetSupportForm === "function") {
+        resetSupportForm();
+    }
+
+    if (typeof renderSupportTable === "function") {
+        renderSupportTable();
+    }
+}
+
+function showCustomNotification(message) {
+    const notif = document.createElement("div");
+    notif.style.position = "fixed";
+    notif.style.top = "100px";
+    notif.style.right = "30px";
+    notif.style.background = "rgba(10, 20, 50, 0.9)";
+    notif.style.border = "1px solid #00e5ff";
+    notif.style.color = "white";
+    notif.style.padding = "15px 25px";
+    notif.style.borderRadius = "8px";
+    notif.style.boxShadow = "0 0 15px rgba(0, 229, 255, 0.4)";
+    notif.style.zIndex = "999999";
+    notif.style.fontWeight = "bold";
+    notif.style.transform = "translateX(200%)"; 
+    notif.style.transition = "transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1)";
+    notif.innerHTML = "🔔 " + message;
+
+    document.body.appendChild(notif);
+
+    setTimeout(function() {
+        notif.style.transform = "translateX(0)";
+    }, 100);
+
+    setTimeout(function() {
+        notif.style.transform = "translateX(200%)";
+        setTimeout(function() {
+            notif.remove();
+        }, 500); 
+    }, 5000);
 }
 
 document.addEventListener('DOMContentLoaded', function () { 
     initFormLogin();
     updateHeaderUser();
 });
+
+window.addEventListener('wheel', function (e) {
+    if (e.ctrlKey) e.preventDefault();  
+}, { passive: false });
+
+window.addEventListener('keydown', function (e) {
+    if ((e.ctrlKey || e.metaKey) &&
+        ['+', '-', '=', '0'].includes(e.key)) {
+        e.preventDefault();
+    }
+});
+
+['gesturestart', 'gesturechange', 'gestureend'].forEach(function (evt) {
+    document.addEventListener(evt, function (e) { e.preventDefault(); }); 
+});
+
+let lastTouchEnd = 0;
+document.addEventListener('touchend', function (e) {
+    const now = Date.now();
+    if (now - lastTouchEnd <= 300) e.preventDefault(); 
+    lastTouchEnd = now;
+}, { passive: false });
