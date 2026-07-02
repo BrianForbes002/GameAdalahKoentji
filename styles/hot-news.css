@@ -19,7 +19,7 @@ main {
     word-spacing: 10px;
     letter-spacing: 35px;
     color:#031638;
-    font-size: 55px;
+    font-size: 90px;
     font-weight: bold;
     text-transform: uppercase;
     filter: drop-shadow(0px 0px 10px rgba(110, 165, 210, 0.6)) 
@@ -364,7 +364,7 @@ p {
     display:none;
     margin-top:12px;
     text-decoration:none;
-    color:#091274 !important;
+    color:#091274 !;
     font-weight:bold;
 }
 
