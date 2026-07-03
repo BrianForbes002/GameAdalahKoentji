@@ -46,7 +46,7 @@ main {
     
     letter-spacing: 6px;
     font-size: 20px;
-    color: white;
+    color: rgb(255, 255, 255);
     text-align: center;
 
     width: fit-content;
@@ -123,25 +123,7 @@ main {
         max-width: 100%;
         border-radius: 15px;
     }
-    .gbr{
-
-    display:block;
-
-    width:100%;
-
-    transition:
-        transform .5s ease,
-        filter .5s ease;
-
-}
-
-.region-card:hover .gbr{
-
-    transform:scale(1.08);
-
-    filter:brightness(1.15);
-
-}
+    
 }
 
 /* ================= POPUP ================= */
