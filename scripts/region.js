@@ -118,9 +118,15 @@ document.querySelector(".close").onclick=function(){
 
 }
 
-document.getElementById("closeBtn").onclick=function(){
+const closeBtn = document.getElementById("closeBtn");
 
-    popup.style.display="none";
+if (closeBtn) {
+
+    closeBtn.onclick = function(){
+
+        popup.style.display = "none";
+
+    }
 
 }
 
