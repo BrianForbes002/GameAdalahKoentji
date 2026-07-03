@@ -33,12 +33,16 @@ document.addEventListener("DOMContentLoaded", function () {
         if (document.body.classList.contains("dark-mode")) {
 
             localStorage.setItem("darkmode", "on");
+            tombolDarkMode.innerText = '☀️ Light Mode';
+            tombolDarkMode.classList.add('active');
 
         }
 
         else {
 
             localStorage.setItem("darkmode", "off");
+            tombolDarkMode.innerText = '🌙 Dark Mode';
+            tombolDarkMode.classList.remove('active');
 
         }
 

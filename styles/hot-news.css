@@ -189,6 +189,19 @@ main {
 
 }
 
+#darkModeBtn.active{
+
+    background:white;
+    color:rgb(0, 0, 0);
+
+}
+
+#darkModeBtn.active:hover{
+
+    background:#e1e4e8;
+
+}
+
 /* ========================= */
 /* FILTER */
 /* ========================= */
