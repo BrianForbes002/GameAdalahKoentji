@@ -170,10 +170,42 @@ main {
     transition:0.3s;
 }
 
+#darkModeBtn.active{
+
+    background:white;
+    color:rgb(0, 0, 0);
+
+}
+
 #darkModeBtn:hover{
     background:#101112;
 }
 
+<<<<<<< HEAD
+=======
+#darkModeBtn.active{
+
+    background:white;
+    color:rgb(0, 0, 0);
+
+}
+
+#darkModeBtn.active:hover{
+
+    background:#e1e4e8;
+}
+#darkModeBtn.active:hover{
+
+    background:#eef1f5;
+
+
+}
+
+/* ========================= */
+/* FILTER */
+/* ========================= */
+
+>>>>>>> 9042ae80422af0472f2fb64d747fdac38443174e
 .filter-news{
     text-align:center;
     margin-bottom:25px;
@@ -480,4 +512,3 @@ grid-template-columns:1fr;
         height: auto;
     }
 }
-

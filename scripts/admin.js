@@ -115,12 +115,15 @@ function renderAdminTable() {
             btnStyle = "background: linear-gradient(135deg, #555, #777); box-shadow: none;";
         }
 
+        const _imgs = ticketImages(item);
+        const imgBtn = _imgs.length ? '<button type="button" class="view-img-btn" onclick="openImageAlert(' + item.id + ')">📎 ' + _imgs.length + '</button>' : "";
+
         const tr = document.createElement("tr");
         tr.innerHTML = `
             <td data-label="Date">${item.date}</td>
             <td data-label="Email">${item.email}</td>
             <td data-label="Problem">${item.problem}</td>
-            <td data-label="Detail" class="cell-detail">${item.info}</td>
+            <td data-label="Detail" class="cell-detail">${item.info} ${imgBtn}</td>
             <td data-label="Status" class="${statusClass}">${item.status}</td>
             <td data-label="Action">
                 <button class="btn-reply" style="${btnStyle}" onclick="openReplyModal(${item.id})">${btnText}</button>
@@ -137,6 +140,21 @@ function openReplyModal(id) {
 
     currentReplyId = id;
     document.getElementById("replyEmail").textContent = "Replying to: " + item.email;
+    document.getElementById("replyDetail").textContent = item.info || "-";
+
+    const _imgs = ticketImages(item);
+    const imagesField = document.getElementById("replyImagesField");
+    const imagesBox = document.getElementById("replyImages");
+    if (_imgs.length) {
+        imagesBox.innerHTML = _imgs.map(function (src) {
+            return '<img src="' + src + '" alt="Attachment" onclick="openImageAlert(' + item.id + ')">';
+        }).join("");
+        imagesField.style.display = "";
+    } else {
+        imagesBox.innerHTML = "";
+        imagesField.style.display = "none";
+    }
+
     document.getElementById("updateStatus").value = item.status || "Pending";
 
     document.getElementById("adminFeedbackText").value = item.adminReply || "";
@@ -167,6 +185,32 @@ document.getElementById("saveReplyBtn").addEventListener("click", function() {
         alert("Feedback sent successfully!");
     }
 });
+
+function ticketImages(item) {
+    if (item.images && item.images.length) return item.images;
+    if (item.image) return [item.image];
+    return [];
+}
+
+window.openImageAlert = function (id) {
+    const item = getAdminSupport().find(function (x) { return x.id === id; });
+    if (!item) return;
+    const imgs = ticketImages(item);
+    if (!imgs.length) return;
+    const box = document.getElementById("imageAlertImgs");
+    box.innerHTML = imgs.map(function (src) {
+        return '<img src="' + src + '" alt="Attachment">';
+    }).join("");
+    document.getElementById("imageAlert").classList.add("active");
+    document.documentElement.style.overflow = "hidden";
+    document.body.style.overflow = "hidden";
+};
+
+window.closeImageAlert = function () {
+    document.getElementById("imageAlert").classList.remove("active");
+    document.documentElement.style.overflow = "";
+    document.body.style.overflow = "";
+};
 
 function adminLogout() {
     localStorage.removeItem("currentUser");

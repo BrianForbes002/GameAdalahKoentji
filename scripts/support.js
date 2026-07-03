@@ -1,4 +1,5 @@
 let editId = null;
+let attachedImages = [];
 
 function getSupport() {
     const raw = localStorage.getItem("support");
@@ -27,7 +28,18 @@ window.addEventListener("wheel", function(e){
         return;
     }
 
+    if(document.querySelector(".custom-alert.active")){
+        return;
+    }
+
     if(scrolling) return;
+
+    const sec = sections[current];
+    if (sec) {
+        const rect = sec.getBoundingClientRect();
+        if (e.deltaY > 0 && rect.bottom > window.innerHeight + 4) return;
+        if (e.deltaY < 0 && rect.top < -4) return;
+    }
 
     scrolling = true;
 
@@ -77,12 +89,18 @@ function fillForm(data) {
     if (radio) {
         radio.checked = true;
     }
+
+    if (data.images && data.images.length) attachedImages = data.images.slice();
+    else if (data.image) attachedImages = [data.image];
+    else attachedImages = [];
+    renderImagePreviews();
 }
 
 function clearForm() {
     document.getElementById("playerName").value = "";
     document.getElementById("additionalInfo").value = "";
     document.getElementById("bug").checked = true;
+    clearImageField();
 
     loadEmail();
 
@@ -93,6 +111,7 @@ function resetSupportForm() {
     document.getElementById("playerName").value = "";
     document.getElementById("additionalInfo").value = "";
     document.getElementById("bug").checked = true;
+    clearImageField();
 
     loadEmail();
 }
@@ -148,6 +167,11 @@ function initSupportForm() {
             return;
         }
 
+        if(info === ""){
+            error.textContent = "Please enter a description!";
+            return;
+        }
+
         const data = getSupport();
         const btnSend = document.querySelector(".btn-send");
         const formBox = document.querySelector(".support-form .fieldset") || document.querySelector(".support-form fieldset");
@@ -166,6 +190,7 @@ function initSupportForm() {
                     name,
                     problem: problem.value,
                     info,
+                    images: attachedImages.slice(),
                     date: formatDate(),
                     status: "Pending"
                 });
@@ -177,6 +202,7 @@ function initSupportForm() {
                     item.name = name;
                     item.problem = problem.value;
                     item.info = info;
+                    item.images = attachedImages.slice();
                 }
             }
 
@@ -435,7 +461,6 @@ function deleteForm(){
             const row = this.closest("tr");
             const rect = row.getBoundingClientRect();
 
-            // Laser di tengah layar (X) + sejajar baris yang dihapus (Y)
             const centerX = window.innerWidth / 2;
             const centerY = rect.top + (rect.height / 2);
             
@@ -511,11 +536,14 @@ function renderSupportTable() {
         if (item.status === "In Progress") badgeClass = "badge-progress";
         if (item.status === "Resolved") badgeClass = "badge-resolved";
 
+        const _imgs = ticketImages(item);
+        const imgBtn = _imgs.length ? '<button type="button" class="view-img-btn" onclick="openImageAlert(' + item.id + ')">\uD83D\uDCCE ' + _imgs.length + '</button>' : "";
+
         tr.innerHTML = `
             <td data-label="No">${index + 1}</td>
             <td data-label="Email">${item.email}</td>
             <td data-label="Name">${item.name}</td>
-            <td data-label="Problem">${item.problem}</td>
+            <td data-label="Problem">${item.problem} ${imgBtn}</td>
             <td data-label="Date">${item.date}</td>
             <td data-label="Status"><span class="status-badge ${badgeClass}">${item.status}</span></td>
             <td data-label="Action">${action}</td>
@@ -567,6 +595,104 @@ function initFAQ() {
     });
 }
 
+const MAX_IMAGES = 3;
+
+function initImageUpload() {
+    const input = document.getElementById("supportImage");
+    if (!input) return;
+
+    input.addEventListener("change", function () {
+        const files = Array.prototype.slice.call(input.files || []);
+        const slots = MAX_IMAGES - attachedImages.length;
+        files.slice(0, Math.max(0, slots)).forEach(function (file) {
+            if (!file.type.startsWith("image/")) return;
+            downscaleImage(file, function (dataUrl) {
+                if (attachedImages.length < MAX_IMAGES) {
+                    attachedImages.push(dataUrl);
+                    renderImagePreviews();
+                }
+            });
+        });
+        input.value = "";
+    });
+}
+
+function downscaleImage(file, cb) {
+    const reader = new FileReader();
+    reader.onload = function (ev) {
+        const img = new Image();
+        img.onload = function () {
+            const MAX = 1000;   
+            let w = img.width, h = img.height;
+            if (w > MAX || h > MAX) {
+                const s = Math.min(MAX / w, MAX / h);
+                w = Math.round(w * s); h = Math.round(h * s);
+            }
+            const canvas = document.createElement("canvas");
+            canvas.width = w; canvas.height = h;
+            canvas.getContext("2d").drawImage(img, 0, 0, w, h);
+            cb(canvas.toDataURL("image/jpeg", 0.8));
+        };
+        img.src = ev.target.result;
+    };
+    reader.readAsDataURL(file);
+}
+
+function renderImagePreviews() {
+    const wrap = document.getElementById("imagePreview");
+    const btn = document.getElementById("uploadBtn");
+    if (!wrap) return;
+    wrap.innerHTML = "";
+    attachedImages.forEach(function (src, i) {
+        const thumb = document.createElement("div");
+        thumb.className = "thumb";
+        thumb.style.backgroundImage = "url('" + src + "')";
+        const x = document.createElement("button");
+        x.type = "button";
+        x.className = "thumb-x";
+        x.innerHTML = "&times;";
+        x.addEventListener("click", function () {
+            attachedImages.splice(i, 1);
+            renderImagePreviews();
+        });
+        thumb.appendChild(x);
+        wrap.appendChild(thumb);
+    });
+    if (btn) btn.style.display = (attachedImages.length >= MAX_IMAGES) ? "none" : "";
+}
+
+function clearImageField() {
+    attachedImages = [];
+    const input = document.getElementById("supportImage");
+    if (input) input.value = "";
+    renderImagePreviews();
+}
+
+function ticketImages(item) {
+    if (item.images && item.images.length) return item.images;
+    if (item.image) return [item.image];
+    return [];
+}
+
+window.openImageAlert = function (id) {
+    const item = getSupport().find(function (x) { return x.id === id; });
+    if (!item) return;
+    const imgs = ticketImages(item);
+    if (!imgs.length) return;
+    const box = document.getElementById("imageAlertImgs");
+    box.innerHTML = imgs.map(function (src) {
+        return '<img src="' + src + '" alt="Attachment">';
+    }).join("");
+    document.getElementById("imageAlert").classList.add("active");
+    document.documentElement.style.overflow = "hidden";
+    document.body.style.overflow = "hidden";
+};
+window.closeImageAlert = function () {
+    document.getElementById("imageAlert").classList.remove("active");
+    document.documentElement.style.overflow = "";
+    document.body.style.overflow = "";
+};
+
 document.addEventListener("DOMContentLoaded", function () {
     loadEmail();
     initSupportForm();
@@ -574,4 +700,5 @@ document.addEventListener("DOMContentLoaded", function () {
     alertLogin();
     renderSupportTable();
     initFAQ();
+    initImageUpload();
 });

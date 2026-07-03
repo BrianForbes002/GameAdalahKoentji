@@ -656,7 +656,7 @@ body {
     .payment-items {
         grid-template-columns: repeat(2, 1fr);
         gap: 12px;
-        height: 100px;
+        height: 150px;
     }
 
     .payment-method {
@@ -823,7 +823,7 @@ body {
     .payment-items {
         grid-template-columns: repeat(2, 1fr);
         gap: 10px;
-        height: 80px;
+        height: 120px;
     }
 
     .payment-method {
@@ -838,7 +838,7 @@ body {
     }
 
     .payment-method p {
-        font-size: 14px;
+        font-size: 12px;
     }
 
     .tabs ul {

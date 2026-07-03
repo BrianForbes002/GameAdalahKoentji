@@ -12,12 +12,31 @@ document.addEventListener("DOMContentLoaded", function () {
 
     tombolDarkMode.addEventListener("click", function () {
         document.body.classList.toggle("dark-mode");
+<<<<<<< HEAD
+=======
+        
+
+
+
+>>>>>>> 9042ae80422af0472f2fb64d747fdac38443174e
         if (document.body.classList.contains("dark-mode")) {
             localStorage.setItem("darkmode", "on");
+<<<<<<< HEAD
+=======
+            tombolDarkMode.innerText = '☀️ Light Mode';
+            tombolDarkMode.classList.add('active');
+
+>>>>>>> 9042ae80422af0472f2fb64d747fdac38443174e
         }
 
         else {
             localStorage.setItem("darkmode", "off");
+<<<<<<< HEAD
+=======
+            tombolDarkMode.innerText = '🌙 Dark Mode';
+            tombolDarkMode.classList.remove('active');
+
+>>>>>>> 9042ae80422af0472f2fb64d747fdac38443174e
         }
     });
 
