@@ -96,7 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
             upload.style.display="block";
             input.accept="video/mp4,image/gif";
             text.placeholder="Write a caption...";
-            support.innerHTML = "Supported: GIF, MP4";
+            support.innerHTML = "Supported: GIF, MP4, MOV";
         }
         else{
             upload.style.display="none";
