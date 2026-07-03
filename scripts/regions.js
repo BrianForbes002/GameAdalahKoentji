@@ -82,6 +82,7 @@ const viewport = document.getElementById("regionViewport");
 const regionNameEl = document.getElementById("regionName");
 const regionPrevBtn = document.getElementById("regionPrev");
 const regionNextBtn = document.getElementById("regionNext");
+const regionMore = document.getElementById("regionMore");
 const overviewSec = document.getElementById("overview");
 const detailSec = document.getElementById("detail");
 const detailBg = document.getElementById("detailBg");
@@ -169,14 +170,14 @@ function openDetail(i) {
     buildFilmstrip();
     showArea(0);
     detailSec.classList.add("active");
-    detailSec.setAttribute("aria-hidden", "false");
+    detailSec.removeAttribute("inert");
     overviewSec.classList.add("hidden");
     document.body.style.overflow = "hidden";
 }
 
 function closeDetail() {
     detailSec.classList.remove("active");
-    detailSec.setAttribute("aria-hidden", "true");
+    detailSec.setAttribute("inert", "");
     overviewSec.classList.remove("hidden");
     document.body.style.overflow = "";
     layoutRegions();
@@ -197,23 +198,10 @@ function buildFilmstrip() {
         filmTrack.appendChild(thumb);
     });
 
-    const few = areas.length <= 3;
-    areaPrev.style.display = few ? "none" : "";
-    areaNext.style.display = few ? "none" : "";
+    const single = areas.length <= 1;
+    areaPrev.style.display = single ? "none" : "";
+    areaNext.style.display = single ? "none" : "";
     filmTrack.classList.toggle("centered", areas.length <= 4);
-
-    areaDots.innerHTML = "";
-    if (areas.length <= 12) {
-        areas.forEach(function (area, i) {
-            const dot = document.createElement("button");
-            dot.type = "button";
-            dot.className = "dot";
-            dot.addEventListener("click", function () {
-                showArea(i);
-            });
-            areaDots.appendChild(dot);
-        });
-    }
 }
 
 function showArea(i) {
@@ -235,12 +223,31 @@ function showArea(i) {
         thumbs[t].classList.toggle("active", t === areaIndex);
     }
 
-    const adots = areaDots.children;
-    for (let t = 0; t < adots.length; t++) {
-        adots[t].classList.toggle("active", t === areaIndex);
-    }
+    renderAreaDots();
 
     layoutFilmstrip();
+}
+
+function renderAreaDots() {
+    const total = regions[regionIndex].areas.length;
+    areaDots.innerHTML = "";
+    if (total <= 1) return;
+
+    const from = Math.max(0, areaIndex - 2);
+    const to = Math.min(total - 1, areaIndex + 2);
+
+    for (let i = from; i <= to; i++) {
+        const dot = document.createElement("button");
+        dot.type = "button";
+        dot.className = "dot";
+        if (i === areaIndex) dot.classList.add("active");
+        
+        if ((i === from && from > 0) || (i === to && to < total - 1)) dot.classList.add("edge");
+        (function (idx) {
+            dot.addEventListener("click", function () { showArea(idx); });
+        })(i);
+        areaDots.appendChild(dot);
+    }
 }
 
 function layoutFilmstrip() {
@@ -276,7 +283,9 @@ function areaPrevFn() {
 
 regionNextBtn.addEventListener("click", regionNext);
 regionPrevBtn.addEventListener("click", regionPrev);
+regionMore.addEventListener("click", function () { openDetail(regionIndex); });
 document.getElementById("backBtn").addEventListener("click", closeDetail);
+document.getElementById("detailClose").addEventListener("click", closeDetail);
 areaNext.addEventListener("click", areaNextFn);
 areaPrev.addEventListener("click", areaPrevFn);
 

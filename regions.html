@@ -226,29 +226,31 @@
 
         <div class="overview-footer">
           <h1 class="region-name" id="regionName">&nbsp;</h1>
-          <div class="arrow-group">
-            <button class="arrow" id="regionPrev" aria-label="Previous region">‹</button>
-            <button class="arrow" id="regionNext" aria-label="Next region">›</button>
+          <button class="more-btn footer-more" id="regionMore" type="button">MORE <span>&#8594;</span></button>
+          <div class="nav-bar">
+            <button class="arrow nav-prev" id="regionPrev" aria-label="Previous region">&#8249;</button>
+            <div class="dots" id="regionDots"></div>
+            <button class="arrow nav-next" id="regionNext" aria-label="Next region">&#8250;</button>
           </div>
         </div>
-
-        <div class="region-dots" id="regionDots"></div>
       </section>
 
-      <section class="detail" id="detail" aria-hidden="true">
+      <section class="detail" id="detail" inert>
         <div class="detail-backdrop" id="detailBackdrop"></div>
 
         <button class="back-btn" id="backBtn" type="button"><span class="back-curve"></span>BACK</button>
+        <div class="detail-mobile-bar">
+          <label for="navToggle" class="detail-ham" aria-label="Open menu"><span></span><span></span><span></span></label>
+          <button class="detail-close" id="detailClose" type="button" aria-label="Close">&times;</button>
+        </div>
 
         <div class="detail-banner">
           <div class="detail-bg" id="detailBg"></div>
           <div class="banner-scrim"></div>
           <div class="filmstrip">
-            <button class="film-arrow" id="areaPrev" aria-label="Previous area">‹</button>
             <div class="film-viewport" id="filmViewport">
               <div class="film-track" id="filmTrack"></div>
             </div>
-            <button class="film-arrow" id="areaNext" aria-label="Next area">›</button>
           </div>
         </div>
 
@@ -257,7 +259,11 @@
           <p class="area-desc" id="areaDesc">&nbsp;</p>
         </div>
 
-        <div class="area-dots" id="areaDots"></div>
+        <div class="nav-bar detail-nav">
+          <button class="arrow nav-prev" id="areaPrev" aria-label="Previous area">&#8249;</button>
+          <div class="dots" id="areaDots"></div>
+          <button class="arrow nav-next" id="areaNext" aria-label="Next area">&#8250;</button>
+        </div>
       </section>
     </main>
     <script src="scripts/index.js"></script>
