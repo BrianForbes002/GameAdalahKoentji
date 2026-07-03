@@ -106,6 +106,16 @@
             <p id="replyEmail" class="reply-email"></p>
 
             <div class="reply-field">
+                <label>Player's Detail</label>
+                <div id="replyDetail" class="reply-detail"></div>
+            </div>
+
+            <div class="reply-field" id="replyImagesField" style="display:none;">
+                <label>Attached Images</label>
+                <div id="replyImages" class="reply-images"></div>
+            </div>
+
+            <div class="reply-field">
                 <label>Update Status</label>
                 <select id="updateStatus">
                     <option value="Pending">Pending</option>
@@ -124,6 +134,15 @@
                 <button id="saveReplyBtn" class="btn-save">Save &amp; Send</button>
             </div>
         </div>
+    </div>
+
+    <div class="custom-alert" id="imageAlert">
+      <div class="alert-box image-alert-box">
+        <div id="imageAlertImgs" class="image-alert-gallery"></div>
+        <div style="text-align:center;">
+          <button onclick="closeImageAlert()" style="background:#00e5ff;color:#0a1633;">Close</button>
+        </div>
+      </div>
     </div>
 
     <script src="scripts/index.js"></script>
