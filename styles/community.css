@@ -1988,3 +1988,165 @@ header.header{
     color:#999;
     font-size:13px;
 }
+
+.comment-page{
+    width:90%;
+    max-width:850px;
+    margin:30px auto;
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+}
+
+.comment-card{
+    display:flex;
+    gap:18px;
+    background:#fff;
+    padding:18px;
+    border-radius:15px;
+    box-shadow:0 5px 18px rgba(0,0,0,.08);
+}
+
+.comment-card img{
+    width:55px;
+    height:55px;
+    border-radius:50%;
+    object-fit:cover;
+}
+
+.comment-info{
+    flex:1;
+}
+
+.comment-info h4{
+    margin:0;
+    font-size:18px;
+}
+
+.comment-info small{
+    color:#777;
+    display:block;
+    margin:5px 0 10px;
+}
+
+.comment-info p{
+    font-size:16px;
+    line-height:1.6;
+}
+
+.comment-footer{
+    margin-top:12px;
+    display:flex;
+    justify-content:space-between;
+    color:#666;
+    font-size:14px;
+}
+
+.love-btn{
+    border:none;
+    background:none;
+    cursor:pointer;
+    font-size:15px;
+    font-weight:600;
+    color:#666;
+    transition:.25s;
+}
+
+.love-btn:hover{
+    transform:scale(1.08);
+}
+
+.love-btn.active{
+    color:#ff3b5c;
+}
+
+.reply-section{
+
+    margin-top:15px;
+
+}
+
+.reply-input{
+
+    width:100%;
+    min-height:60px;
+
+    padding:10px;
+
+    border-radius:10px;
+
+    border:1px solid #ccc;
+
+    resize:none;
+
+}
+
+.reply-btn{
+
+    margin-top:8px;
+
+    padding:8px 18px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:#4d74ff;
+
+    color:white;
+
+    cursor:pointer;
+
+}
+
+.reply{
+
+    margin-top:12px;
+
+    background:#f5f5f5;
+
+    padding:10px;
+
+    border-radius:10px;
+
+}
+
+.reply p{
+
+    margin:6px 0;
+
+}
+
+.reply-like{
+
+    border:none;
+
+    background:none;
+
+    cursor:pointer;
+
+    margin-right:10px;
+
+}
+
+.delete-reply{
+
+    border:none;
+
+    background:#ff5252;
+
+    color:white;
+
+    padding:4px 10px;
+
+    border-radius:6px;
+
+    cursor:pointer;
+
+}
+
+.love-btn.active{
+
+    color:red;
+
+}

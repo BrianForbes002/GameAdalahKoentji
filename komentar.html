@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wuthering Waves</title>
+    <link rel="icon" href="https://wutheringwaves.kurogames.com/static4.0/favicon.ico">
+    <link rel="stylesheet" href="styles/index.css">
+    <link rel="stylesheet" href="styles/community.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+      <div class="left-section">
+        <img src="icons/index/wuwa-logo.png">
+      </div>
+
+      <input type="checkbox" id="navToggle" class="nav-toggle">
+      <label for="navToggle" class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </label>
+
+      <nav>
+        <div class="middle-section">
+          <label for="navToggle" class="close-btn">X</label>
+          <a href="index.html" class="menu">Home</a>
+          <a href="resonators.html" class="menu">Resonators</a>
+          <a href="regions.html" class="menu">Regions</a>
+          <a href="hot-news.html" class="menu">Hot News</a>
+          <a href="community.html" class="menu">Community</a>
+          <a href="support.html" class="menu">Support</a>
+          <a href="top-up.html" class="menu">Top Up</a>
+          <div class="social-media-mobile">
+            <img src="icons/index/twitter.png" onclick="window.open('https://x.com/Wuthering_Waves', '_blank')">
+            <img src="icons/index/facebook.png" onclick="window.open('https://www.facebook.com/WutheringWaves.Official', '_blank')">
+            <img src="icons/index/youtube.png" onclick="window.open('https://www.youtube.com/@WutheringWaves', '_blank')">
+            <img src="icons/index/discord.png" onclick="window.open('https://discord.com/invite/wutheringwaves', '_blank')">
+            <img src="icons/index/reddit.png" onclick="window.open('https://www.reddit.com/r/WutheringWaves/', '_blank')">
+            <img src="icons/index/instagram.png" onclick="window.open('https://www.instagram.com/wuthering_waves/', '_blank')">
+            <img src="icons/index/tiktok.png" onclick="window.open('https://www.tiktok.com/@wutheringwaves_official', '_blank')">
+          </div>
+        </div>
+      </nav>
+      
+      <div class="right-section">
+        <div class="music-logo" onclick="playMusic()">
+          <div class="music-logos paused first-music-logo"></div>
+          <div class="music-logos paused second-music-logo"></div>
+          <div class="music-logos paused third-music-logo"></div>
+        </div>
+        <img class="login-logo" onclick="loginForm()" src="icons/index/login.png">
+        <span class="username" id="headerUser"></span>
+        <button class="exit-button" id="exitBtn" onclick="logout()">Exit</button>
+      </div>
+    </header>
+
+    <main>
+      <div class="login-page">
+        <div class="mask"></div>
+        <form class="login-form" id="formLogin">
+          <div class="login-header">
+            <div class="back-button" onclick="backMain()">
+              <img src="icons/index/login_back.jpg">
+            </div>
+            <div class="login-mid-logo">
+              <img src="icons/index/login_header.jpg">
+            </div>
+            <div class="close-button" onclick="closeLoginForm()">
+              <img src="icons/index/login_close.jpg">
+            </div>
+          </div>
+          <p id="formError" class="form-error"></p>
+
+          <div class="login-form-content-main">
+            <div class="form-group">
+              <input id="email" name="email" type="text" placeholder="Enter email">
+            </div>
+            <div class="form-group">
+              <input id="password" name="password" type="password" placeholder="Enter password">
+            </div>
+            <div class="terms-policy">
+              <div class="terms-policy-checkbox">
+                <input type="checkbox" id="checkMain" name="checkMain">
+              </div>
+              <div class="terms-policy-desc">
+                I have read and agree to the <a href="https://wutheringwaves.kurogames.com/p/language_en/terms_of_service.html" target="_blank">Terms of Use</a> and <a href="https://wutheringwaves.kurogames.com/p/language_en/privacy_policy.html" target="_blank">Privacy Policy</a>
+              </div>
+            </div>
+            <div class="sign-button">
+              <button type="submit">Sign In</button>
+            </div>
+            <div class="forgot-register">
+              <div class="forgot" onclick="forgot_password()">Forgot Password</div>
+              <div class="register" onclick="register()">Register Now</div>
+            </div>
+            <div class="login-method-main">
+              <div class="login-item">
+                <img src="icons/index/google_login.jpg">
+              </div>
+              <div class="login-item">
+                <img src="icons/index/apple_login.jpg">
+              </div>
+              <div class="login-item">
+                <img src="icons/index/fb_login.jpg">
+              </div>
+              <div class="login-item">
+                <img src="icons/index/twitter_login.jpg">
+              </div>
+              <div class="open-more" onclick="openMoreLogin()">
+                <img src="icons/index/open_more.jpg">
+              </div>
+            </div>
+          </div>
+
+          <div class="login-form-content-more">
+            <div class="login-method-more">
+              <div class="login-item">
+                <img src="icons/index/google_login.jpg">
+              </div>
+              <div class="login-item">
+                <img src="icons/index/apple_login.jpg">
+              </div>
+              <div class="login-item">
+                <img src="icons/index/fb_login.jpg">
+              </div>
+              <div class="login-item">
+                <img src="icons/index/twitter_login.jpg">
+              </div>
+              <div class="login-item">
+                <img src="icons/index/line_login.jpg">
+              </div>
+              <div class="login-item">
+                <img src="icons/index/naver_login.jpg">
+              </div>
+            </div>
+            <div class="terms-policy">
+              <div class="terms-policy-checkbox">
+                <input type="checkbox" id="checkMore" name="checkMore">
+              </div>
+              <div class="terms-policy-desc">
+                I have read and agree to the <a href="https://wutheringwaves.kurogames.com/p/language_en/terms_of_service.html" target="_blank">Terms of Use</a> and <a href="https://wutheringwaves.kurogames.com/p/language_en/privacy_policy.html" target="_blank">Privacy Policy</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="login-form-forgot-password">
+            <div class="form-group">
+              <input id="forgot-email" name="forgot-email" type="text" placeholder="Enter email">
+            </div>
+            <div class="form-group">
+              <input id="forgot-vcode" name="forgot-vcode" type="text" placeholder="Enter verification code">
+              <button type="button" class="vcode-button" onclick="get_forgot_vcode()">Get verification code</button>
+            </div>
+            <div class="form-group">
+              <input id="forgot-new-password" name="forgot-new-password" type="password" placeholder="Enter new password">
+            </div>
+            <div class="form-group">
+              <input id="forgot-confirm-password" name="confirm-password" type="password" placeholder="Confirm password">
+            </div>
+            <div class="confirm-button">
+              <button type="submit" onclick="forgot_confirm()">Confirm</button>
+            </div>
+          </div>
+
+          <div class="login-form-register">
+            <div class="form-group">
+              <input id="register-email" name="register-email" type="text" placeholder="Enter email">
+            </div>
+            <div class="form-group">
+              <input id="register-vcode" name="register-vcode" type="text" placeholder="Enter verification code">
+              <button type="button" class="vcode-button" onclick="get_register_vcode()">Get verification code</button>
+            </div>
+            <div class="form-group">
+              <input id="register-password" name="register-password" type="password" placeholder="Enter password">
+            </div>
+            <div class="form-group">
+              <input id="register-confirm-password" name="register-confirm-password" type="password" placeholder="Confirm password">
+            </div>
+            <div class="terms-policy">
+              <div class="terms-policy-checkbox">
+                <input type="checkbox" id="checkRegister" name="checkRegister">
+              </div>
+              <div class="terms-policy-desc">
+                I have read and agree to the <a href="https://wutheringwaves.kurogames.com/p/language_en/terms_of_service.html" target="_blank">Terms of Use</a> and <a href="https://wutheringwaves.kurogames.com/p/language_en/privacy_policy.html" target="_blank">Privacy Policy</a>
+              </div>
+            </div>
+            <div class="confirm-button">
+              <button type="submit" onclick="register_confirm()">Confirm</button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+    <!-- NAVBAR -->
+    <div class="navbar">
+        <div class="nav-left">
+            <div class="logo">
+                <img src="icons/community/logo.png" alt="logo">
+                <span>GamersHub</span>
+            </div>
+            <a href="community.html">Home</a>
+            <a href="kanal.html" class="active">Channel</a>
+        </div>
+        <!-- <div class="nav-center">
+            <input type="text" placeholder="Search">
+        </div> -->
+        <!-- <div class="nav-right">
+            <span>✏️</span>
+            <span>🔔</span>
+            <span>👤</span>
+        </div> -->
+    </div>
+
+    <!-- HEADER -->
+    <div class="channel-header">
+        <img src="icons/community/Kanal.jpeg" alt="">
+        <div class="overlay"></div>
+    </div>
+
+    <!-- PROFILE -->
+    <section class="profile-section">
+        <div class="profile-box">
+            <div class="profile-pic">
+                <img src="icons/community/profile10.jpeg" alt="">
+            </div>
+            <div class="profile-info">
+                <h1 class="profile-name">Lyra_Aether ✨</h1>
+                <p class="profile-desc">Lost between stars and forgotten memories 🌌</p>
+                <div class="profile-stats">
+                    <div class="stat-box">
+                        <h2>34</h2>
+                        <span>Postingan</span>
+                    </div>
+                    <div class="stat-box">
+                        <h2>3</h2>
+                        <span>Ikuti</span>
+                    </div>
+                    <div class="stat-box">
+                        <h2>34</h2>
+                        <span>Pengikut</span>
+                    </div>
+                    <div class="stat-box">
+                        <h2>928</h2>
+                        <span>Suka</span>
+                    </div>
+                </div>
+            </div>
+            <div class="follow-container">
+                <input type="checkbox" id="follow-user-11">
+                <label for="follow-user-11" class="follow-btn follow">Follow</label>
+                <label for="follow-user-11" class="follow-btn following">✓ Following</label>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTENT -->
+    <section class="container">
+        <!-- LEFT CONTENT -->
+        <div class="left-content">
+            <div class="tabs">
+                <a href="kanal.html">Postingan</a>
+                <a href="komentar.html" class="active-tab">Komentar</a>
+                <a href="favorit.html">Favorit</a>
+                <a href="topik.html">Topik</a>
+            </div>
+        </div>
+    </section>
+    
+    <div class="comment-page">
+
+    <div class="comment-card">
+        <img src="icons/community/profile10.jpeg">
+        <div class="comment-info">
+            <h4>Lyra_Aether ✨</h4>
+            <small>Mengomentari postingan "Apa harus aku jemput paksa ke planetnya langsung biar dia mau join tim?"</small>
+            <p>Aku juga kalah 50/50 terus... 😭</p>
+            <div class="comment-footer">
+              <button class="love-btn" data-id="1" data-count="42">
+                🤍 <span>42</span>
+              </button>
+              <span>2 jam lalu</span>
+            </div>
+            <div class="reply-section">
+            <textarea class="reply-input"
+              placeholder="Balas komentar..."></textarea>
+            <button class="reply-btn">
+              Kirim
+            </button>
+            <div class="reply-list"></div>
+          </div>
+        </div>
+    </div>
+
+    <div class="comment-card">
+        <img src="icons/community/profile10.jpeg">
+        <div class="comment-info">
+            <h4>Lyra_Aether ✨</h4>
+            <small>Mengomentari postingan "Layar warna biru terus..."</small>
+            <p>Blue screen terus? 😭</p>
+            <div class="comment-footer">
+              <button class="love-btn" data-id="2" data-count="22">
+                🤍 <span>34</span>
+              </button>
+              <span>1 jam lalu</span>
+            </div>
+            <div class="reply-section">
+            <textarea class="reply-input"
+              placeholder="Balas komentar..."></textarea>
+            <button class="reply-btn">
+              Kirim
+            </button>
+            <div class="reply-list"></div>
+          </div>
+        </div>
+    </div>
+
+    <div class="comment-card">
+      <img src="icons/community/profile10.jpeg">
+      <div class="comment-info">
+          <h4>Lyra_Aether ✨</h4>
+          <small>Mengomentari postingan "Banner baru akhirnya rilis!"</small>
+          <p>Semoga kali ini gacha-ku nggak ngasih harapan palsu lagi. 🥲</p>
+          <div class="comment-footer">
+            <button class="love-btn" data-id="3" data-count="36">
+              🤍 <span>57</span>
+            </button>
+            <span>7 jam lalu</span>
+          </div>
+          <div class="reply-section">
+            <textarea class="reply-input"
+              placeholder="Balas komentar..."></textarea>
+            <button class="reply-btn">
+              Kirim
+            </button>
+            <div class="reply-list"></div>
+          </div>
+      </div>
+    </div>
+
+    <div class="comment-card">
+      <img src="icons/community/profile10.jpeg">
+      <div class="comment-info">
+          <h4>Lyra_Aether ✨</h4>
+          <small>Mengomentari postingan "Build terbaik Carlotta"</small>
+          <p>Masih farming Echo dari kemarin, stat bagus belum nongol juga.</p>
+          <div class="comment-footer">
+            <button class="love-btn" data-id="4" data-count="40">
+              🤍 <span>420</span>
+            </button>
+            <span>24 jam lalu</span>
+          </div>
+          <div class="reply-section">
+            <textarea class="reply-input"
+              placeholder="Balas komentar..."></textarea>
+              <button class="reply-btn">
+                Kirim
+              </button>
+            <div class="reply-list"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="comment-card">
+      <img src="icons/community/profile10.jpeg">
+      <div class="comment-info">
+          <h4>Lyra_Aether ✨</h4>
+          <small>Mengomentari postingan "Event terbaru"</small>
+          <p>Event-nya seru sih, tapi hadiahnya kurang banyak menurutku.</p>
+          <div class="comment-footer">
+            <button class="love-btn" data-id="5" data-count="52">
+              🤍 <span>71</span>
+            </button>
+            <span>1 Hari lalu</span>
+          </div>
+          <div class="reply-section">
+            <textarea class="reply-input"
+              placeholder="Balas komentar..."></textarea>
+              <button class="reply-btn">
+                Kirim
+              </button>
+            <div class="reply-list"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="comment-card">
+      <img src="icons/community/profile10.jpeg">
+      <div class="comment-info">
+          <h4>Lyra_Aether ✨</h4>
+          <small>Mengomentari postingan "Share tim kalian"</small>
+          <p>Tim favoritku masih Jinhsi, Shorekeeper, dan Verina.</p>
+          <div class="comment-footer">
+            <button class="love-btn" data-id="6" data-count="642">
+              🤍 <span>36</span>
+            </button>
+            <span>1 Hari lalu</span>
+          </div>
+          <div class="reply-section">
+            <textarea class="reply-input"
+              placeholder="Balas komentar..."></textarea>
+              <button class="reply-btn">
+                Kirim
+              </button>
+            <div class="reply-list"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="comment-card">
+      <img src="icons/community/profile10.jpeg">
+      <div class="comment-info">
+        <h4>Lyra_Aether ✨</h4>
+        <small>Mengomentari postingan "Echo farming"</small>
+        <p>Drop rate crit damage itu cuma mitos ya? 😭</p>
+        <div class="comment-footer">
+          <button class="love-btn" data-id="7" data-count="427">
+            🤍 <span>428</span>
+          </button>
+          <span>2 hari lalu</span>
+        </div>
+        <div class="reply-section">
+          <textarea class="reply-input"
+            placeholder="Balas komentar..."></textarea>
+          <button class="reply-btn">
+            Kirim
+          </button>
+          <div class="reply-list"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="comment-card">
+        <img src="icons/community/profile10.jpeg">
+        <div class="comment-info">
+            <h4>Lyra_Aether ✨</h4>
+            <small>Mengomentari postingan "Main bareng"</small>
+            <p>Ayo mabar kalau server lagi nggak maintenance.</p>
+            <div class="comment-footer">
+              <button class="love-btn" data-id="8" data-count="482">
+                🤍 <span>432</span>
+              </button>
+              <span>2 hari lalu</span>
+            </div>
+            <div class="reply-section">
+              <textarea class="reply-input"
+                placeholder="Balas komentar..."></textarea>
+              <button class="reply-btn">
+                Kirim
+              </button>
+            <div class="reply-list"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="comment-card">
+        <img src="icons/community/profile10.jpeg">
+        <div class="comment-info">
+            <h4>Lyra_Aether ✨</h4>
+            <small>Mengomentari postingan "Cerita terbaru"</small>
+            <p>Story quest kali ini bikin aku nggak siap secara emosional.</p>
+            <div class="comment-footer">
+              <button class="love-btn" data-id="9" data-count="99">
+                🤍 <span>90</span>
+              </button>
+              <span>5 hari lalu</span>
+            </div>
+            <div class="reply-section">
+              <textarea class="reply-input"
+                placeholder="Balas komentar..."></textarea>
+              <button class="reply-btn">
+                Kirim
+              </button>
+            <div class="reply-list"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="comment-card">
+        <img src="icons/community/profile10.jpeg">
+        <div class="comment-info">
+            <h4>Lyra_Aether ✨</h4>
+            <small>Mengomentari postingan "Boss mingguan"</small>
+            <p>Boss-nya gampang, yang susah itu RNG materialnya.</p>
+            <div class="comment-footer">
+              <button class="love-btn" data-id="10" data-count="100">
+                🤍 <span>123</span>
+              </button>
+              <span>5 hari lalu</span>
+            </div>
+            <div class="reply-section">
+              <textarea class="reply-input"
+                placeholder="Balas komentar..."></textarea>
+              <button class="reply-btn">
+                Kirim
+              </button>
+              <div class="reply-list"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="comment-card">
+        <img src="icons/community/profile10.jpeg">
+        <div class="comment-info">
+            <h4>Lyra_Aether ✨</h4>
+            <small>Mengomentari postingan "Update versi terbaru"</small>
+            <p>Semoga update berikutnya optimisasi PC lebih bagus.</p>
+            <div class="comment-footer">
+              <button class="love-btn" data-id="11" data-count="142">
+                🤍 <span>95</span>
+              </button>
+              <span>6 hari lalu</span>
+            </div>
+            <div class="reply-section">
+              <textarea class="reply-input"
+                placeholder="Balas komentar..."></textarea>
+              <button class="reply-btn">
+                Kirim
+              </button>
+              <div class="reply-list"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="comment-card">
+        <img src="icons/community/profile10.jpeg">
+        <div class="comment-info">
+            <h4>Lyra_Aether ✨</h4>
+            <small>Mengomentari postingan "Screenshot favorit"</small>
+            <p>Pemandangan di Rinascita emang cantik banget buat foto.</p>
+            <div class="comment-footer">
+              <button class="love-btn" data-id="12" data-count="422">
+                🤍 <span>100</span>
+              </button>
+              <span>1 minggu lalu</span>
+            </div>
+            <div class="reply-section">
+              <textarea class="reply-input"
+                placeholder="Balas komentar..."></textarea>
+              <button class="reply-btn">
+                Kirim
+              </button>
+              <div class="reply-list"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="comment-card">
+        <img src="icons/community/profile10.jpeg">
+        <div class="comment-info">
+            <h4>Lyra_Aether ✨</h4>
+            <small>Mengomentari postingan "Lucky pull"</small>
+            <p>Lihat orang menang sekali multi aja aku ikut senang... sedikit. 😂</p>
+            <div class="comment-footer">
+              <button class="love-btn" data-id="13" data-count="332">
+                🤍 <span>96</span>
+              </button>
+              <span>1 minggu lalu</span>
+            </div>
+            <div class="reply-section">
+              <textarea class="reply-input"
+                placeholder="Balas komentar..."></textarea>
+              <button class="reply-btn">
+                Kirim
+              </button>
+              <div class="reply-list"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="comment-card">
+        <img src="icons/community/profile10.jpeg">
+        <div class="comment-info">
+            <h4>Lyra_Aether ✨</h4>
+            <small>Mengomentari postingan "Daily login"</small>
+            <p>Yang penting login dulu, nanti semangat mainnya nyusul.</p>
+            <div class="comment-footer">
+              <button class="love-btn" data-id="14" data-count="12">
+                🤍 <span>12</span>
+              </button>
+              <span>2 minggu lalu</span>
+            </div>
+            <div class="reply-section">
+              <textarea class="reply-input"
+                placeholder="Balas komentar..."></textarea>
+              <button class="reply-btn">
+                Kirim
+              </button>
+              <div class="reply-list"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="comment-card">
+        <img src="icons/community/profile10.jpeg">
+        <div class="comment-info">
+            <h4>Lyra_Aether ✨</h4>
+            <small>Mengomentari postingan "Tower of Adversity"</small>
+            <p>Bintang penuh? Mungkin di mimpi dulu. 😭</p>
+            <div class="comment-footer">
+              <button class="love-btn" data-id="15" data-count="15">
+                🤍 <span>102</span>
+              </button>
+              <span>2 minggu lalu</span>
+            </div>
+            <div class="reply-section">
+              <textarea class="reply-input"
+                placeholder="Balas komentar..."></textarea>
+              <button class="reply-btn">
+                Kirim
+              </button>
+              <div class="reply-list"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="comment-card">
+        <img src="icons/community/profile10.jpeg">
+        <div class="comment-info">
+            <h4>Lyra_Aether ✨</h4>
+            <small>Mengomentari postingan "Musik favorit"</small>
+            <p>OST Wuthering Waves memang nggak pernah gagal.</p>
+            <div class="comment-footer">
+              <button class="love-btn" data-id="16" data-count="46">
+                🤍 <span>498</span>
+              </button>
+              <span>3 minggu lalu</span>
+            </div>
+            <div class="reply-section">
+              <textarea class="reply-input"
+                placeholder="Balas komentar..."></textarea>
+              <button class="reply-btn">
+                Kirim
+              </button>
+              <div class="reply-list"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="comment-card">
+        <img src="icons/community/profile10.jpeg">
+        <div class="comment-info">
+            <h4>Lyra_Aether ✨</h4>
+            <small>Mengomentari postingan "Wishlist karakter"</small>
+            <p>Wishlist panjang, Stellar Jade pendek.</p>
+            <div class="comment-footer">
+              <button class="love-btn" data-id="17" data-count="78">
+                🤍 <span>821</span>
+              </button>
+              <span>3 minggu lalu</span>
+            </div>
+            <div class="reply-section">
+              <textarea class="reply-input"
+                placeholder="Balas komentar..."></textarea>
+              <button class="reply-btn">
+                Kirim
+              </button>
+              <div class="reply-list"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="comment-card">
+        <img src="icons/community/profile10.jpeg">
+        <div class="comment-info">
+            <h4>Lyra_Aether ✨</h4>
+            <small>Mengomentari postingan "Mode eksplorasi"</small>
+            <p>Aku malah lupa misi utama karena sibuk buka peti.</p>
+            <div class="comment-footer">
+              <button class="love-btn" data-id="18" data-count="88">
+                🤍 <span>678</span>
+              </button>
+              <span>1 bulan lalu</span>
+            </div>
+            <div class="reply-section">
+              <textarea class="reply-input"
+                placeholder="Balas komentar..."></textarea>
+              <button class="reply-btn">
+                Kirim
+              </button>
+              <div class="reply-list"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="comment-card">
+        <img src="icons/community/profile10.jpeg">
+        <div class="comment-info">
+            <h4>Lyra_Aether ✨</h4>
+            <small>Mengomentari postingan "Foto karakter"</small>
+            <p>Wallpaper HP-ku isinya screenshot game semua.</p>
+            <div class="comment-footer">
+              <button class="love-btn" data-id="19" data-count="92">
+                🤍 <span>426</span>
+              </button>
+              <span>1 bulan lalu</span>
+            </div>
+            <div class="reply-section">
+              <textarea class="reply-input"
+                placeholder="Balas komentar..."></textarea>
+              <button class="reply-btn">
+                Kirim
+              </button>
+              <div class="reply-list"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="comment-card">
+        <img src="icons/community/profile10.jpeg">
+        <div class="comment-info">
+            <h4>Lyra_Aether ✨</h4>
+            <small>Mengomentari postingan "Server maintenance"</small>
+            <p>Maintenance selesai, saatnya balik jadi pejuang gacha.</p>
+            <div class="comment-footer">
+              <button class="love-btn" data-id="20" data-count="402">
+                🤍 <span>74</span>
+              </button>
+              <span>2 bulan lalu</span>
+            </div>
+            <div class="reply-section">
+              <textarea class="reply-input"
+                placeholder="Balas komentar..."></textarea>
+              <button class="reply-btn">
+                Kirim
+              </button>
+              <div class="reply-list"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="comment-card">
+        <img src="icons/community/profile10.jpeg">
+        <div class="comment-info">
+            <h4>Lyra_Aether ✨</h4>
+            <small>Mengomentari postingan "Pengalaman bermain"</small>
+            <p>Semakin lama main, semakin susah move on dari karakter favorit.</p>
+            <div class="comment-footer">
+              <button class="love-btn" data-id="21" data-count="411">
+                🤍 <span>987</span>
+              </button>
+              <span>3 bulan lalu</span>
+            </div>
+            <div class="reply-section">
+              <textarea class="reply-input"
+                placeholder="Balas komentar..."></textarea>
+              <button class="reply-btn">
+                Kirim
+              </button>
+              <div class="reply-list"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="comment-card">
+        <img src="icons/community/profile10.jpeg">
+        <div class="comment-info">
+            <h4>Lyra_Aether ✨</h4>
+            <small>Mengomentari postingan "Tips pemain baru"</small>
+            <p>Jangan buru-buru habisin Stellar Jade, percaya deh. 😅</p>
+            <div class="comment-footer">
+              <button class="love-btn" data-id="22" data-count="122">
+                🤍 <span>421</span>
+              </button>
+              <span>5 bulan lalu</span>
+            </div>
+            <div class="reply-section">
+              <textarea class="reply-input"
+                placeholder="Balas komentar..."></textarea>
+              <button class="reply-btn">
+                Kirim
+              </button>
+              <div class="reply-list"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="comment-card">
+        <img src="icons/community/profile10.jpeg">
+        <div class="comment-info">
+            <h4>Lyra_Aether ✨</h4>
+            <small>Mengomentari postingan "Stellar Jade habis..."</small>
+            <p>See you next rerun 😭</p>
+            <div class="comment-footer">
+              <button class="love-btn" data-id="23" data-count="52">
+                🤍 <span>993</span>
+              </button>
+              <span>7 bulan lalu</span>
+            </div>
+            <div class="reply-section">
+              <textarea class="reply-input"
+                placeholder="Balas komentar..."></textarea>
+              <button class="reply-btn">
+                Kirim
+              </button>
+              <div class="reply-list"></div>
+            </div>
+        </div>
+    </div>
+  </div>
+<script src="scripts/index.js"></script>
+<SCript src="scripts/komentar.js"></SCript>
+</body>
+</html>
