@@ -181,8 +181,6 @@ main {
     background:#101112;
 }
 
-<<<<<<< HEAD
-=======
 #darkModeBtn.active{
 
     background:white;
@@ -201,11 +199,6 @@ main {
 
 }
 
-/* ========================= */
-/* FILTER */
-/* ========================= */
-
->>>>>>> 9042ae80422af0472f2fb64d747fdac38443174e
 .filter-news{
     text-align:center;
     margin-bottom:25px;

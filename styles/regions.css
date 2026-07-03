@@ -25,7 +25,6 @@ img {
     max-width: 100%;
 }
 
-<<<<<<< HEAD
 .sc1 h2, .sci p{
     margin-bottom: 30px;
     text-align: center;
@@ -97,10 +96,8 @@ img {
 }
 
 .gbr{
-=======
 button {
     font-family: inherit;
->>>>>>> 9042ae80422af0472f2fb64d747fdac38443174e
     cursor: pointer;
 }
 
@@ -111,9 +108,7 @@ body:has(#navToggle:checked) .header {
 .overview {
     transition: opacity 0.4s;
 }
-
-<<<<<<< HEAD
-
+}
 
 @media (max-width: 768px) {
     main {
@@ -134,8 +129,7 @@ body:has(#navToggle:checked) .header {
         max-width: 100%;
         border-radius: 15px;
     }
-    
-=======
+}  
 .overview.hidden {
     display: none;
 }
@@ -146,7 +140,6 @@ body:has(#navToggle:checked) .header {
     color: #d9b56b;
     padding: 0 34px 18px;
     letter-spacing: 0.02em;
->>>>>>> 9042ae80422af0472f2fb64d747fdac38443174e
 }
 
 .region-viewport {
