@@ -181,6 +181,7 @@ document.addEventListener("DOMContentLoaded", () => {
             </div>
         </div>
         `;
+
         // Tambahkan ke paling atas
         const firstPost = feed.querySelector(".post");
         if(firstPost){
@@ -190,17 +191,41 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         closePost();
         setupNewPost(post);
-        // Simpan postingan ke localStorage
-        const newPost = {
-            name: userName,
-            photo: userPhoto,
-            type: postType,
-            text: text,
-            media: file ? URL.createObjectURL(file) : ""
-        };
-        let posts = JSON.parse(localStorage.getItem("kanalPosts")) || [];
-        posts.unshift(newPost);
-        localStorage.setItem("kanalPosts", JSON.stringify(posts));
+
+        // Jika artikel
+        if(postType === "article"){
+            savePost("");
+        }
+
+        // Jika gambar / video
+        else{
+            const reader = new FileReader();
+            reader.onload = function(e){
+                savePost(e.target.result);
+            };
+            reader.readAsDataURL(file);
+
+        }
+
+        function savePost(media){
+            const newPost = {
+                name:userName,
+                photo:userPhoto,
+                type:postType,
+                text:document.getElementById("postText").value.trim(),
+                media:media,
+                like:0,
+                comments:[],
+                views:1
+            };
+            let posts =
+            JSON.parse(localStorage.getItem("communityPosts")) || [];
+            posts.unshift(newPost);
+            localStorage.setItem(
+                "communityPosts",
+                JSON.stringify(posts)
+            );
+        }
     }
 
     function setupNewPost(post){
