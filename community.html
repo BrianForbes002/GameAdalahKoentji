@@ -803,8 +803,10 @@
                     </div>
                     <textarea id="postText" placeholder="Write a caption..."></textarea>
                     <div class="upload-box" id="uploadArea">
-                        <input type="file" id="postMedia">
-                        <p>Posting File Disini </p>
+                        <input type="file" id="postMedia" hidden>
+                        <label for="postMedia" class="choose-file-btn">📁 Choose File</label>
+                        <p id="selectedFile">No file selected</p>
+                        <small id="uploadSupport">Supported: JPG, PNG, JPEG</small>
                     </div>
                     <div class="post-buttons">
                         <button onclick="closePost()">Cancel</button>

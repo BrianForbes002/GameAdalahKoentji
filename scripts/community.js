@@ -79,23 +79,24 @@ document.addEventListener("DOMContentLoaded", () => {
         postType = type;
         document.getElementById("postModal").style.display="flex";
         document.getElementById("postTitle").innerHTML=
-        "Create "+type.charAt(0).toUpperCase()+type.slice(1);
+            "Create "+type.charAt(0).toUpperCase()+type.slice(1);
         const upload=document.getElementById("uploadArea");
         const input=document.getElementById("postMedia");
         const text=document.getElementById("postText");
-        const info=document.getElementById("uploadText");
+        const support = document.getElementById("uploadSupport");
         input.value="";
+        document.getElementById("selectedFile").textContent = "No file selected";
         if(type==="picture"){
             upload.style.display="block";
-            input.accept="image/*";
+            input.accept="image/png,image/jpeg,image/jpg";
             text.placeholder="Write a caption...";
-            info.innerHTML="Choose a picture";
+            support.innerHTML = "Supported: JPG, PNG, JPEG";
         }
         else if(type==="video"){
             upload.style.display="block";
-            input.accept="video/*";
+            input.accept="video/mp4,image/gif";
             text.placeholder="Write a caption...";
-            info.innerHTML="Choose a video";
+            support.innerHTML = "Supported: GIF, MP4";
         }
         else{
             upload.style.display="none";
@@ -108,6 +109,7 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("postModal").style.display="none";
         document.getElementById("postText").value="";
         document.getElementById("postMedia").value="";
+        document.getElementById("selectedFile").textContent = "No file selected";
     }
 
     // Membuat postingan
@@ -275,6 +277,18 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }
+
+    const mediaInput = document.getElementById("postMedia");
+    const selectedFile = document.getElementById("selectedFile");
+
+    mediaInput.addEventListener("change", function(){
+
+        if(this.files.length > 0){
+            selectedFile.textContent = this.files[0].name;
+        }else{
+            selectedFile.textContent = "No file selected";
+        }
+    });
 
     window.openPost = openPost;
     window.closePost = closePost;
