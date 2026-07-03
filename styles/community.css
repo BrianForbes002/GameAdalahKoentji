@@ -2113,3 +2113,98 @@ header.header{
 .love-btn.active{
     color:red;
 }
+
+.favorite-header{
+
+    width:90%;
+    max-width:850px;
+
+    margin:30px auto;
+
+}
+
+.favorite-header h2{
+
+    font-size:30px;
+
+}
+
+.favorite-header p{
+
+    color:#666;
+
+    margin-top:5px;
+
+}
+
+.favorite-list{
+
+    width:90%;
+
+    max-width:850px;
+
+    margin:auto;
+
+}
+
+.favorite-card{
+
+    background:#fff;
+
+    border-radius:15px;
+
+    margin-bottom:25px;
+
+    padding:20px;
+
+    box-shadow:0 5px 18px rgba(0,0,0,.08);
+
+}
+
+.favorite-user{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+}
+
+.favorite-user img{
+
+    width:50px;
+
+    height:50px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+}
+
+.favorite-text{
+
+    margin:18px 0;
+
+    line-height:1.6;
+
+}
+
+.favorite-image{
+
+    width:100%;
+
+    border-radius:15px;
+
+}
+
+.empty-favorite{
+
+    text-align:center;
+
+    padding:80px 20px;
+
+    color:#777;
+
+}
