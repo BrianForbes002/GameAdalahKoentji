@@ -452,6 +452,8 @@ function updateHeaderUser() {
             loginBtn.style.display = 'flex';
         }
     }
+
+    updateSupportNotifDot();
 }
 
 function logout() {
@@ -478,7 +480,11 @@ function showCustomNotification(message) {
     notif.style.position = "fixed";
     notif.style.top = "100px";
     notif.style.right = "30px";
-    notif.style.left = "30px";
+    if (window.innerWidth <= 480) {
+        notif.style.left = "30px";
+    } else if (window.innerWidth <= 768) {
+        notif.style.left = "60px";
+    }
     notif.style.background = "rgba(10, 20, 50, 0.9)";
     notif.style.border = "1px solid #00e5ff";
     notif.style.color = "white";
@@ -503,6 +509,29 @@ function showCustomNotification(message) {
             notif.remove();
         }, 500); 
     }, 5000);
+}
+
+function updateSupportNotifDot() {
+    const supportMenu = document.querySelector('a.menu[href="support.html"]');
+    if (!supportMenu) return;
+
+    const user = getCurrentUser();
+    if (!user) {
+        supportMenu.classList.remove("has-notif");
+        return;
+    }
+
+    const supportData = JSON.parse(localStorage.getItem("support") || "[]");
+    
+    const hasNotification = supportData.some(function(ticket) {
+        return ticket.email === user.email && ticket.hasUnreadReply === true;
+    });
+
+    if (hasNotification) {
+        supportMenu.classList.add("has-notif");
+    } else {
+        supportMenu.classList.remove("has-notif");
+    }
 }
 
 document.addEventListener('DOMContentLoaded', function () { 

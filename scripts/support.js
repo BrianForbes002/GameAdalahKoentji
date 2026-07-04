@@ -22,7 +22,24 @@ const sections = document.querySelectorAll("main section");
 let current = 0;
 let scrolling = false;
 
+function updateCurrentSection() {
+    let nearest = 0;
+    let minDistance = Infinity;
+
+    sections.forEach(function(section, index){
+        const distance = Math.abs(section.getBoundingClientRect().top);
+
+        if(distance < minDistance){
+            minDistance = distance;
+            nearest = index;
+        }
+    });
+
+    current = nearest;
+}
+
 window.addEventListener("wheel", function(e){
+
     if(loginOpen){
         e.preventDefault();
         return;
@@ -34,30 +51,53 @@ window.addEventListener("wheel", function(e){
 
     if(scrolling) return;
 
-    const sec = sections[current];
-    if (sec) {
-        const rect = sec.getBoundingClientRect();
-        if (e.deltaY > 0 && rect.bottom > window.innerHeight + 4) return;
-        if (e.deltaY < 0 && rect.top < -4) return;
+    updateCurrentSection();
+
+    const section = sections[current];
+
+    if(section) {
+        const rect = section.getBoundingClientRect();
+
+        if(e.deltaY > 0) {
+            if(rect.bottom - window.innerHeight > 40){
+                return;
+            }
+        } else {
+            if(rect.top < -40){
+                return;
+            }
+        }
     }
+
+    let next = current;
+
+    if(e.deltaY > 0) {
+        next++;
+    } else {
+        next--;
+    }
+
+    next = Math.max(0, Math.min(next, sections.length - 1));
+
+    if(next === current) return;
 
     scrolling = true;
 
-    if(e.deltaY > 0){
-        current = Math.min(current + 1, sections.length - 1);
-    }else{
-        current = Math.max(current - 1, 0);
-    }
+    current = next;
 
     sections[current].scrollIntoView({
-        behavior:"smooth"
+        behavior:"smooth",
+        block:"start"
     });
 
     setTimeout(function(){
-        scrolling = false;
-    },700);
 
-}, { passive:false });
+        updateCurrentSection();
+        scrolling = false;
+
+    },900);
+
+},{passive:false});
 
 function loadEmail() {
     const email = document.getElementById("supportEmail");
@@ -231,12 +271,17 @@ function initSupportForm() {
                 );
 
                 if (targetRow) {
-                    targetRow.scrollIntoView({ behavior: "smooth", block: "center" });
+                    targetRow.scrollIntoView({ 
+                        behavior: "smooth", 
+                        block: "center" });
+                    current = 1;
+        
                 } else {
                     document.querySelector(".support-history-section").scrollIntoView({
                         behavior: "smooth",
                         block: "start"
                     });
+                    current = 1;
                 }
 
             }, 1000);
@@ -529,17 +574,27 @@ function renderSupportTable() {
         let action = "-";
 
         if(user && user.email === item.email){
+            let editDelBtns = `
+                <button class="edit-btn" data-id="${item.id}">Edit</button>
+                <button class="delete-btn" data-id="${item.id}">Delete</button>
+            `;
+  
+            let unreadDot = item.hasUnreadReply ? `<span style="color: #ff4d6d; margin-right: 6px;">⬤</span>` : "";
+
+            let replyBtn = `
+                <button class="edit-btn" style="background: linear-gradient(135deg, #06d6a0, #00b4d8); margin-right: 5px;" onclick="viewFeedback(${item.id})">
+                    ${unreadDot}View Reply
+                </button>
+            `;
+
             if (item.status === "Pending") {
-                action = `
-                    <button class="edit-btn" data-id="${item.id}">Edit</button>
-                    <button class="delete-btn" data-id="${item.id}">Delete</button>
-                `;
+                if (item.adminReply || item.hasUnreadReply) {
+                    action = replyBtn + editDelBtns; 
+                } else {
+                    action = editDelBtns;
+                }
             } else {
-                action = `
-                    <button class="edit-btn" style="background: linear-gradient(135deg, #06d6a0, #00b4d8);" onclick="viewFeedback(${item.id})">
-                        View Reply
-                    </button>
-                `;
+                action = replyBtn; 
             }
         }
 
@@ -588,7 +643,13 @@ window.viewFeedback = function(id) {
 
     if (item.hasUnreadReply) {
         item.hasUnreadReply = false;
-        saveSupport(data);
+        saveSupport(data); 
+        
+        renderSupportTable();
+
+        if (typeof updateSupportNotifDot === "function") {
+            updateSupportNotifDot();
+        }
     }
 }
 

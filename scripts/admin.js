@@ -174,15 +174,21 @@ document.getElementById("saveReplyBtn").addEventListener("click", function() {
     const item = data.find(x => x.id === currentReplyId);
     
     if (item) {
-        item.status = document.getElementById("updateStatus").value;
-        item.adminReply = document.getElementById("adminFeedbackText").value;
-        item.hasUnreadReply = true;
+        const newStatus = document.getElementById("updateStatus").value;
+        const newReply = document.getElementById("adminFeedbackText").value.trim();
+
+        if (item.status !== newStatus || (newReply !== "" && item.adminReply !== newReply)) {
+            item.hasUnreadReply = true; 
+        }
+
+        item.status = newStatus;
+        item.adminReply = newReply;
         
         saveAdminSupport(data);
         renderDashboardStats();
         renderAdminTable();
         closeReplyModal();
-        alert("Feedback sent successfully!");
+        alert("Feedback saved successfully!");
     }
 });
 
