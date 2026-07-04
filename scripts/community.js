@@ -1,24 +1,14 @@
 document.addEventListener("DOMContentLoaded", () => {
-
-    /* DATA USER */
-
     const userName = "Lyra_eather";
     const userPhoto = "icons/community/profile10.jpeg";
-
-    /* KOMENTAR */
-
     const commentBoxes = document.querySelectorAll(".comment-content");
 
     commentBoxes.forEach(box => {
-
         const textarea = box.querySelector("textarea");
         const button = box.querySelector("button");
 
-        // Klik tombol Send
         button.addEventListener("click", () => {
-
             const text = textarea.value.trim();
-
             if (text === "") {
                 alert("Komentar tidak boleh kosong!");
                 textarea.focus();
@@ -27,7 +17,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const comment = document.createElement("div");
             comment.className = "comment";
-
             comment.innerHTML = `
                 <img class="post-image" src="${userPhoto}" alt="Profile">
                 <div class="comment-text">
@@ -36,16 +25,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 </div>
             `;
 
-            // Tambahkan komentar
             box.insertBefore(comment, textarea);
-
             textarea.value = "";
             textarea.focus();
 
-            // Tambah jumlah komentar
             const details = box.parentElement;
             const summary = details.querySelector("summary");
-
             const number = summary.textContent.match(/\d+/);
 
             if (number) {
@@ -53,46 +38,38 @@ document.addEventListener("DOMContentLoaded", () => {
                 total++;
                 summary.innerHTML = `💬 ${total}`;
             }
-
         });
 
-        // Enter = Send
         textarea.addEventListener("keydown", function(e){
-
             if(e.key === "Enter" && !e.shiftKey){
-
                 e.preventDefault();
                 button.click();
-
             }
-
         });
-
     });
-
-    /* FITUR MEMBUAT POSTINGAN BARU */
 
     let postType = "";
 
-    // Membuka popup
     function openPost(type){
         postType = type;
         document.getElementById("postModal").style.display="flex";
-        document.getElementById("postTitle").innerHTML=
-            "Create "+type.charAt(0).toUpperCase()+type.slice(1);
-        const upload=document.getElementById("uploadArea");
-        const input=document.getElementById("postMedia");
-        const text=document.getElementById("postText");
+        document.getElementById("postTitle").innerHTML="Create "+type.charAt(0).toUpperCase()+type.slice(1);
+        
+        const upload = document.getElementById("uploadArea");
+        const input = document.getElementById("postMedia");
+        const text = document.getElementById("postText");
         const support = document.getElementById("uploadSupport");
-        input.value="";
+        
+        input.value = "";
         document.getElementById("selectedFile").textContent = "No file selected";
-        if(type==="picture"){
+        
+        if(type === "picture"){
             upload.style.display="block";
             input.accept="image/png,image/jpeg,image/jpg";
             text.placeholder="Write a caption...";
             support.innerHTML = "Supported: JPG, PNG, JPEG";
         }
-        else if(type==="video"){
+        else if(type === "video"){
             upload.style.display="block";
             input.accept="video/mp4,image/gif";
             text.placeholder="Write a caption...";
@@ -104,7 +81,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // Menutup popup
     function closePost(){
         document.getElementById("postModal").style.display="none";
         document.getElementById("postText").value="";
@@ -112,52 +88,54 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("selectedFile").textContent = "No file selected";
     }
 
-    // Membuat postingan
     function createPost(){
         const text = document.getElementById("postText").value.trim();
         const mediaInput = document.getElementById("postMedia");
         const file = mediaInput.files[0];
-        // Validasi
+
         if(postType === "article"){
             if(text === ""){
                 alert("Please write your article first!");
                 return;
             }
-        }else{
+            renderAndSavePost(text, "");
+        } else {
             if(!file){
                 alert("Please select a file first!");
                 return;
             }
+            const reader = new FileReader();
+            reader.onload = function(e){
+                renderAndSavePost(text, e.target.result);
+            };
+            reader.readAsDataURL(file);
         }
+    }
+
+    function renderAndSavePost(text, mediaURL) {
         const feed = document.querySelector(".feed");
         const post = document.createElement("div");
         post.className = "post";
-        // Header
+        
         let mediaHTML = "";
-        // ARTICLE
         if(postType === "article"){
-            mediaHTML = `
-                <p class="post-text">${text}</p>
-            `;
+            mediaHTML = `<p class="post-text">${text}</p>`;
         }
-        // PICTURE
         else if(postType === "picture"){
-            const imageURL = URL.createObjectURL(file);
             mediaHTML = `
                 <p class="post-text">${text}</p>
-                <img src="${imageURL}" alt="Picture">
+                <img src="${mediaURL}" alt="Picture">
             `;
         }
-        // VIDEO
         else if(postType === "video"){
-            const videoURL = URL.createObjectURL(file);
             mediaHTML = `
                 <p class="post-text">${text}</p>
                 <video controls style="width:100%;border-radius:12px;margin-top:10px;">
-                    <source src="${videoURL}">
+                    <source src="${mediaURL}">
                 </video>
             `;
         }
+        
         post.innerHTML = `
         <div class="post-header">
             <div class="profile">
@@ -184,62 +162,108 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
         `;
 
-        // Tambahkan ke paling atas
         const firstPost = feed.querySelector(".post");
         if(firstPost){
             feed.insertBefore(post, firstPost);
-        }else{
+        } else {
             feed.appendChild(post);
         }
+        
         closePost();
-        setupNewPost(post);
 
-        // Jika artikel
-        if(postType === "article"){
-            savePost("");
-        }
+        const newPost = {
+            id: Date.now(),
+            name: userName,
+            photo: userPhoto,
+            type: postType,
+            text: text,
+            media: mediaURL,
+            like: 0,
+            comments: [],
+            views: 1
+        };
 
-        // Jika gambar / video
-        else{
-            const reader = new FileReader();
-            reader.onload = function(e){
-                savePost(e.target.result);
-            };
-            reader.readAsDataURL(file);
+        let posts = JSON.parse(localStorage.getItem("communityPosts")) || [];
+        posts.unshift(newPost);
+        localStorage.setItem("communityPosts", JSON.stringify(posts));
 
-        }
-
-        function savePost(media){
-            const newPost = {
-                name:userName,
-                photo:userPhoto,
-                type:postType,
-                text:document.getElementById("postText").value.trim(),
-                media:media,
-                like:0,
-                comments:[],
-                views:1
-            };
-            let posts =
-            JSON.parse(localStorage.getItem("communityPosts")) || [];
-            posts.unshift(newPost);
-            localStorage.setItem(
-                "communityPosts",
-                JSON.stringify(posts)
-            );
-        }
+        setupNewPost(post, newPost.id, 0, 0);
     }
 
-    function setupNewPost(post){
+    function loadPosts() {
+        let posts = JSON.parse(localStorage.getItem("communityPosts")) || [];
+        const feed = document.querySelector(".feed");
+        const firstHardcodedPost = feed.querySelector(".post");
+
+        posts.forEach(data => {
+            const post = document.createElement("div");
+            post.className = "post";
+            
+            let mediaHTML = "";
+            if(data.type === "article"){
+                mediaHTML = `<p class="post-text">${data.text}</p>`;
+            } else if(data.type === "picture"){
+                mediaHTML = `<p class="post-text">${data.text}</p><img src="${data.media}" alt="Picture">`;
+            } else if(data.type === "video"){
+                mediaHTML = `<p class="post-text">${data.text}</p><video controls style="width:100%;border-radius:12px;margin-top:10px;"><source src="${data.media}"></video>`;
+            }
+
+            post.innerHTML = `
+            <div class="post-header">
+                <div class="profile">
+                    <img src="${data.photo}" alt="">
+                    <div>
+                        <strong>${data.name}</strong><br>
+                        <small>${data.type}</small>
+                    </div>
+                </div>
+            </div>
+            ${mediaHTML}
+            <div class="post-footer">
+                <span class="views">👁 ${data.views}</span>
+                <details class="comment-box">
+                    <summary>💬 ${data.comments.length}</summary>
+                    <div class="comment-content">
+                        ${data.comments.map(c => `
+                            <div class="comment">
+                                <img class="post-image" src="${c.photo}">
+                                <div class="comment-text">
+                                    <strong>${c.name}</strong>
+                                    <p>${c.text}</p>
+                                </div>
+                            </div>
+                        `).join('')}
+                        <textarea placeholder="Add a comment..."></textarea>
+                        <button>Send</button>
+                    </div>
+                </details>
+                <div class="like-container">
+                    <button class="like-btn">${data.like > 0 ? '❤️ ' + data.like : '🤍 ' + data.like}</button>
+                </div>
+            </div>
+            `;
+
+            if (firstHardcodedPost) {
+                feed.insertBefore(post, firstHardcodedPost);
+            } else {
+                feed.appendChild(post);
+            }
+            
+            setupNewPost(post, data.id, data.like, data.comments.length);
+        });
+    }
+
+    function setupNewPost(post, postId = null, initialLike = 0, initialComment = 0){
         const textarea = post.querySelector("textarea");
         const button = post.querySelector(".comment-content button");
         const summary = post.querySelector("summary");
         const likeBtn = post.querySelector(".like-btn");
-        let totalComment = 0;
-        let totalLike = 0;
-        let liked = false;
-        // LIKE
-        likeBtn.addEventListener("click",()=>{
+        
+        let totalComment = initialComment;
+        let totalLike = initialLike;
+        let liked = initialLike > 0;
+        
+        likeBtn.addEventListener("click", () => {
             liked = !liked;
             if(liked){
                 totalLike++;
@@ -248,9 +272,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 totalLike--;
                 likeBtn.innerHTML = `🤍 ${totalLike}`;
             }
+            updatePostData(postId, 'like', totalLike);
         });
-        // KOMENTAR
-        button.addEventListener("click",()=>{
+        
+        button.addEventListener("click", () => {
             const text = textarea.value.trim();
             if(text===""){
                 alert("Komentar tidak boleh kosong!");
@@ -269,8 +294,18 @@ document.addEventListener("DOMContentLoaded", () => {
             textarea.value="";
             totalComment++;
             summary.innerHTML=`💬 ${totalComment}`;
+            
+            if (postId) {
+                let posts = JSON.parse(localStorage.getItem("communityPosts")) || [];
+                let postIndex = posts.findIndex(p => p.id === postId);
+                if (postIndex > -1) {
+                    posts[postIndex].comments.push({ name: userName, photo: userPhoto, text: text });
+                    localStorage.setItem("communityPosts", JSON.stringify(posts));
+                }
+            }
         });
-        textarea.addEventListener("keydown",(e)=>{
+        
+        textarea.addEventListener("keydown", (e) => {
             if(e.key==="Enter" && !e.shiftKey){
                 e.preventDefault();
                 button.click();
@@ -278,11 +313,20 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    function updatePostData(postId, key, value) {
+        if (!postId) return;
+        let posts = JSON.parse(localStorage.getItem("communityPosts")) || [];
+        let postIndex = posts.findIndex(p => p.id === postId);
+        if (postIndex > -1) {
+            posts[postIndex][key] = value;
+            localStorage.setItem("communityPosts", JSON.stringify(posts));
+        }
+    }
+
     const mediaInput = document.getElementById("postMedia");
     const selectedFile = document.getElementById("selectedFile");
 
     mediaInput.addEventListener("change", function(){
-
         if(this.files.length > 0){
             selectedFile.textContent = this.files[0].name;
         }else{
@@ -290,8 +334,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
+    loadPosts();
+
     window.openPost = openPost;
     window.closePost = closePost;
     window.createPost = createPost;
-
 });
