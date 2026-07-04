@@ -556,12 +556,23 @@ function openCharDetail(card) {
 
     document.body.classList.add('detail-mode');
     charDetail.classList.add('active');
+    updateDetailArrows();
+}
+
+function updateDetailArrows() {
+    const cont = document.querySelector('section.active .character');
+    const count = cont ? cont.children.length : 0;
+    const show = count > 1;
+    if (next) next.style.display = show ? '' : 'none';
+    if (prev) prev.style.display = show ? '' : 'none';
 }
 
 function closeCharDetail() {
     charDetail.classList.remove('active');
     document.body.classList.remove('detail-mode');
     document.querySelectorAll('.characterList').forEach(c => c.classList.remove('active-card'));
+    if (next) next.style.display = '';
+    if (prev) prev.style.display = '';
 }
 
 function toggleCharImage() {

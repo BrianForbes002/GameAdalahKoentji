@@ -478,6 +478,7 @@ function showCustomNotification(message) {
     notif.style.position = "fixed";
     notif.style.top = "100px";
     notif.style.right = "30px";
+    notif.style.left = "30px";
     notif.style.background = "rgba(10, 20, 50, 0.9)";
     notif.style.border = "1px solid #00e5ff";
     notif.style.color = "white";

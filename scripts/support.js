@@ -61,7 +61,6 @@ window.addEventListener("wheel", function(e){
 
 function loadEmail() {
     const email = document.getElementById("supportEmail");
-    const error = document.getElementById("supportFormError");
 
     if (!email) return;
 
@@ -76,8 +75,6 @@ function loadEmail() {
         email.readOnly = true;
         email.placeholder = "Please login first";
     }
-
-    error.textContent = "";
 }
 
 function fillForm(data) {
@@ -105,6 +102,7 @@ function clearForm() {
     loadEmail();
 
     document.querySelector(".btn-send").textContent = "Send";
+    clearFieldErrors();
 }
 
 function resetSupportForm() {
@@ -114,6 +112,7 @@ function resetSupportForm() {
     clearImageField();
 
     loadEmail();
+    clearFieldErrors();
 }
 
 function alertLogin() {
@@ -133,8 +132,8 @@ function initSupportForm() {
 
     form.addEventListener("submit", function(e){
         e.preventDefault();
-        const error = document.getElementById("supportFormError");
-        error.textContent = "";
+
+        clearFieldErrors();
 
         if (typeof loginOpen !== 'undefined' && loginOpen) {
             return; 
@@ -147,7 +146,6 @@ function initSupportForm() {
             });
 
             document.getElementById("loginAlert").classList.add("active");
-            error.textContent = "Please login first!";
 
             return;
         }
@@ -157,18 +155,19 @@ function initSupportForm() {
         const info = document.getElementById("additionalInfo").value.trim();
         const problem = document.querySelector('input[name="problem"]:checked');
 
-        if(name === ""){
-            error.textContent = "Please enter your name!";
-            return;
+        let valid = true;
+
+        if (name === "") {
+            setFieldError("playerName", "Please enter your name.");
+            valid = false;
         }
 
-        if(problem === null){
-            error.textContent = "Please choose a problem!";
-            return;
+        if (info === "") {
+            setFieldError("additionalInfo", "Please enter a description.");
+            valid = false;
         }
 
-        if(info === ""){
-            error.textContent = "Please enter a description!";
+        if (!valid) {
             return;
         }
 
@@ -183,9 +182,12 @@ function initSupportForm() {
 
         setTimeout(function() {
 
+            let targetId;
+
             if(editId === null){
+                targetId = Date.now();
                 data.push({
-                    id: Date.now(),
+                    id: targetId,
                     email,
                     name,
                     problem: problem.value,
@@ -195,6 +197,7 @@ function initSupportForm() {
                     status: "Pending"
                 });
             } else {
+                targetId = editId;
                 const item = data.find(function(x){
                     return x.id === editId;
                 });
@@ -212,6 +215,7 @@ function initSupportForm() {
             btnSend.classList.add("success");
             btnSend.textContent = editId === null ? "Data Sent!" : "Updated!";
             formBox.classList.remove("form-transmitting");
+            showSupportToast(editId === null ? "Support request sent successfully!" : "Support request updated!", "success");
 
             setTimeout(function() {
                 
@@ -222,10 +226,18 @@ function initSupportForm() {
                 btnSend.classList.remove("success");
                 btnSend.textContent = originalBtnText;
 
-                document.querySelector(".support-history-section").scrollIntoView({
-                    behavior: "smooth",
-                    block: "start"
-                });
+                const targetRow = document.querySelector(
+                    '#supportTableBody tr[data-id="' + targetId + '"]'
+                );
+
+                if (targetRow) {
+                    targetRow.scrollIntoView({ behavior: "smooth", block: "center" });
+                } else {
+                    document.querySelector(".support-history-section").scrollIntoView({
+                        behavior: "smooth",
+                        block: "start"
+                    });
+                }
 
             }, 1000);
 
@@ -419,8 +431,6 @@ function editForm(){
 
             fillForm(item);
 
-            document.getElementById("supportFormError").textContent = "";
-
             document.querySelector(".btn-send").textContent = "Save Changes";
 
             window.scrollTo({
@@ -515,6 +525,7 @@ function renderSupportTable() {
 
     data.forEach(function(item, index){
         const tr = document.createElement("tr");
+        tr.dataset.id = item.id;
         let action = "-";
 
         if(user && user.email === item.email){
@@ -562,7 +573,15 @@ window.viewFeedback = function(id) {
     
     if(!item) return;
 
-    const feedbackText = item.adminReply && item.adminReply.trim() !== ""  ? item.adminReply : "Admin is currently reviewing your ticket. Please wait for further updates.";
+    let feedbackText;
+
+    if (item.adminReply && item.adminReply.trim() !== "") {
+        feedbackText = item.adminReply;
+    } else if (item.status === "Resolved") {
+        feedbackText = "This ticket has been marked as resolved. If the problem is still happening, please submit a new request.";
+    } else {
+        feedbackText = "Admin is currently reviewing your ticket. Please wait for further updates.";
+    }
     
     document.getElementById("feedbackText").textContent = feedbackText;
     document.getElementById("feedbackAlert").classList.add("active");
@@ -702,3 +721,82 @@ document.addEventListener("DOMContentLoaded", function () {
     initFAQ();
     initImageUpload();
 });
+
+function showSupportToast(message, type) {
+    const toast = document.getElementById("wuwaToast");
+    if (!toast) return;
+
+    const text = toast.querySelector(".wuwa-toast-text");
+    const icon = toast.querySelector(".wuwa-toast-icon");
+
+    text.textContent = message;
+
+    if (type === "danger") {
+        toast.classList.add("danger");
+        icon.textContent = "!";
+    } else {
+        toast.classList.remove("danger");
+        icon.textContent = "\u2713";
+    }
+
+    toast.classList.add("show");
+
+    clearTimeout(showSupportToast.timer);
+    showSupportToast.timer = setTimeout(function () {
+        toast.classList.remove("show");
+    }, 3200);
+}
+
+
+function setFieldError(name, message) {
+    const span = document.querySelector('.field-error[data-for="' + name + '"]');
+    const el = document.getElementById(name);
+    if (span) {
+        span.textContent = message;
+    }
+    if (el) {
+        const group = el.closest(".form-group");
+        if (group) {
+            group.classList.add("invalid");
+        }
+    }
+}
+
+function clearOneError(name) {
+    const span = document.querySelector('.field-error[data-for="' + name + '"]');
+    const el = document.getElementById(name);
+    if (span) {
+        span.textContent = "";
+    }
+    if (el) {
+        const group = el.closest(".form-group");
+        if (group) {
+            group.classList.remove("invalid");
+        }
+    }
+}
+
+function clearFieldErrors() {
+    const spans = document.querySelectorAll(".field-error");
+    for (let i = 0; i < spans.length; i++) {
+        spans[i].textContent = "";
+    }
+    const groups = document.querySelectorAll(".support-form .form-group.invalid");
+    for (let i = 0; i < groups.length; i++) {
+        groups[i].classList.remove("invalid");
+    }
+}
+
+const clearNameError = document.getElementById("playerName");
+if (clearNameError) {
+    clearNameError.addEventListener("input", function () {
+        clearOneError("playerName");
+    });
+}
+
+const clearInfoError = document.getElementById("additionalInfo");
+if (clearInfoError) {
+    clearInfoError.addEventListener("input", function () {
+        clearOneError("additionalInfo");
+    });
+}
