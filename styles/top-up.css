@@ -603,6 +603,59 @@ body {
 .tu-success .tu-sum-line { text-align: left; }
 .tu-success small { display: block; margin-top: 14px; color: #999; font-size: 13px; }
 
+.tu-pay-head {
+    display: flex; justify-content: space-between; align-items: center;
+    background: #faf6ef; border: 1px solid #f0e2c8; border-radius: 10px;
+    padding: 12px 14px; margin-bottom: 14px;
+}
+.tu-pay-head span { color: #8a7a5c; font-size: 14px; font-weight: 600; }
+.tu-pay-head b { color: #d68533; font-size: 18px; }
+.tu-pay-note { font-size: 13px; color: #888; margin-bottom: 16px; line-height: 1.45; }
+
+.tu-field { margin-bottom: 14px; }
+.tu-field label { display: block; font-size: 13px; font-weight: 600; color: #666; margin-bottom: 6px; }
+.tu-input-wrap { position: relative; }
+.tu-field input {
+    width: 100%; padding: 12px 13px; font-size: 15px; color: #2b2b2b;
+    border: 1.5px solid #e2e2e2; border-radius: 9px; background: #fafafa; outline: none;
+    font-family: inherit; box-sizing: border-box;
+    transition: border-color 0.15s ease, background 0.15s ease;
+}
+.tu-field input::placeholder { color: #b3b3b3; }
+.tu-field input:focus { border-color: #d68533; background: #fff; }
+.tu-field.ok input { border-color: #2ecc71; }
+.tu-field.err input { border-color: #e74c3c; }
+#tuPhone, #tuCC { padding-right: 92px; }
+
+.tu-badge, .tu-scheme {
+    position: absolute; right: 8px; top: 50%; transform: translateY(-50%);
+    font-size: 12px; font-weight: 700; padding: 4px 9px; border-radius: 7px; letter-spacing: 0.2px;
+}
+.tu-badge.ok { background: rgba(46, 204, 113, 0.16); color: #23a55a; }
+.tu-scheme { color: #fff; background: #333; }
+.tu-scheme.s-visa { background: #1a1f71; }
+.tu-scheme.s-mastercard { background: #eb001b; }
+.tu-scheme.s-amex { background: #016fd0; }
+.tu-scheme.s-jcb { background: #0b4ea2; }
+
+.tu-hint { font-size: 12px; margin-top: 6px; min-height: 15px; color: #999; }
+.tu-hint.ok { color: #23a55a; }
+.tu-hint.err { color: #e74c3c; }
+
+.tu-row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.tu-row2 .tu-field { margin-bottom: 14px; }
+
+.tu-qr {
+    display: block; width: 200px; height: 200px; margin: 6px auto 4px;
+    border-radius: 10px; border: 1px solid #eee; background: #fff;
+}
+.tu-qr-cap { text-align: center; font-size: 12px; color: #aaa; margin-bottom: 4px; }
+
+.tu-btn-confirm:disabled {
+    background: #dcdcdc; color: #fff; cursor: not-allowed;
+    transform: none; box-shadow: none;
+}
+
 @media (max-width: 768px) {
     .section-top {
         height: 320px;
